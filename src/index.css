@@ -1,1 +1,23 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/Montserrat-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
 @import "tailwindcss";
+
+@theme {
+  
+  --font-montserrat: "Montserrat", "sans-serif";
+
+  --color-reactBlue: oklch(0.79 0.13 206);
+  --color-deepGreen: oklch(0.52 0.09 216);
+  --color-errorColor: oklch(0.62 0.21 25);
+  --color-choiceColor: oklch(0.78 0.13 195);
+  --color-accent: oklch(0.74 0.17 163);
+  --color-backgroundColor: oklch(0.97 0.02 227);
+  --color-formBorderColor: oklch(0.83 0.04 255);
+  --color-disabledForm: oklch(0.97 0.01 250);
+  --color-formFontColor:  oklch(0.24 0.01 275);
+}

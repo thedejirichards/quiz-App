@@ -1,5 +1,5 @@
 {
-  "data": [
+  "questionData": [
     {
       "id": 1,
       "question": "What is React primarily used for?",
@@ -1359,6 +1359,72 @@
       ],
       "answer": "To measure performance of React components",
       "difficulty": "hard"
+    }
+  ],
+  "userData": [
+    {
+      "id": 1,
+      "name": "Richard Oladeji",
+      "Email": "thedejirichards@gmail.com",
+      "password": "$$$rirchard",
+      "signUpDate": "Feb 2 2022",
+      "lastLogInDate": "Oct 07 2025",
+      "results": [
+        {
+          "quizId": "qz-0001",
+          "difficultyType": "hard",
+          "numberOfQuestions": 30,
+          "correctlyAnswered": 10,
+          "durationUsed": "2000",
+          "dateStamp": 1759829992614,
+          "remark": "fail"
+        },
+        {
+          "quizId": "qz-0002",
+          "difficultyType": "simple",
+          "numberOfQuestions": 25,
+          "correctlyAnswered": 18,
+          "durationUsed": "1800",
+          "dateStamp": 1759833592614,
+          "remark": "pass"
+        },
+        {
+          "quizId": "qz-0008",
+          "difficultyType": "medium",
+          "numberOfQuestions": 25,
+          "correctlyAnswered": 16,
+          "durationUsed": "2100",
+          "dateStamp": 1759855192614,
+          "remark": "good"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Bolaji Dauda",
+      "Email": "bolajidauda@gmail.com",
+      "password": "$$$bolaji",
+      "signUpDate": "May 9 2024",
+      "lastLogInDate": "Aug 10 2024",
+      "results": [
+        {
+          "quizId": "qz-0009",
+          "difficultyType": "hard",
+          "numberOfQuestions": 30,
+          "correctlyAnswered": 10,
+          "durationUsed": "2000",
+          "dateStamp": 1759829992614,
+          "remark": "fail"
+        }
+      ]
+    },{
+      "id": 3,
+      "name": "Folakemi Bodede",
+      "Email": "folakemibodede@outlook.com",
+      "password": "$$$folakemi",
+      "signUpDate": "June 6 2024",
+      "lastLogInDate": "Dec 12 2024",
+      "results": null
     }
   ]
 }

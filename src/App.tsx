@@ -1,7 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
+import LoginLogOut from "./pages/LoginLogOut";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<LoginLogOut />}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
