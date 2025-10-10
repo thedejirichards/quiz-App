@@ -1,14 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./index.css";
-import LoginLogOut from "./pages/LoginLogOut";
+import LoginSignup from "./pages/LoginSignup";
+import { UserMgtContextProvider } from "./contexts/UserMgtContextProvider";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<LoginLogOut />}/>
-      </Routes>
-    </BrowserRouter>
+    <UserMgtContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<LoginSignup />} />
+          <Route path="/signup" element={<LoginSignup />} />
+        </Routes>
+      </BrowserRouter>
+    </UserMgtContextProvider>
   );
 }
 
