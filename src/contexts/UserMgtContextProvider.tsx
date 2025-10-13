@@ -4,6 +4,7 @@ import type {
   ReducerActions,
   ReducerAvailableStatesType,
   RegisteredUserType,
+  loginUserType,
 } from "../types/types";
 
 const BASE_URL = "http://localhost:8000";
@@ -13,6 +14,10 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     registeredUsers: null,
     errMsg: "",
     isLoading: false,
+    signedUpSuccessResponse: false,
+    logInSuccessResponse: false,
+    currentLoggedInUser: null,
+    userToLogInCredentials: null,
   };
 
   const reducer = (
@@ -38,6 +43,23 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           registeredUsers: state.registeredUsers
             ? [...state.registeredUsers, action.payLoad]
             : state.registeredUsers,
+          signedUpSuccessResponse: true,
+        };
+      case "validateUser":
+        return {
+          ...state,
+          isLoading: false,
+          logInSuccessResponse: true,
+          userToLogInCredentials: action.payLoad,
+        };
+      case "getCurrUser":
+        return {
+          ...state,
+          isLoading: false,
+          currentLoggedInUser:
+            state.registeredUsers?.find(
+              (user) => user.Email === state.userToLogInCredentials?.Email
+            ) ?? null,
         };
       case "error":
         return {
@@ -47,10 +69,17 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const [{ registeredUsers, errMsg, isLoading }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [
+    {
+      registeredUsers,
+      errMsg,
+      isLoading,
+      signedUpSuccessResponse,
+      logInSuccessResponse,
+      currentLoggedInUser,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
   useEffect(() => {
     const getRegisteredUsers = async () => {
       dispatch({ type: "registeredUsers/loading" });
@@ -76,15 +105,56 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         },
       });
       const data = await res.json();
+      if (
+        registeredUsers?.some(
+          (item) => item.Email === data.Email || item.name === data.name
+        )
+      )
+        dispatch({ type: "error", payLoad: "User already exist" });
       dispatch({ type: "registeredUsers/add", payLoad: data });
     } catch {
       dispatch({ type: "error", payLoad: "Error creating data" });
     }
   };
 
+  const validateUser = (user: loginUserType) => {
+    dispatch({ type: "registeredUsers/loading" });
+    const isValidUser = registeredUsers?.some(
+      (item) => item.Email === user.Email && item.password === user.password
+    );
+
+    if (!isValidUser) {
+      dispatch({
+        type: "error",
+        payLoad: "Invalid credentials, recheck email or password.",
+      });
+      return;
+    }
+    dispatch({ type: "validateUser", payLoad: user });
+  };
+
+  const getCurrUser = () => {
+    dispatch({ type: "registeredUsers/loading" });
+    try {
+      dispatch({ type: "getCurrUser" });
+    } catch {
+      dispatch({ type: "error", payLoad: "Unable to get current user" });
+    }
+  };
+
   return (
     <UserMgtContext.Provider
-      value={{ registeredUsers, errMsg, isLoading, addNewUser }}
+      value={{
+        registeredUsers,
+        errMsg,
+        isLoading,
+        addNewUser,
+        signedUpSuccessResponse,
+        logInSuccessResponse,
+        validateUser,
+        getCurrUser,
+        currentLoggedInUser,
+      }}
     >
       {children}
     </UserMgtContext.Provider>

@@ -23,18 +23,29 @@ export type UserMgtContextType = {
   errMsg: string;
   isLoading: boolean;
   addNewUser: (newUser: RegisteredUserType) => void;
+  signedUpSuccessResponse: boolean;
+  logInSuccessResponse: boolean;
+  validateUser: (user: loginUserType) => void;
+  getCurrUser: ()=> void;
+  currentLoggedInUser: RegisteredUserType | null
 };
 
 export type ReducerAvailableStatesType = {
   registeredUsers: RegisteredUserType[] | null;
   errMsg: string;
   isLoading: boolean;
+  signedUpSuccessResponse: boolean;
+  logInSuccessResponse: boolean;
+  currentLoggedInUser: RegisteredUserType | null;
+  userToLogInCredentials: loginUserType | null;
 };
 
 export type ReducerActions =
   | { type: "registeredUsers/loading" }
   | { type: "registeredUsers/loaded"; payLoad: RegisteredUserType[] }
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
+  | { type: "validateUser"; payLoad: loginUserType}
+  | { type: "getCurrUser"; }
   | { type: "error"; payLoad: string };
 
 export type loginSignUpReducerStates = {
@@ -45,7 +56,21 @@ export type loginSignUpReducerStates = {
 };
 export type loginSignUpReducerActions =
   | { type: "togglePasswordVisibility" }
-  | { type: "setFullName", payload: string }
-  | { type: "setEmail", payload: string}
-  | { type: "setPassword", payload: string };
-  // | { type: "submitSignup", payload: RegisteredUserType };
+  | { type: "setFullName"; payload: string }
+  | { type: "setEmail"; payload: string }
+  | { type: "setPassword"; payload: string }
+  | { type: "reset" };
+
+export type ModalType = {
+  headerText: string;
+  subtext: string;
+  displayIcon: string;
+  actionMainContent?: string; 
+  actionOtherContent?: string;
+  mainAction?:()=> void;
+  otherAction?: ()=> void;
+};
+export type loginUserType = {
+  Email: string;
+  password: string;
+};

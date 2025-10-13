@@ -1,20 +1,33 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUserMgtAuth } from "../contexts/UserMgtContextProvider";
 import type {
   loginSignUpReducerActions,
   loginSignUpReducerStates,
 } from "../types/types";
+import Modal from "../components/Modal";
 
 function LoginSignup() {
-  const { addNewUser } = useUserMgtAuth();
+  const {
+    addNewUser,
+    errMsg,
+    signedUpSuccessResponse,
+    logInSuccessResponse,
+    validateUser,
+    getCurrUser,
+  } = useUserMgtAuth();
   const location = useLocation();
-
+  const navigate = useNavigate();
   const displayForSignup = location.pathname.includes("/signup");
   const displayForLogin = location.pathname.includes("/login");
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  useEffect(() => {
+    if (signedUpSuccessResponse) {
+      setIsModalOpen(true);
+    }
+  }, [signedUpSuccessResponse]);
   const getTodaysDate = () => {
     const today = new Date();
     const formattedDate = today
@@ -47,6 +60,8 @@ function LoginSignup() {
         return { ...state, email: action.payload };
       case "setPassword":
         return { ...state, password: action.payload };
+      case "reset":
+        return initialState;
       default:
         return state;
     }
@@ -67,19 +82,45 @@ function LoginSignup() {
     results: null,
   };
 
+  const userToVal = {
+    Email: email,
+    password: password,
+  };
+
   const handleSubmitSignup = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(!fullName || !email || !password) return
+    if (!fullName || !email || !password) return;
     addNewUser(createdUser);
-    console.log(createdUser);
   };
+
   const handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    alert("logged in");
     e.preventDefault();
+    if (!email || !password) return;
+    validateUser(userToVal);
+    getCurrUser();
+  };
+
+  useEffect(() => {
+    if (logInSuccessResponse) navigate("/app");
+  }, [logInSuccessResponse, navigate]);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    dispatch({ type: "reset" });
+    navigate("/login", { replace: true });
   };
 
   return (
     <div className="parent flex w-full h-screen bg-backgroundColor">
+      {isModalOpen && (
+        <Modal
+          headerText="Signed Up Successfully"
+          subtext="Proceed to log in"
+          displayIcon="party"
+          actionMainContent="Okay"
+          mainAction={handleCloseModal}
+        />
+      )}
       <div
         className="child w-1/2 h-full bg-cover bg-no-repeat bg-center flex justify-center items-center"
         style={{
@@ -181,6 +222,7 @@ function LoginSignup() {
                 </div>
               </div>
             </div>
+            {errMsg && <em className="text-red-600">{errMsg}</em>}
             <button className="btn w-full rounded-lg my-5 py-4 bg-deepGreen text-white font-bold">
               {displayForSignup && !displayForLogin ? "Sign Up" : "Log In"}
             </button>

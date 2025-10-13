@@ -19,4 +19,6 @@
   --color-formBorderColor: oklch(0.83 0.04 255);
   --color-disabledForm: oklch(0.97 0.01 250);
   --color-formFontColor:  oklch(0.24 0.01 275);
+  --color-mytext: oklch(0.56 0.05 250);
+
 }
