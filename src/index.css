@@ -9,7 +9,6 @@
 
 @theme {
   --font-montserrat: "Montserrat", "sans-serif";
-
   --color-reactBlue: oklch(0.79 0.13 206);
   --color-deepGreen: oklch(0.52 0.09 216);
   --color-errorColor: oklch(0.62 0.21 25);
@@ -20,5 +19,4 @@
   --color-disabledForm: oklch(0.97 0.01 250);
   --color-formFontColor:  oklch(0.24 0.01 275);
   --color-mytext: oklch(0.56 0.05 250);
-
 }

@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import type {
   UserMgtContextType,
   ReducerActions,
@@ -42,7 +48,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           isLoading: false,
           registeredUsers: state.registeredUsers
             ? [...state.registeredUsers, action.payLoad]
-            : state.registeredUsers,
+            : [action.payLoad],
           signedUpSuccessResponse: true,
         };
       case "validateUser":
@@ -60,6 +66,13 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
             state.registeredUsers?.find(
               (user) => user.Email === state.userToLogInCredentials?.Email
             ) ?? null,
+        };
+      case "user/logOut":
+        return {
+          ...state,
+          logInSuccessResponse: false,
+          currentLoggedInUser: null,
+          userToLogInCredentials: null,
         };
       case "error":
         return {
@@ -118,30 +131,48 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
   };
 
   const validateUser = (user: loginUserType) => {
+    if (!registeredUsers) {
+      dispatch({ type: "error", payLoad: "User data not loaded yet" });
+      return;
+    }
+
     dispatch({ type: "registeredUsers/loading" });
-    const isValidUser = registeredUsers?.some(
-      (item) => item.Email === user.Email && item.password === user.password
+
+    const matchedUser = registeredUsers.find(
+      (item) =>
+        item.Email?.toLowerCase() === user.Email?.toLowerCase() &&
+        item.password === user.password
     );
 
-    if (!isValidUser) {
+    if (!matchedUser) {
       dispatch({
         type: "error",
         payLoad: "Invalid credentials, recheck email or password.",
       });
       return;
     }
-    dispatch({ type: "validateUser", payLoad: user });
+
+    // ✅ Use the matched user (with proper casing)
+    dispatch({ type: "validateUser", payLoad: matchedUser });
   };
 
-  const getCurrUser = () => {
+  const getCurrUser = useCallback(() => {
     dispatch({ type: "registeredUsers/loading" });
     try {
       dispatch({ type: "getCurrUser" });
     } catch {
       dispatch({ type: "error", payLoad: "Unable to get current user" });
     }
-  };
+  }, [dispatch]);
 
+  const logOutUser = () => {
+    dispatch({ type: "registeredUsers/loading" });
+    try {
+      dispatch({ type: "user/logOut" });
+    } catch {
+      dispatch({ type: "error", payLoad: "Unable to logOut current user" });
+    }
+  };
   return (
     <UserMgtContext.Provider
       value={{
@@ -154,6 +185,8 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         validateUser,
         getCurrUser,
         currentLoggedInUser,
+        logOutUser,
+        dispatch,
       }}
     >
       {children}

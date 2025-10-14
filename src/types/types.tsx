@@ -27,7 +27,9 @@ export type UserMgtContextType = {
   logInSuccessResponse: boolean;
   validateUser: (user: loginUserType) => void;
   getCurrUser: ()=> void;
-  currentLoggedInUser: RegisteredUserType | null
+  currentLoggedInUser: RegisteredUserType | null;
+  logOutUser: ()=> void;
+  dispatch: (action: ReducerActions)=> void;
 };
 
 export type ReducerAvailableStatesType = {
@@ -46,6 +48,7 @@ export type ReducerActions =
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
   | { type: "validateUser"; payLoad: loginUserType}
   | { type: "getCurrUser"; }
+  | { type: "user/logOut"; }
   | { type: "error"; payLoad: string };
 
 export type loginSignUpReducerStates = {

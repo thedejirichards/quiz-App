@@ -18,6 +18,7 @@ function LoginSignup() {
     validateUser,
     getCurrUser,
   } = useUserMgtAuth();
+
   const location = useLocation();
   const navigate = useNavigate();
   const displayForSignup = location.pathname.includes("/signup");

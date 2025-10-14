@@ -1,17 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { useUserMgtAuth } from "../contexts/UserMgtContextProvider";
-import { useEffect } from "react";
+import Main from "../components/Main";
+import Sidebar from "../components/Sidebar";
 
 function MainApp() {
-  const { currentLoggedInUser } = useUserMgtAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!currentLoggedInUser) {
-      navigate("/login");
-    }
-  }, [currentLoggedInUser, navigate]);
-  return <div>Welcome to Main App {currentLoggedInUser?.name}</div>;
+  return (
+    <div className="main-app flex [&>*:first-child]:w-2/12 [&>*:last-child]:w-10/12 font-montserrat">
+      <Sidebar />
+      <Main/>
+    </div>
+  );
 }
 
 export default MainApp;
