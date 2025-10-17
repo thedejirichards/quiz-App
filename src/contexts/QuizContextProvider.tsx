@@ -14,6 +14,7 @@ const initialState: quizReducerStateTypes = {
   customizeQuiz: false,
   difficultyType: "",
   questionsToAttempt: 0,
+  displayInstruction: false,
   attestedToInstruction: false,
   startQuiz: false,
   questionReady: false,
@@ -35,27 +36,48 @@ const reducer = (
       return { ...initialState };
     case "quiz/welcome":
       return {
-        ...state,
-        isLoading: false,
+        ...initialState,
         currentlyDefaultQuizPage: false,
         displayWelcome: true,
       };
     case "quiz/customize":
-      return { ...state, isLoading: false, customizeQuiz: true, displayWelcome: false };
+      return {
+        ...state,
+        isLoading: false,
+        customizeQuiz: true,
+        displayWelcome: false,
+        displayInstruction: false,
+      };
     case "quiz/setDifficultyType":
       return { ...state, isLoading: false, difficultyType: action.payload };
     case "quiz/setUserQuestionNumberChoice":
       return { ...state, isLoading: false, questionsToAttempt: action.payload };
-    case "quiz/finalInstruction":
-      return { ...state, isLoading: false, attestedToInstruction: true };
-    case "quiz/startQuiz":
-      return { ...state, isLoading: false, startQuiz: true };
-    case "quiz/questionReady":
+    case "quiz/displayInstruction":
+      return {
+        ...state,
+        isLoading: false,
+        customizeQuiz: false,
+        displayInstruction: true,
+      };
+    case "quiz/attestInstruction":
+      return {
+        ...state,
+        isLoading: false,
+        attestedToInstruction: action.payload,
+      };
+    case "quiz/getQuestion":
       return {
         ...state,
         isLoading: false,
         questionData: action.payload,
         questionReady: true,
+      };
+    case "quiz/startQuiz":
+      return {
+        ...state,
+        isLoading: false,
+        startQuiz: true,
+        displayInstruction: false,
       };
     case "quiz/quizReady":
       return { ...state, isLoading: false, quizReady: true };
@@ -78,6 +100,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       customizeQuiz,
       difficultyType,
       questionsToAttempt,
+      displayInstruction,
       attestedToInstruction,
       startQuiz,
       questionReady,
@@ -96,13 +119,13 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       try {
         const res = await fetch(`${BASE_URL}/questionData`);
         const data = await res.json();
-        dispatch({ type: "quiz/questionReady", payload: data });
+        dispatch({ type: "quiz/getQuestion", payload: data });
       } catch {
         dispatch({ type: "error", payload: "Unable to get Question Data" });
       }
     };
     getQuestionData();
-  }, [startQuiz]);
+  }, [attestedToInstruction]);
 
   return (
     <QuizContext.Provider
@@ -113,6 +136,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         customizeQuiz,
         difficultyType,
         questionsToAttempt,
+        displayInstruction,
         attestedToInstruction,
         startQuiz,
         questionReady,

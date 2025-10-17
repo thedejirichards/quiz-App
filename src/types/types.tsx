@@ -94,6 +94,7 @@ export type quizReducerStateTypes = {
   customizeQuiz: boolean;
   difficultyType: "" | "easy" | "intermediate" | "difficult";
   questionsToAttempt: 0 | 25 | 30| 35 | 50;
+  displayInstruction: boolean;
   attestedToInstruction: boolean;
   startQuiz: boolean;
   questionReady: boolean;
@@ -113,9 +114,10 @@ export type quizReducerActionTypes =
       payload: "easy" | "intermediate" | "difficult";
     }
   | { type: "quiz/setUserQuestionNumberChoice"; payload: 25 | 30 | 35 | 50 }
-  | { type: "quiz/finalInstruction" }
+  | { type: "quiz/displayInstruction" }
+  | { type: "quiz/attestInstruction", payload: boolean }
+  | { type: "quiz/getQuestion"; payload: QuestionType[] }
   | { type: "quiz/startQuiz" }
-  | { type: "quiz/questionReady"; payload: QuestionType[] }
   | { type: "quiz/quizReady" }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
@@ -128,6 +130,7 @@ export type QuizContextTypes = {
   customizeQuiz: boolean;
   difficultyType: "" | "easy" | "intermediate" | "difficult";
   questionsToAttempt: number;
+  displayInstruction: boolean;
   attestedToInstruction: boolean;
   startQuiz: boolean;
   questionReady: boolean;
@@ -146,6 +149,8 @@ export type QuizButtonType = {
 export type NextPreFooterType = {
   prevAction: () => void;
   nextAction: () => void;
+  displayPrev?: boolean;
+  displayNext?: boolean;
 };
 
 // action={() => dispatch({ type: "quiz/getStarted" })}

@@ -11,26 +11,31 @@ function App() {
   return (
     <BrowserRouter>
       <UserMgtContextProvider>
-        <ProtectedRoute>
-          <Routes>
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route path="/login" element={<LoginSignup />} />
-            <Route path="/signup" element={<LoginSignup />} />
-            <Route path="/app" element={<MainApp />}>
-              <Route index element={<Navigate to="quiz" replace />} />
-              <Route
-                path="quiz"
-                element={
-                  <QuizContextProvider>
-                    <Quiz />
-                  </QuizContextProvider>
-                }
-              />
-              <Route path="profile" element={<p>Profile Page</p>} />
-              <Route path="leaderboard" element={<p>leaderboard Page</p>} />
-            </Route>
-          </Routes>
-        </ProtectedRoute>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<LoginSignup />} />
+          <Route path="/signup" element={<LoginSignup />} />
+          <Route
+            path="/app"
+            element={
+              <ProtectedRoute>
+                <MainApp />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="quiz" replace />} />
+            <Route
+              path="quiz"
+              element={
+                <QuizContextProvider>
+                  <Quiz />
+                </QuizContextProvider>
+              }
+            />
+            <Route path="profile" element={<p>Profile Page</p>} />
+            <Route path="leaderboard" element={<p>leaderboard Page</p>} />
+          </Route>
+        </Routes>
       </UserMgtContextProvider>
     </BrowserRouter>
   );

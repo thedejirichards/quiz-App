@@ -6,9 +6,14 @@ import {
 import NextPrevFooter from "./NextPrevFooter";
 
 function CustomizePage() {
-  const { dispatch } = useQuiz();
-
-  //   possibleDifficultyOb
+  const { dispatch, difficultyType, questionsToAttempt } = useQuiz();
+  const handleNext = () => {
+    if (!difficultyType || questionsToAttempt === 0) return;
+    dispatch({ type: "quiz/displayInstruction" });
+  };
+  const handlePrev = () => {
+    dispatch({ type: "quiz/welcome" });
+  };
   return (
     <div className="customize h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto pt-36 pb-10">
@@ -28,14 +33,20 @@ function CustomizePage() {
                       payload: item.name,
                     })
                   }
-                  className="options flex items-center justify-center text-xl font-semibold text-reactBlue flex-1 border-2 border-reactBlue rounded-xl h-full"
+                  className={`options flex items-center justify-center text-xl font-semibold flex-1 border-2 border-reactBlue rounded-xl h-full ${
+                    difficultyType === item.name
+                      ? "bg-reactBlue text-white"
+                      : "text-reactBlue"
+                  }`}
                 >
                   {item.name}
                 </button>
               ))}
             </div>
           </div>
-          <div className="customizationbox flex flex-1 flex-col justify-between w-full bg-white border-2 border-reactBlue rounded-2xl py-5 px-5">
+          <div
+            className={`customizationbox flex flex-1 flex-col justify-between w-full bg-white border-2 border-reactBlue rounded-2xl py-5 px-5`}
+          >
             <div className="h3 font-semibold text-mytext flex justify-center items-center h-1/3">
               How Many Questions Do you want To Answer?
             </div>
@@ -49,7 +60,11 @@ function CustomizePage() {
                       payload: item.choiceNumber,
                     });
                   }}
-                  className="options flex items-center justify-center text-xl font-semibold text-reactBlue flex-1 border-2 border-reactBlue rounded-xl h-full"
+                  className={`options flex items-center justify-center text-xl font-semibold flex-1 border-2 border-reactBlue rounded-xl h-full ${
+                    questionsToAttempt === item.choiceNumber
+                      ? "bg-reactBlue text-white"
+                      : "text-reactBlue "
+                  }`}
                 >
                   {item.choiceNumber}
                 </button>
@@ -58,10 +73,7 @@ function CustomizePage() {
           </div>
         </div>
       </div>
-      <NextPrevFooter
-        nextAction={() => dispatch({ type: "quiz/customize" })}
-        prevAction={() => dispatch({ type: "quiz/getStarted" })}
-      />
+      <NextPrevFooter nextAction={handleNext} prevAction={handlePrev} />
     </div>
   );
 }
