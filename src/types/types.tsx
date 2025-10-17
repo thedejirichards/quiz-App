@@ -26,10 +26,10 @@ export type UserMgtContextType = {
   signedUpSuccessResponse: boolean;
   logInSuccessResponse: boolean;
   validateUser: (user: loginUserType) => void;
-  getCurrUser: ()=> void;
+  getCurrUser: () => void;
   currentLoggedInUser: RegisteredUserType | null;
-  logOutUser: ()=> void;
-  dispatch: (action: ReducerActions)=> void;
+  logOutUser: () => void;
+  dispatch: (action: ReducerActions) => void;
 };
 
 export type ReducerAvailableStatesType = {
@@ -46,9 +46,9 @@ export type ReducerActions =
   | { type: "registeredUsers/loading" }
   | { type: "registeredUsers/loaded"; payLoad: RegisteredUserType[] }
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
-  | { type: "validateUser"; payLoad: loginUserType}
-  | { type: "getCurrUser"; }
-  | { type: "user/logOut"; }
+  | { type: "validateUser"; payLoad: loginUserType }
+  | { type: "getCurrUser" }
+  | { type: "user/logOut" }
   | { type: "error"; payLoad: string };
 
 export type loginSignUpReducerStates = {
@@ -68,12 +68,100 @@ export type ModalType = {
   headerText: string;
   subtext: string;
   displayIcon: string;
-  actionMainContent?: string; 
+  actionMainContent?: string;
   actionOtherContent?: string;
-  mainAction?:()=> void;
-  otherAction?: ()=> void;
+  mainAction?: () => void;
+  otherAction?: () => void;
 };
 export type loginUserType = {
   Email: string;
   password: string;
 };
+
+//-------------------------------------Quiz
+export type QuestionType = {
+  id: string;
+  question: string;
+  options: string[];
+  answer: string;
+  difficulty: "" | "easy" | "intermediate" | "difficult";
+};
+
+export type quizReducerStateTypes = {
+  currentlyDefaultQuizPage: boolean;
+  getStarted: boolean;
+  displayWelcome: boolean;
+  customizeQuiz: boolean;
+  difficultyType: "" | "easy" | "intermediate" | "difficult";
+  questionsToAttempt: 0 | 25 | 30| 35 | 50;
+  attestedToInstruction: boolean;
+  startQuiz: boolean;
+  questionReady: boolean;
+  quizReady: boolean;
+  questionData: QuestionType[] | null;
+  score: number;
+  isLoading: boolean;
+  error: string;
+};
+export type quizReducerActionTypes =
+  | { type: "loading" }
+  | { type: "quiz/getStarted" }
+  | { type: "quiz/welcome" }
+  | { type: "quiz/customize" }
+  | {
+      type: "quiz/setDifficultyType";
+      payload: "easy" | "intermediate" | "difficult";
+    }
+  | { type: "quiz/setUserQuestionNumberChoice"; payload: 25 | 30 | 35 | 50 }
+  | { type: "quiz/finalInstruction" }
+  | { type: "quiz/startQuiz" }
+  | { type: "quiz/questionReady"; payload: QuestionType[] }
+  | { type: "quiz/quizReady" }
+  | { type: "quiz/submitQuiz" }
+  | { type: "error"; payload: string };
+
+export type QuizContextTypes = {
+  isLoading: boolean;
+  currentlyDefaultQuizPage: boolean;
+  getStarted: boolean;
+  displayWelcome: boolean;
+  customizeQuiz: boolean;
+  difficultyType: "" | "easy" | "intermediate" | "difficult";
+  questionsToAttempt: number;
+  attestedToInstruction: boolean;
+  startQuiz: boolean;
+  questionReady: boolean;
+  quizReady: boolean;
+  questionData: QuestionType[] | null;
+  score: number;
+  error: string;
+  dispatch: (action: quizReducerActionTypes) => void;
+};
+
+export type QuizButtonType = {
+  name: "prev" | "next";
+  action: () => void;
+};
+
+export type NextPreFooterType = {
+  prevAction: () => void;
+  nextAction: () => void;
+};
+
+// action={() => dispatch({ type: "quiz/getStarted" })}
+// action={() => dispatch({ type: "quiz/customize" })}
+
+
+
+//----------------------------- SpecialObjects
+
+
+export type possibleDifficultyType = {
+    name: "easy" | "intermediate" | "difficult",
+    id: string,
+  }
+
+export type possibleNumberType = {
+    choiceNumber: 25 | 30 |35 |50,
+    id: string,
+  }

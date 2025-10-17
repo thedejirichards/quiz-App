@@ -15,8 +15,12 @@
   --color-choiceColor: oklch(0.78 0.13 195);
   --color-accent: oklch(0.74 0.17 163);
   --color-backgroundColor: oklch(0.97 0.02 227);
+  --color-quizbtnFill: oklch(0.97 0.01 250);
+  --color-quizbtnStroke: oklch(0.84 0.03 255);
   --color-formBorderColor: oklch(0.83 0.04 255);
   --color-disabledForm: oklch(0.97 0.01 250);
   --color-formFontColor:  oklch(0.24 0.01 275);
   --color-mytext: oklch(0.56 0.05 250);
+  --color-optionBox: oklch(0.84 0.04 250);
 }
+

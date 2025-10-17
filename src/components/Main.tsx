@@ -1,12 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { useUserMgtAuth } from "../contexts/UserMgtContextProvider";
+import TopBar from "./TopBar";
 
 function Main() {
-  const { currentLoggedInUser } = useUserMgtAuth();
-
   return (
-    <div className="main-content bg-backgroundColor">
-      <div>Welcome to Main App {currentLoggedInUser?.name}</div>
+    <div className="main-content bg-backgroundColor flex flex-col [&>*:first-child]:h-1/12 [&>*:last-child]:h-11/12">
+      <TopBar />
       <Outlet />
     </div>
   );

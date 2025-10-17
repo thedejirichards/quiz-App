@@ -490,7 +490,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "42",
@@ -502,7 +502,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "43",
@@ -514,7 +514,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "44",
@@ -526,7 +526,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "45",
@@ -538,7 +538,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "46",
@@ -550,7 +550,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "47",
@@ -562,7 +562,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "48",
@@ -574,7 +574,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "49",
@@ -586,7 +586,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "50",
@@ -598,7 +598,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "51",
@@ -610,7 +610,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "52",
@@ -622,7 +622,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "53",
@@ -634,7 +634,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "54",
@@ -646,7 +646,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "55",
@@ -658,7 +658,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "56",
@@ -670,7 +670,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "57",
@@ -682,7 +682,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "58",
@@ -694,7 +694,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "59",
@@ -706,7 +706,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "60",
@@ -718,7 +718,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "61",
@@ -730,7 +730,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "62",
@@ -742,7 +742,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "63",
@@ -754,7 +754,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "64",
@@ -766,7 +766,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "65",
@@ -778,7 +778,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "66",
@@ -790,7 +790,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "67",
@@ -802,7 +802,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "68",
@@ -814,7 +814,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "69",
@@ -826,7 +826,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "70",
@@ -838,7 +838,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "71",
@@ -850,7 +850,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "72",
@@ -862,7 +862,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "73",
@@ -874,7 +874,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "74",
@@ -886,7 +886,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "75",
@@ -898,7 +898,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "76",
@@ -910,7 +910,7 @@
         "Improves performance"
       ],
       "answer": "Handles side effects",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "77",
@@ -922,7 +922,7 @@
         "To store state"
       ],
       "answer": "To identify elements uniquely",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "78",
@@ -934,7 +934,7 @@
         "Using Redux"
       ],
       "answer": "Sharing state between sibling components",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "79",
@@ -946,7 +946,7 @@
         "Using props as keys"
       ],
       "answer": "Passing props through many levels unnecessarily",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "80",
@@ -958,7 +958,7 @@
         "To enforce prop types"
       ],
       "answer": "To detect potential problems in an application",
-      "difficulty": "medium"
+      "difficulty": "intermediate"
     },
     {
       "id": "81",
@@ -970,7 +970,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "82",
@@ -982,7 +982,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "83",
@@ -994,7 +994,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "84",
@@ -1006,7 +1006,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "85",
@@ -1018,7 +1018,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "86",
@@ -1030,7 +1030,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "87",
@@ -1042,7 +1042,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "88",
@@ -1054,7 +1054,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "89",
@@ -1066,7 +1066,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "90",
@@ -1078,7 +1078,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "91",
@@ -1090,7 +1090,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "92",
@@ -1102,7 +1102,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "93",
@@ -1114,7 +1114,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "94",
@@ -1126,7 +1126,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "95",
@@ -1138,7 +1138,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "96",
@@ -1150,7 +1150,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "97",
@@ -1162,7 +1162,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "98",
@@ -1174,7 +1174,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "99",
@@ -1186,7 +1186,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "100",
@@ -1198,7 +1198,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "101",
@@ -1210,7 +1210,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "102",
@@ -1222,7 +1222,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "103",
@@ -1234,7 +1234,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "104",
@@ -1246,7 +1246,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "105",
@@ -1258,7 +1258,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "106",
@@ -1270,7 +1270,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "107",
@@ -1282,7 +1282,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "108",
@@ -1294,7 +1294,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "109",
@@ -1306,7 +1306,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "110",
@@ -1318,7 +1318,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "111",
@@ -1330,7 +1330,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "112",
@@ -1342,7 +1342,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "113",
@@ -1354,7 +1354,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "114",
@@ -1366,7 +1366,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "115",
@@ -1378,7 +1378,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "116",
@@ -1390,7 +1390,7 @@
         "A CSS optimization"
       ],
       "answer": "Caching a component to prevent re-rendering",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "117",
@@ -1402,7 +1402,7 @@
         "An array"
       ],
       "answer": "A memoized function",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "118",
@@ -1414,7 +1414,7 @@
         "A React testing tool"
       ],
       "answer": "A reimplementation of React's reconciliation algorithm",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "119",
@@ -1426,7 +1426,7 @@
         "It updates state silently"
       ],
       "answer": "It causes an infinite re-render",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     },
     {
       "id": "120",
@@ -1438,7 +1438,7 @@
         "To test props"
       ],
       "answer": "To measure performance of React components",
-      "difficulty": "hard"
+      "difficulty": "difficult"
     }
   ],
   "userData": [
@@ -1452,7 +1452,7 @@
       "results": [
         {
           "quizId": "qz-0001",
-          "difficultyType": "hard",
+          "difficultyType": "difficult",
           "numberOfQuestions": 30,
           "correctlyAnswered": 10,
           "durationUsed": "2000",
@@ -1470,7 +1470,7 @@
         },
         {
           "quizId": "qz-0008",
-          "difficultyType": "medium",
+          "difficultyType": "intermediate",
           "numberOfQuestions": 25,
           "correctlyAnswered": 16,
           "durationUsed": "2100",

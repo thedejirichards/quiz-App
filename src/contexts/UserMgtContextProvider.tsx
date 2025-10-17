@@ -93,6 +93,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     },
     dispatch,
   ] = useReducer(reducer, initialState);
+  
   useEffect(() => {
     const getRegisteredUsers = async () => {
       dispatch({ type: "registeredUsers/loading" });
