@@ -14,6 +14,7 @@ const initialState: quizReducerStateTypes = {
   customizeQuiz: false,
   difficultyType: "",
   questionsToAttempt: 0,
+  questionsAttempted: 0,
   displayInstruction: false,
   attestedToInstruction: false,
   startQuiz: false,
@@ -58,6 +59,7 @@ const reducer = (
         isLoading: false,
         customizeQuiz: false,
         displayInstruction: true,
+        startQuiz: false,
       };
     case "quiz/attestInstruction":
       return {
@@ -100,6 +102,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       customizeQuiz,
       difficultyType,
       questionsToAttempt,
+      questionsAttempted,
       displayInstruction,
       attestedToInstruction,
       startQuiz,
@@ -136,6 +139,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         customizeQuiz,
         difficultyType,
         questionsToAttempt,
+        questionsAttempted,
         displayInstruction,
         attestedToInstruction,
         startQuiz,

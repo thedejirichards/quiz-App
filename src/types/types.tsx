@@ -94,6 +94,7 @@ export type quizReducerStateTypes = {
   customizeQuiz: boolean;
   difficultyType: "" | "easy" | "intermediate" | "difficult";
   questionsToAttempt: 0 | 25 | 30| 35 | 50;
+  questionsAttempted: number;
   displayInstruction: boolean;
   attestedToInstruction: boolean;
   startQuiz: boolean;
@@ -130,6 +131,7 @@ export type QuizContextTypes = {
   customizeQuiz: boolean;
   difficultyType: "" | "easy" | "intermediate" | "difficult";
   questionsToAttempt: number;
+  questionsAttempted: number;
   displayInstruction: boolean;
   attestedToInstruction: boolean;
   startQuiz: boolean;
@@ -142,7 +144,7 @@ export type QuizContextTypes = {
 };
 
 export type QuizButtonType = {
-  name: "prev" | "next";
+  name: "prev" | "next" | "submit";
   action: () => void;
 };
 
@@ -151,6 +153,7 @@ export type NextPreFooterType = {
   nextAction: () => void;
   displayPrev?: boolean;
   displayNext?: boolean;
+  displaySubmit?: boolean;
 };
 
 // action={() => dispatch({ type: "quiz/getStarted" })}
@@ -170,3 +173,10 @@ export type possibleNumberType = {
     choiceNumber: 25 | 30 |35 |50,
     id: string,
   }
+
+
+export type PillType = {
+  title: string;
+  value?: number | string;
+  bgColor: "green" | "white";
+}

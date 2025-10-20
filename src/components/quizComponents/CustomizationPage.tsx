@@ -33,7 +33,7 @@ function CustomizePage() {
                       payload: item.name,
                     })
                   }
-                  className={`options flex items-center justify-center text-xl font-semibold flex-1 border-2 border-reactBlue rounded-xl h-full ${
+                  className={`options cursor-pointer flex items-center justify-center text-xl font-semibold flex-1 border-2 border-reactBlue rounded-xl h-full ${
                     difficultyType === item.name
                       ? "bg-reactBlue text-white"
                       : "text-reactBlue"
@@ -60,7 +60,7 @@ function CustomizePage() {
                       payload: item.choiceNumber,
                     });
                   }}
-                  className={`options flex items-center justify-center text-xl font-semibold flex-1 border-2 border-reactBlue rounded-xl h-full ${
+                  className={`options cursor-pointer flex items-center justify-center text-xl font-semibold flex-1 border-2 border-reactBlue rounded-xl h-full ${
                     questionsToAttempt === item.choiceNumber
                       ? "bg-reactBlue text-white"
                       : "text-reactBlue "
