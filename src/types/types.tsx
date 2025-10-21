@@ -93,13 +93,14 @@ export type quizReducerStateTypes = {
   displayWelcome: boolean;
   customizeQuiz: boolean;
   difficultyType: "" | "easy" | "intermediate" | "difficult";
-  questionsToAttempt: 0 | 25 | 30| 35 | 50;
+  questionsToAttempt: 0 | 25 | 30| 35 | 40;
   questionsAttempted: number;
   displayInstruction: boolean;
   attestedToInstruction: boolean;
   startQuiz: boolean;
   questionReady: boolean;
   quizReady: boolean;
+  selectedAnswers: Record<string, string>;
   questionData: QuestionType[] | null;
   score: number;
   isLoading: boolean;
@@ -114,12 +115,13 @@ export type quizReducerActionTypes =
       type: "quiz/setDifficultyType";
       payload: "easy" | "intermediate" | "difficult";
     }
-  | { type: "quiz/setUserQuestionNumberChoice"; payload: 25 | 30 | 35 | 50 }
+  | { type: "quiz/setUserQuestionNumberChoice"; payload: 25 | 30 | 35 | 40 }
   | { type: "quiz/displayInstruction" }
   | { type: "quiz/attestInstruction", payload: boolean }
   | { type: "quiz/getQuestion"; payload: QuestionType[] }
   | { type: "quiz/startQuiz" }
-  | { type: "quiz/quizReady" }
+  | { type: "updateScore"; payload: number }
+  | { type: "updateSelectedAnswers"; payload: Record<string, string> }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
 
@@ -137,6 +139,7 @@ export type QuizContextTypes = {
   startQuiz: boolean;
   questionReady: boolean;
   quizReady: boolean;
+  selectedAnswers: Record<string, string>;
   questionData: QuestionType[] | null;
   score: number;
   error: string;
@@ -170,7 +173,7 @@ export type possibleDifficultyType = {
   }
 
 export type possibleNumberType = {
-    choiceNumber: 25 | 30 |35 |50,
+    choiceNumber: 25 | 30 |35 |40,
     id: string,
   }
 
@@ -180,3 +183,4 @@ export type PillType = {
   value?: number | string;
   bgColor: "green" | "white";
 }
+

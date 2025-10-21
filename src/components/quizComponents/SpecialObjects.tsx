@@ -29,7 +29,7 @@ export const possibleNumberChoice:possibleNumberType[] = [
     id: "choice3",
   },
   {
-    choiceNumber: 50,
+    choiceNumber: 40,
     id: "choice4",
   },
 ];

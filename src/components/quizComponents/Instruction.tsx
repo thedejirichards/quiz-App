@@ -14,8 +14,9 @@ function Instruction() {
   };
   const questionAvailable = questionData !== null ? true : false;
   const handleStartQuiz = () => {
-    dispatch({type: "quiz/startQuiz"})
-  }
+    dispatch({ type: "quiz/startQuiz" });
+  };
+
   return (
     <div className="customize h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto py-10">
@@ -51,7 +52,10 @@ function Instruction() {
             </div>
             {attestedToInstruction && questionAvailable && (
               <div className="startQuiz-btn-div flex w-full justify-center mt-3">
-                <button className="btn px-5 py-3 bg-deepGreen text-white rounded-md cursor-pointer" onClick={handleStartQuiz}>
+                <button
+                  className="btn px-5 py-3 bg-deepGreen text-white rounded-md cursor-pointer"
+                  onClick={handleStartQuiz}
+                >
                   Start Quiz
                 </button>
               </div>
@@ -61,7 +65,9 @@ function Instruction() {
       </div>
       <NextPrevFooter
         nextAction={handleStartQuiz}
-        prevAction={() => {dispatch({type: "quiz/customize"})}}
+        prevAction={() => {
+          dispatch({ type: "quiz/customize" });
+        }}
         displayNext={attestedToInstruction && questionAvailable}
       />
     </div>

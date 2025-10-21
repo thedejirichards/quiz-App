@@ -20,6 +20,7 @@ const initialState: quizReducerStateTypes = {
   startQuiz: false,
   questionReady: false,
   quizReady: false,
+  selectedAnswers: {},
   questionData: null,
   score: 0,
   isLoading: false,
@@ -48,6 +49,8 @@ const reducer = (
         customizeQuiz: true,
         displayWelcome: false,
         displayInstruction: false,
+        startQuiz: false,
+        questionData: null
       };
     case "quiz/setDifficultyType":
       return { ...state, isLoading: false, difficultyType: action.payload };
@@ -81,8 +84,10 @@ const reducer = (
         startQuiz: true,
         displayInstruction: false,
       };
-    case "quiz/quizReady":
-      return { ...state, isLoading: false, quizReady: true };
+    case "updateScore":
+      return { ...state, score: action.payload };
+    case "updateSelectedAnswers":
+      return { ...state, selectedAnswers: {...state.selectedAnswers, ...action.payload} };
     case "quiz/submitQuiz":
       return { ...state, isLoading: false };
     case "error":
@@ -109,6 +114,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       questionReady,
       questionData,
       quizReady,
+      selectedAnswers,
       score,
       isLoading,
       error,
@@ -145,6 +151,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         startQuiz,
         questionReady,
         quizReady,
+        selectedAnswers,
         questionData,
         score,
         error,
