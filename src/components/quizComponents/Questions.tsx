@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import NextPrevFooter from "./NextPrevFooter";
 import Pill from "./Pill";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import { MdOutlineCancel } from "react-icons/md";
+import Modal from "../Modal";
 
 function Questions() {
   const {
@@ -15,7 +18,8 @@ function Questions() {
     selectedAnswers,
   } = useQuiz();
   const [pageNumber, setPageNumber] = useState<number>(1);
-
+  const [displayQuizCompleteModal, setDisplayQuizCompleteModal] =
+    useState<boolean>(false);
   const customizedQuestions = useMemo(() => {
     if (!questionData) return [];
     return questionData
@@ -24,6 +28,15 @@ function Questions() {
       .slice(0, questionsToAttempt);
   }, [questionData, difficultyType, questionsToAttempt]);
 
+  useEffect(() => {
+    const numberOfAnsweredQuestions = Object.keys(selectedAnswers).length;
+    dispatch({
+      type: "updateQuestionsAttempted",
+      payload: numberOfAnsweredQuestions,
+    });
+  }, [selectedAnswers, dispatch]);
+
+  const questionsLeft = questionsToAttempt - questionsAttempted;
   const questionsPerPage = 5;
   const startIndex = (pageNumber - 1) * questionsPerPage;
   const endIndex = startIndex + questionsPerPage;
@@ -38,12 +51,19 @@ function Questions() {
     setPageNumber((prev) => prev - 1);
   };
   const handleClickNext = () => {
-    if (finalPage) return;
-    setPageNumber((prev) => prev + 1);
+    if (finalPage) {
+      setDisplayQuizCompleteModal(true);
+    }else{
+      setPageNumber((prev) => prev + 1);
+    }
+    
+  };
+
+  const handleNavigateToResult = () => {
+    
   };
 
   useEffect(() => {
-    console.log(customizedQuestions.length);
     if (
       customizedQuestions &&
       customizedQuestions.length < questionsToAttempt
@@ -56,20 +76,23 @@ function Questions() {
   }, [customizedQuestions, difficultyType, questionsToAttempt, dispatch]);
 
   const handleOptionClick = (optionId: number, questionId: string) => {
+    if (selectedAnswers && selectedAnswers[questionId]) return;
     const selectedQuestion = questionDataToDisplay.find(
       (item) => item.id === questionId
     );
-    const isCorrect =
-      selectedQuestion?.answer === selectedQuestion?.options[optionId];
-    dispatch({ type: "updateScore", payload: isCorrect ? score + 10 : score });
 
-    if (selectedAnswers && selectedAnswers[questionId]) return;
-    if (selectedQuestion)
-      dispatch({
-        type: "updateSelectedAnswers",
-        payload: { [questionId]: selectedQuestion?.options[optionId] },
-      });
+    if (!selectedQuestion) return; // ✅ ensures not undefined
+    const questionAnswer = selectedQuestion.answer;
+    const selectedOption = selectedQuestion.options[optionId];
+    const isCorrect = questionAnswer === selectedOption;
+
+    dispatch({
+      type: "updateSelectedAnswers",
+      payload: { [questionId]: selectedQuestion?.options[optionId] },
+    });
+    dispatch({ type: "updateScore", payload: isCorrect ? score + 10 : score });
   };
+
   return error ? (
     <div className="error-display-div w-full h-full flex items-center justify-center">
       <div className="error-content flex flex-col justify-center items-center w-fit h-fit">
@@ -120,17 +143,39 @@ function Questions() {
                 </div>
                 <ul className="w-full">
                   {item.options.map((option, optIndex) => {
-                    const isDisabled = !!selectedAnswers[item.id];
-                    // const isSelected = selectedAnswers[item.id] === option;
-                    console.log(isDisabled);
+                    const anOptionHasBeenClicked = !!selectedAnswers[item.id];
+                    const isSelected = selectedAnswers[item.id] === option;
+                    const isCorrect = option === item.answer;
+
                     return (
                       <button
                         key={optIndex + 1}
                         onClick={() => handleOptionClick(optIndex, item.id)}
-                        disabled={isDisabled}
-                        className={`w-full text-mytext p-4 border-2 border-deepGreen rounded-full mb-2 text-start ${isDisabled? "bg-disabledOption cursor-not-allowed": "cursor-pointer"}`}
+                        disabled={anOptionHasBeenClicked}
+                        className={`w-full text-mytext py-4 px-6 border-2 flex items-center justify-between border-deepGreen rounded-full mb-2 text-start ${
+                          anOptionHasBeenClicked
+                            ? isCorrect
+                              ? "bg-deepGreen cursor-not-allowed text-white"
+                              : isSelected && !isCorrect
+                              ? "bg-errorColor cursor-not-allowed text-white border-errorColor"
+                              : "bg-disabledOption cursor-not-allowed"
+                            : "cursor-pointer"
+                        }`}
                       >
-                        {option}
+                        <span>{option}</span>{" "}
+                        <span className="">
+                          {anOptionHasBeenClicked ? (
+                            isSelected && isCorrect ? (
+                              <FaRegCircleCheck />
+                            ) : isSelected && !isCorrect ? (
+                              <MdOutlineCancel className="text-xl" />
+                            ) : (
+                              ""
+                            )
+                          ) : (
+                            ""
+                          )}
+                        </span>
                       </button>
                     );
                   })}
@@ -145,6 +190,21 @@ function Questions() {
             displayNext={!finalPage}
             displaySubmit={finalPage}
           />
+          {displayQuizCompleteModal && (
+            <Modal
+              displayIcon="check"
+              headerText="Confirm Submission"
+              subtext={`Are you sure you want to submit? ${
+                questionsLeft
+                  ? `you still have ${questionsLeft} questions unanswered`
+                  : ""
+              }`}
+              actionMainContent="Yes"
+              actionOtherContent="No"
+              mainAction={handleNavigateToResult}
+              otherAction={() => setDisplayQuizCompleteModal(false)}
+            />
+          )}
         </div>
       </div>
     </div>

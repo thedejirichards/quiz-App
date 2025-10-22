@@ -80,7 +80,7 @@ function LoginSignup() {
     password: password,
     signUpDate: getTodaysDate(),
     lastLogInDate: "",
-    results: null,
+    quizHistory: [],
   };
 
   const userToVal = {

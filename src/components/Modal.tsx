@@ -1,9 +1,11 @@
 import { LuPartyPopper } from "react-icons/lu";
 import type { ModalType } from "../types/types";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 const modalUtils = {
   icon: {
     party: <LuPartyPopper className="text-white h-1/2 w-1/2" />,
+    check: <FaRegCircleCheck className="text-white h-1/2 w-1/2" />,
   },
 };
 
@@ -39,12 +41,12 @@ function Modal({
             }`}
           >
             {actionOtherContent && (
-              <button onClick={otherAction} className="action-other flex-1 h-12 rounded-md text-deepGreen font-montserrat text-md font-semibold border-2 border-deepGreen flex items-center justify-center">
+              <button onClick={otherAction} className="cursor-pointer action-other flex-1 h-12 rounded-md text-deepGreen font-montserrat text-md font-semibold border-2 border-deepGreen flex items-center justify-center">
                 {actionOtherContent}
               </button>
             )}
             {actionMainContent && (
-              <button onClick={mainAction} className="action-main flex-1 h-12 rounded-md text-white font-montserrat text-md bg-deepGreen border-2 border-deepGreen flex items-center justify-center">
+              <button onClick={mainAction} className="cursor-pointer action-main flex-1 h-12 rounded-md text-white font-montserrat text-md bg-deepGreen border-2 border-deepGreen flex items-center justify-center">
                 {actionMainContent}
               </button>
             )}

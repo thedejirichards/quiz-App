@@ -88,6 +88,8 @@ const reducer = (
       return { ...state, score: action.payload };
     case "updateSelectedAnswers":
       return { ...state, selectedAnswers: {...state.selectedAnswers, ...action.payload} };
+    case "updateQuestionsAttempted":
+      return { ...state, questionsAttempted: action.payload };
     case "quiz/submitQuiz":
       return { ...state, isLoading: false };
     case "error":

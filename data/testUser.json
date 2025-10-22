@@ -1,0 +1,40 @@
+{
+  "userData": [
+    {
+      "id": "12345678",
+      "name": "Richard Oladeji",
+      "email": "thedejirichards@gmail.com",
+      "password": "$$$rirchard",
+      "signUpDate": "Feb 2 2022",
+      "lastLogInDate": "Oct 07 2025",
+      "quizHistory": [
+        {
+          "quizId": "qz-0001",
+          "difficultyType": "difficult",
+          "numberOfQuestions": 30,
+          "correctlyAnswered": 10,
+          "durationUsed": "2000",
+          "dateStamp": 1759829992614,
+          "remark": "fail",
+          "timeUsed": 20,
+          "questionInfo": [
+            {
+              "questionId": "qn1",
+              "question": "sdfghj",
+              "options": ["opt1", "opt2", "opt3", "opt4"],
+              "correctOption": "opt3",
+              "userSelectedOption": "opt4"
+            },
+            {
+              "questionId": "qn2",
+              "question": "sdfghj",
+              "options": ["opt1", "opt2", "opt3", "opt4"],
+              "correctOption": "opt3",
+              "userSelectedOption": "opt4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-export type ResultType = {
+export type QuizHistoryType = {
   quizId: string;
   difficultyType: string;
   numberOfQuestions: number;
@@ -15,7 +15,7 @@ export type RegisteredUserType = {
   password: string;
   signUpDate: string;
   lastLogInDate: string;
-  results: ResultType[] | null;
+  quizHistory: QuizHistoryType[];
 };
 
 export type UserMgtContextType = {
@@ -122,6 +122,7 @@ export type quizReducerActionTypes =
   | { type: "quiz/startQuiz" }
   | { type: "updateScore"; payload: number }
   | { type: "updateSelectedAnswers"; payload: Record<string, string> }
+  | { type: "updateQuestionsAttempted"; payload: number }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
 

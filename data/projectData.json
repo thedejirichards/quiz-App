@@ -1449,7 +1449,7 @@
       "password": "$$$rirchard",
       "signUpDate": "Feb 2 2022",
       "lastLogInDate": "Oct 07 2025",
-      "results": [
+      "quizHistory": [
         {
           "quizId": "qz-0001",
           "difficultyType": "difficult",
@@ -1457,343 +1457,36 @@
           "correctlyAnswered": 10,
           "durationUsed": "2000",
           "dateStamp": 1759829992614,
-          "remark": "fail"
-        },
-        {
-          "quizId": "qz-0002",
-          "difficultyType": "simple",
-          "numberOfQuestions": 25,
-          "correctlyAnswered": 18,
-          "durationUsed": "1800",
-          "dateStamp": 1759833592614,
-          "remark": "pass"
-        },
-        {
-          "quizId": "qz-0008",
-          "difficultyType": "intermediate",
-          "numberOfQuestions": 25,
-          "correctlyAnswered": 16,
-          "durationUsed": "2100",
-          "dateStamp": 1759855192614,
-          "remark": "good"
+          "remark": "fail",
+          "timeUsed": 20,
+          "questionInfo": [
+            {
+              "questionId": "qn1",
+              "question": "sdfghj",
+              "options": [
+                "opt1",
+                "opt2",
+                "opt3",
+                "opt4"
+              ],
+              "correctOption": "opt3",
+              "userSelectedOption": "opt4"
+            },
+            {
+              "questionId": "qn2",
+              "question": "sdfghj",
+              "options": [
+                "opt1",
+                "opt2",
+                "opt3",
+                "opt4"
+              ],
+              "correctOption": "opt3",
+              "userSelectedOption": "opt4"
+            }
+          ]
         }
       ]
-    },
-    {
-      "id": "23456789",
-      "name": "Bolaji Dauda",
-      "Email": "bolajidauda@gmail.com",
-      "password": "$$$bolaji",
-      "signUpDate": "May 9 2024",
-      "lastLogInDate": "Aug 10 2024",
-      "results": [
-        {
-          "quizId": "qz-0009",
-          "difficultyType": "hard",
-          "numberOfQuestions": 30,
-          "correctlyAnswered": 10,
-          "durationUsed": "2000",
-          "dateStamp": 1759829992614,
-          "remark": "fail"
-        }
-      ]
-    },
-    {
-      "id": "123456789",
-      "name": "Folakemi Bodede",
-      "Email": "folakemibodede@outlook.com",
-      "password": "$$$folakemi",
-      "signUpDate": "June 6 2024",
-      "lastLogInDate": "Dec 12 2024",
-      "results": null
-    },
-    {
-      "id": "1760088267248",
-      "name": "RIchard Oladeji",
-      "Email": "thedejirichards@gmail.com",
-      "password": "richjohn10",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760088376116",
-      "name": "Richard Oladeji",
-      "Email": "starboydeji@gmail.com",
-      "password": "dfghjkl",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760088914496",
-      "name": "Faruk Bamidele",
-      "Email": "FarukBamidele@gmail.com",
-      "password": "farukbamidele",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760088918519",
-      "name": "Faruk Bamidele",
-      "Email": "FarukBamidele@gmail.com",
-      "password": "farukbamidele",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760089066591",
-      "name": "Rachael Omodia",
-      "Email": "RachaelOmodia@outlook.com",
-      "password": "rachieOmo411",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760089405713",
-      "name": "Folakemi Ayodele",
-      "Email": "FolakemiAyodele@yahoo.com",
-      "password": "FolakemiAyodele",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760089497391",
-      "name": "Ayoola Fakeye",
-      "Email": "AyoolaFakeye@yahoo.com",
-      "password": "AyoolaFakeye",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760099444445",
-      "name": "Femi Ogunmoyede",
-      "Email": "Femiogunmoyede@yahoo.com",
-      "password": "Femiogunmoyede",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760099705738",
-      "name": "Robert Oladeji",
-      "Email": "Robertoladeji@gmail.com",
-      "password": "Robertoladeji",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760099807940",
-      "name": "Solape Oladeji",
-      "Email": "solapeoladeji@outlook.com",
-      "password": "solapeoladeji",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760099940449",
-      "name": "Bola Bola",
-      "Email": "bolabola@yahoo.com",
-      "password": "bolabola",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760100184436",
-      "name": "Ridwand Obanikoko",
-      "Email": "RidwandObanikoko@yahoo.com",
-      "password": "RidwandObanikoko",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760100249737",
-      "name": "Balogun Tomide",
-      "Email": "BalogunTomide@yahoo.com",
-      "password": "BalogunTomide",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760100338549",
-      "name": "Folorunsho Bodunde",
-      "Email": "FolorunshoBodunde@outlook.com",
-      "password": "FolorunshoBodunde",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760100466729",
-      "name": "Rachael Oladimeji",
-      "Email": "Rachaeloladimeji@gmail.com",
-      "password": "Rachaeloladimeji",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760100591409",
-      "name": "Rolland Badejo",
-      "Email": "Rollandbadejo@gmail.com",
-      "password": "Rollandbadejo",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": "1760100706377",
-      "name": "Bolo Kabiru",
-      "Email": "BoloKabiru@yahoo.com",
-      "password": "BoloKabiru",
-      "signUpDate": "October 10 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760339735982,
-      "name": "Afeez Obadimu",
-      "Email": "AfeezObadimu@gmail.com",
-      "password": "AfeezObadimu",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760341717758,
-      "name": "Bodede Mayowa",
-      "Email": "BodedeMayowa@yahoo.com",
-      "password": "BodedeMayowa",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760341938130,
-      "name": "Ariyo Bukunmi",
-      "Email": "AriyoBukunmi@gmail.com",
-      "password": "AriyoBukunmi",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760342242545,
-      "name": "binta Funkunmi",
-      "Email": "bintafunkunmi@outlook.com",
-      "password": "bintafunkunmi",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760342759192,
-      "name": "Rita Dominic",
-      "Email": "RitaDominic@gmail.com",
-      "password": "Rita Dominic",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760345009964,
-      "name": "Janeth Olubiyu",
-      "Email": "JanethOlubiyu@gmail.com",
-      "password": "JanethOlubiyu",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760345227941,
-      "name": "Rabiu Tunde",
-      "Email": "RabiuTunde@gmail.com",
-      "password": "RabiuTunde",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760345425026,
-      "name": "Korede Oluwatomiwa",
-      "Email": "KoredeOluwatomiwa@gmail.com",
-      "password": "KoredeOluwatomiwa",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760346691373,
-      "name": "Quauum Obatola",
-      "Email": "Quauumobatola@gmail.com",
-      "password": "Quauumobatola",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760346762342,
-      "name": "Jide Morayo",
-      "Email": "JideMorayo@gmail.com",
-      "password": "JideMorayo",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760346993480,
-      "name": "Paul James",
-      "Email": "PaulJames@yahoo.com",
-      "password": "PaulJames",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760347309364,
-      "name": "Nora Tabita",
-      "Email": "NoraTabita@outlook.com",
-      "password": "NoraTabita",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760347548182,
-      "name": "Yinka Ayefele",
-      "Email": "yinkaayefele@gmail.com",
-      "password": "yinkaayefele",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760347718390,
-      "name": "Fakeye Tomiwa",
-      "Email": "FakeyeTomiwa@gmail.com",
-      "password": "FakeyeTomiwa",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
-    },
-    {
-      "id": 1760347880089,
-      "name": "Omobola Kehinde",
-      "Email": "OmobolaKehinde@outlook.com",
-      "password": "OmobolaKehinde",
-      "signUpDate": "October 13 2025",
-      "lastLogInDate": "",
-      "results": null
     },
     {
       "id": 1760359491375,
@@ -1802,7 +1495,16 @@
       "password": "richjohn10",
       "signUpDate": "October 13 2025",
       "lastLogInDate": "",
-      "results": null
+      "quizHistory": []
+    },
+    {
+      "id": 1761131162259,
+      "name": "Folakemi Fadayo",
+      "Email": "folakemifadayo@gmail.com",
+      "password": "folakemifadayo",
+      "signUpDate": "October 22 2025",
+      "lastLogInDate": "",
+      "quizHistory": []
     }
   ]
 }
