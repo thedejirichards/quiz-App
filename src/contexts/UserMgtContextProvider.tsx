@@ -11,11 +11,20 @@ import type {
   ReducerAvailableStatesType,
   RegisteredUserType,
   loginUserType,
+  QuizHistoryType,
 } from "../types/types";
+import { useQuiz } from "./QuizContextProvider";
 
 const BASE_URL = "http://localhost:8000";
 const UserMgtContext = createContext<UserMgtContextType | null>(null);
 function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
+  const {
+    showResult,
+    score,
+    difficultyType,
+    questionsToAttempt,
+    questionsAttempted,
+  } = useQuiz();
   const initialState = {
     registeredUsers: null,
     errMsg: "",
@@ -67,6 +76,11 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
               (user) => user.Email === state.userToLogInCredentials?.Email
             ) ?? null,
         };
+      case "updateUserAfterQuizSubmission":
+        return {
+          ...state,
+          registeredUsers: action.payload,
+        };
       case "user/logOut":
         return {
           ...state,
@@ -93,7 +107,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-  
+
   useEffect(() => {
     const getRegisteredUsers = async () => {
       dispatch({ type: "registeredUsers/loading" });
@@ -166,6 +180,55 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     }
   }, [dispatch]);
 
+  const updateUserInfoAfterQuiz = useCallback(
+    async (currentUserEmail: string) => {
+      try {
+        const matchedUser = registeredUsers?.find(
+          (user) => user.Email === currentUserEmail
+        );
+        const answeredCorrectly = score / 10;
+        const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+        if (!matchedUser) return;
+        const newQuizResult: QuizHistoryType = {
+          quizId: `${crypto.randomUUID()}`,
+          difficultyType: difficultyType,
+          numberOfQuestions: questionsToAttempt,
+          totalQuestionsAnswered: questionsAttempted,
+          correctlyAnswered: answeredCorrectly,
+          durationUsed: "",
+          score: score,
+          percentScore: percentScore,
+          dateStamp: Date.now(),
+          remark: (questionsToAttempt * 10) / 2 > score ? "fail" : "passed",
+          questionInfo: [],
+        };
+        const updatedUserInfoAfterQuiz: RegisteredUserType = {
+          ...matchedUser,
+          quizHistory: [...(matchedUser.quizHistory ?? []), newQuizResult],
+        };
+        const res = await fetch(`${BASE_URL}/userData/${matchedUser.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUserInfoAfterQuiz),
+        });
+
+        if (!res.ok) throw new Error("Failed to update quiz history");
+        const data = await res.json();
+        dispatch({ type: "updateUserAfterQuizSubmission", payload: data });
+      } catch {
+        dispatch({ type: "error", payLoad: "Failed to update quiz history" });
+      }
+    },
+    [difficultyType, registeredUsers, questionsToAttempt, score]
+  );
+
+  useEffect(() => {
+    if (showResult && currentLoggedInUser) {
+      updateUserInfoAfterQuiz(currentLoggedInUser.Email);
+    }
+  }, [showResult, currentLoggedInUser, updateUserInfoAfterQuiz]);
   const logOutUser = () => {
     dispatch({ type: "registeredUsers/loading" });
     try {
@@ -188,6 +251,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         currentLoggedInUser,
         logOutUser,
         dispatch,
+        updateUserInfoAfterQuiz,
       }}
     >
       {children}

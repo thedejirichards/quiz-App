@@ -44,8 +44,8 @@ function LoginSignup() {
   const initialState = {
     passwordVisible: false,
     fullName: "",
-    email: "",
-    password: "",
+    email: "thedejirichards@gmail.com",
+    password: "richjohn10",
   };
 
   const reducer = (
@@ -224,7 +224,7 @@ function LoginSignup() {
               </div>
             </div>
             {errMsg && <em className="text-red-600">{errMsg}</em>}
-            <button className="btn w-full rounded-lg my-5 py-4 bg-deepGreen text-white font-bold">
+            <button className="btn w-full rounded-lg my-5 py-4 bg-deepGreen text-white font-bold cursor-pointer">
               {displayForSignup && !displayForLogin ? "Sign Up" : "Log In"}
             </button>
           </form>

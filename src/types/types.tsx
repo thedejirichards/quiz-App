@@ -1,11 +1,23 @@
+export type QuestionInfoType = {
+  questionId: string;
+  question: string;
+  options: string[];
+  correctOption: string;
+  userSelectedOption: string;
+};
+
 export type QuizHistoryType = {
   quizId: string;
   difficultyType: string;
   numberOfQuestions: number;
+  totalQuestionsAnswered: number;
   correctlyAnswered: number;
+  score: number;
+  percentScore: number;
   durationUsed: string;
   dateStamp: number;
   remark: string;
+  questionInfo: QuestionInfoType[];
 };
 
 export type RegisteredUserType = {
@@ -15,7 +27,7 @@ export type RegisteredUserType = {
   password: string;
   signUpDate: string;
   lastLogInDate: string;
-  quizHistory: QuizHistoryType[];
+  quizHistory: QuizHistoryType[] | [];
 };
 
 export type UserMgtContextType = {
@@ -30,6 +42,7 @@ export type UserMgtContextType = {
   currentLoggedInUser: RegisteredUserType | null;
   logOutUser: () => void;
   dispatch: (action: ReducerActions) => void;
+  updateUserInfoAfterQuiz: (currentUserEmail: string) => void;
 };
 
 export type ReducerAvailableStatesType = {
@@ -48,6 +61,7 @@ export type ReducerActions =
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
   | { type: "validateUser"; payLoad: loginUserType }
   | { type: "getCurrUser" }
+  | { type: "updateUserAfterQuizSubmission"; payload: RegisteredUserType[] }
   | { type: "user/logOut" }
   | { type: "error"; payLoad: string };
 
@@ -84,7 +98,7 @@ export type QuestionType = {
   question: string;
   options: string[];
   answer: string;
-  difficulty: "" | "easy" | "intermediate" | "difficult";
+  difficulty: "" | "Easy" | "Intermediate" | "Difficult";
 };
 
 export type quizReducerStateTypes = {
@@ -92,8 +106,8 @@ export type quizReducerStateTypes = {
   getStarted: boolean;
   displayWelcome: boolean;
   customizeQuiz: boolean;
-  difficultyType: "" | "easy" | "intermediate" | "difficult";
-  questionsToAttempt: 0 | 25 | 30| 35 | 40;
+  difficultyType: "" | "Easy" | "Intermediate" | "Difficult";
+  questionsToAttempt: 0 | 25 | 30 | 35 | 40;
   questionsAttempted: number;
   displayInstruction: boolean;
   attestedToInstruction: boolean;
@@ -102,7 +116,10 @@ export type quizReducerStateTypes = {
   quizReady: boolean;
   selectedAnswers: Record<string, string>;
   questionData: QuestionType[] | null;
+  showResult: boolean;
   score: number;
+  percentScore: number;
+  ratingScore: number;
   isLoading: boolean;
   error: string;
 };
@@ -111,13 +128,15 @@ export type quizReducerActionTypes =
   | { type: "quiz/getStarted" }
   | { type: "quiz/welcome" }
   | { type: "quiz/customize" }
+  | { type: "quiz/setPercentScore"; payload: number }
+  | { type: "quiz/setRatingScore"; payload: number }
   | {
       type: "quiz/setDifficultyType";
-      payload: "easy" | "intermediate" | "difficult";
+      payload: "Easy" | "Intermediate" | "Difficult";
     }
   | { type: "quiz/setUserQuestionNumberChoice"; payload: 25 | 30 | 35 | 40 }
   | { type: "quiz/displayInstruction" }
-  | { type: "quiz/attestInstruction", payload: boolean }
+  | { type: "quiz/attestInstruction"; payload: boolean }
   | { type: "quiz/getQuestion"; payload: QuestionType[] }
   | { type: "quiz/startQuiz" }
   | { type: "updateScore"; payload: number }
@@ -132,7 +151,7 @@ export type QuizContextTypes = {
   getStarted: boolean;
   displayWelcome: boolean;
   customizeQuiz: boolean;
-  difficultyType: "" | "easy" | "intermediate" | "difficult";
+  difficultyType: "" | "Easy" | "Intermediate" | "Difficult";
   questionsToAttempt: number;
   questionsAttempted: number;
   displayInstruction: boolean;
@@ -142,7 +161,10 @@ export type QuizContextTypes = {
   quizReady: boolean;
   selectedAnswers: Record<string, string>;
   questionData: QuestionType[] | null;
+  showResult: boolean;
   score: number;
+  percentScore: number;
+  ratingScore: number;
   error: string;
   dispatch: (action: quizReducerActionTypes) => void;
 };
@@ -163,25 +185,26 @@ export type NextPreFooterType = {
 // action={() => dispatch({ type: "quiz/getStarted" })}
 // action={() => dispatch({ type: "quiz/customize" })}
 
-
-
 //----------------------------- SpecialObjects
 
-
 export type possibleDifficultyType = {
-    name: "easy" | "intermediate" | "difficult",
-    id: string,
-  }
+  name: "Easy" | "Intermediate" | "Difficult";
+  id: string;
+};
 
 export type possibleNumberType = {
-    choiceNumber: 25 | 30 |35 |40,
-    id: string,
-  }
-
+  choiceNumber: 25 | 30 | 35 | 40;
+  id: string;
+};
 
 export type PillType = {
   title: string;
   value?: number | string;
   bgColor: "green" | "white";
-}
+};
 
+export type ResultTopMetricChildCardType = {
+  leftText: string;
+  rightText: string | number;
+  iconSelector: "difficulty" | "result" | "rank";
+};

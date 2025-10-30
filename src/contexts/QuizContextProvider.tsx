@@ -22,7 +22,10 @@ const initialState: quizReducerStateTypes = {
   quizReady: false,
   selectedAnswers: {},
   questionData: null,
+  showResult: false,
   score: 0,
+  percentScore: 0,
+  ratingScore: 0,
   isLoading: false,
   error: "",
 };
@@ -50,8 +53,12 @@ const reducer = (
         displayWelcome: false,
         displayInstruction: false,
         startQuiz: false,
-        questionData: null
+        questionData: null,
       };
+    case "quiz/setPercentScore":
+      return { ...state, isLoading: false, percentScore: action.payload };
+    case "quiz/setRatingScore":
+      return { ...state, isLoading: false, ratingScore: action.payload };
     case "quiz/setDifficultyType":
       return { ...state, isLoading: false, difficultyType: action.payload };
     case "quiz/setUserQuestionNumberChoice":
@@ -87,11 +94,14 @@ const reducer = (
     case "updateScore":
       return { ...state, score: action.payload };
     case "updateSelectedAnswers":
-      return { ...state, selectedAnswers: {...state.selectedAnswers, ...action.payload} };
+      return {
+        ...state,
+        selectedAnswers: { ...state.selectedAnswers, ...action.payload },
+      };
     case "updateQuestionsAttempted":
       return { ...state, questionsAttempted: action.payload };
     case "quiz/submitQuiz":
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, startQuiz: false, showResult: true };
     case "error":
       return { ...state, isLoading: false, error: action.payload };
     default:
@@ -115,9 +125,12 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       startQuiz,
       questionReady,
       questionData,
+      showResult,
       quizReady,
       selectedAnswers,
       score,
+      percentScore,
+      ratingScore,
       isLoading,
       error,
     },
@@ -155,7 +168,10 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         quizReady,
         selectedAnswers,
         questionData,
+        showResult,
         score,
+        percentScore,
+        ratingScore,
         error,
         isLoading,
         dispatch,

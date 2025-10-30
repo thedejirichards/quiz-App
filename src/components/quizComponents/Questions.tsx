@@ -5,6 +5,7 @@ import Pill from "./Pill";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import Modal from "../Modal";
+import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 
 function Questions() {
   const {
@@ -17,6 +18,7 @@ function Questions() {
     error,
     selectedAnswers,
   } = useQuiz();
+  const { updateUserInfoAfterQuiz, currentLoggedInUser } = useUserMgtAuth();
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [displayQuizCompleteModal, setDisplayQuizCompleteModal] =
     useState<boolean>(false);
@@ -53,14 +55,9 @@ function Questions() {
   const handleClickNext = () => {
     if (finalPage) {
       setDisplayQuizCompleteModal(true);
-    }else{
+    } else {
       setPageNumber((prev) => prev + 1);
     }
-    
-  };
-
-  const handleNavigateToResult = () => {
-    
   };
 
   useEffect(() => {
@@ -74,6 +71,16 @@ function Questions() {
       });
     }
   }, [customizedQuestions, difficultyType, questionsToAttempt, dispatch]);
+
+  if (!currentLoggedInUser) return;
+  const handleNavigateToResult = () => {
+    const answeredCorrectly = score / 10;
+    const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+    dispatch({ type: "quiz/submitQuiz" });
+    updateUserInfoAfterQuiz(currentLoggedInUser.Email);
+    dispatch({type: "quiz/setPercentScore", payload:percentScore})
+    // dispatch({type: "quiz/setRatingScore", payload:6})
+  };
 
   const handleOptionClick = (optionId: number, questionId: string) => {
     if (selectedAnswers && selectedAnswers[questionId]) return;

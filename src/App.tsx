@@ -10,33 +10,28 @@ import { UserMgtContextProvider } from "./contexts/UserMgtContextProvider";
 function App() {
   return (
     <BrowserRouter>
-      <UserMgtContextProvider>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<LoginSignup />} />
-          <Route path="/signup" element={<LoginSignup />} />
-          <Route
-            path="/app"
-            element={
-              <ProtectedRoute>
-                <MainApp />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Navigate to="quiz" replace />} />
+      <QuizContextProvider>
+        <UserMgtContextProvider>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="/login" element={<LoginSignup />} />
+            <Route path="/signup" element={<LoginSignup />} />
             <Route
-              path="quiz"
+              path="/app"
               element={
-                <QuizContextProvider>
-                  <Quiz />
-                </QuizContextProvider>
+                <ProtectedRoute>
+                  <MainApp />
+                </ProtectedRoute>
               }
-            />
-            <Route path="profile" element={<p>Profile Page</p>} />
-            <Route path="leaderboard" element={<p>leaderboard Page</p>} />
-          </Route>
-        </Routes>
-      </UserMgtContextProvider>
+            >
+              <Route index element={<Navigate to="quiz" replace />} />
+              <Route path="quiz" element={<Quiz />} />
+              <Route path="profile" element={<p>Profile Page</p>} />
+              <Route path="leaderboard" element={<p>leaderboard Page</p>} />
+            </Route>
+          </Routes>
+        </UserMgtContextProvider>
+      </QuizContextProvider>
     </BrowserRouter>
   );
 }

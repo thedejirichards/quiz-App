@@ -2,15 +2,15 @@ import type {  possibleDifficultyType, possibleNumberType } from "../../types/ty
 
 export const possibleDifficultyObject: possibleDifficultyType[] = [
   {
-    name: "easy",
+    name: "Easy",
     id: "1",
   },
   {
-    name: "intermediate",
+    name: "Intermediate",
     id: "2",
   },
   {
-    name: "difficult",
+    name: "Difficult",
     id: "3",
   },
 ];
