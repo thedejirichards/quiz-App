@@ -14,7 +14,7 @@ function ResultTopMetricChildCard({leftText, rightText, iconSelector}: ResultTop
         <p className="text-xl font-medium h-full flex items-center ">
           <small className="h-fit">{leftText}</small>
         </p>
-        <div className="h3 text-2xl font-bold h-full flex items-center border-s-2 ps-5 border-black">
+        <div className="h3 text-2xl font-semibold h-full flex items-center border-s-2 ps-5 border-black">
           <span className="h-fit">{rightText}</span>
         </div>
       </div>

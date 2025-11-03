@@ -10,6 +10,7 @@ import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 function Questions() {
   const {
     questionData,
+    questionDataForResult,
     questionsToAttempt,
     difficultyType,
     dispatch,
@@ -77,8 +78,8 @@ function Questions() {
     const answeredCorrectly = score / 10;
     const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
     dispatch({ type: "quiz/submitQuiz" });
-    updateUserInfoAfterQuiz(currentLoggedInUser.Email);
-    dispatch({type: "quiz/setPercentScore", payload:percentScore})
+    updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted);
+    dispatch({ type: "quiz/setPercentScore", payload: percentScore });
     // dispatch({type: "quiz/setRatingScore", payload:6})
   };
 
@@ -97,6 +98,23 @@ function Questions() {
       type: "updateSelectedAnswers",
       payload: { [questionId]: selectedQuestion?.options[optionId] },
     });
+
+
+    dispatch({
+      type: "quiz/updateQuestionDataForResult",
+      payload: questionDataForResult
+        ? questionDataForResult.map((data) =>
+            data.id === questionId
+              ? {
+                  ...data,
+                  attempted: true,
+                  selectedOption: selectedOption,
+                }
+              : data
+          )
+        : [],
+    });
+
     dispatch({ type: "updateScore", payload: isCorrect ? score + 10 : score });
   };
 
@@ -153,7 +171,6 @@ function Questions() {
                     const anOptionHasBeenClicked = !!selectedAnswers[item.id];
                     const isSelected = selectedAnswers[item.id] === option;
                     const isCorrect = option === item.answer;
-
                     return (
                       <button
                         key={optIndex + 1}

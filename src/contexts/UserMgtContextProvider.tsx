@@ -181,7 +181,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
   }, [dispatch]);
 
   const updateUserInfoAfterQuiz = useCallback(
-    async (currentUserEmail: string) => {
+    async (currentUserEmail: string, totalAnswered: number) => {
       try {
         const matchedUser = registeredUsers?.find(
           (user) => user.Email === currentUserEmail
@@ -193,7 +193,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           quizId: `${crypto.randomUUID()}`,
           difficultyType: difficultyType,
           numberOfQuestions: questionsToAttempt,
-          totalQuestionsAnswered: questionsAttempted,
+          totalQuestionsAnswered: totalAnswered,
           correctlyAnswered: answeredCorrectly,
           durationUsed: "",
           score: score,
@@ -202,6 +202,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           remark: (questionsToAttempt * 10) / 2 > score ? "fail" : "passed",
           questionInfo: [],
         };
+
         const updatedUserInfoAfterQuiz: RegisteredUserType = {
           ...matchedUser,
           quizHistory: [...(matchedUser.quizHistory ?? []), newQuizResult],
@@ -226,7 +227,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (showResult && currentLoggedInUser) {
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email);
+      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted);
     }
   }, [showResult, currentLoggedInUser, updateUserInfoAfterQuiz]);
   const logOutUser = () => {

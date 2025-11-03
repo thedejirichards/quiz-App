@@ -12,9 +12,9 @@ export type QuizHistoryType = {
   numberOfQuestions: number;
   totalQuestionsAnswered: number;
   correctlyAnswered: number;
+  durationUsed: string;
   score: number;
   percentScore: number;
-  durationUsed: string;
   dateStamp: number;
   remark: string;
   questionInfo: QuestionInfoType[];
@@ -42,7 +42,10 @@ export type UserMgtContextType = {
   currentLoggedInUser: RegisteredUserType | null;
   logOutUser: () => void;
   dispatch: (action: ReducerActions) => void;
-  updateUserInfoAfterQuiz: (currentUserEmail: string) => void;
+  updateUserInfoAfterQuiz: (
+    currentUserEmail: string,
+    questionsAttempted: number
+  ) => void;
 };
 
 export type ReducerAvailableStatesType = {
@@ -101,6 +104,16 @@ export type QuestionType = {
   difficulty: "" | "Easy" | "Intermediate" | "Difficult";
 };
 
+export type QuestionDataForResultType = {
+  id: string;
+  question: string;
+  options: string[];
+  answer: string;
+  difficulty: "" | "Easy" | "Intermediate" | "Difficult";
+  attempted: boolean;
+  selectedOption: string | null;
+};
+
 export type quizReducerStateTypes = {
   currentlyDefaultQuizPage: boolean;
   getStarted: boolean;
@@ -116,6 +129,7 @@ export type quizReducerStateTypes = {
   quizReady: boolean;
   selectedAnswers: Record<string, string>;
   questionData: QuestionType[] | null;
+  questionDataForResult: QuestionDataForResultType[] | null;
   showResult: boolean;
   score: number;
   percentScore: number;
@@ -138,6 +152,8 @@ export type quizReducerActionTypes =
   | { type: "quiz/displayInstruction" }
   | { type: "quiz/attestInstruction"; payload: boolean }
   | { type: "quiz/getQuestion"; payload: QuestionType[] }
+  | { type: "quiz/getInitialQuestionDataForResult"; payload: QuestionDataForResultType[] }
+  | { type: "quiz/updateQuestionDataForResult"; payload: QuestionDataForResultType[] }
   | { type: "quiz/startQuiz" }
   | { type: "updateScore"; payload: number }
   | { type: "updateSelectedAnswers"; payload: Record<string, string> }
@@ -161,6 +177,7 @@ export type QuizContextTypes = {
   quizReady: boolean;
   selectedAnswers: Record<string, string>;
   questionData: QuestionType[] | null;
+  questionDataForResult: QuestionDataForResultType[] | null;
   showResult: boolean;
   score: number;
   percentScore: number;

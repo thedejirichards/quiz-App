@@ -4,6 +4,7 @@ import type {
   quizReducerActionTypes,
   quizReducerStateTypes,
 } from "../types/types";
+// import { data } from "react-router-dom";
 
 const QuizContext = createContext<QuizContextTypes | null>(null);
 
@@ -22,6 +23,7 @@ const initialState: quizReducerStateTypes = {
   quizReady: false,
   selectedAnswers: {},
   questionData: null,
+  questionDataForResult: null,
   showResult: false,
   score: 0,
   percentScore: 0,
@@ -84,6 +86,20 @@ const reducer = (
         questionData: action.payload,
         questionReady: true,
       };
+    case "quiz/getInitialQuestionDataForResult":
+      return {
+        ...state,
+        isLoading: false,
+        questionDataForResult: action.payload,
+        questionReady: true,
+      };
+    case "quiz/updateQuestionDataForResult":
+      return {
+        ...state,
+        isLoading: false,
+        questionDataForResult: action.payload,
+        questionReady: true,
+      };
     case "quiz/startQuiz":
       return {
         ...state,
@@ -125,6 +141,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       startQuiz,
       questionReady,
       questionData,
+      questionDataForResult,
       showResult,
       quizReady,
       selectedAnswers,
@@ -151,6 +168,24 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
     getQuestionData();
   }, [attestedToInstruction]);
 
+  useEffect(() => {
+    const getInitialQuestionDataForResult = async () => {
+      dispatch({ type: "loading" });
+      try {
+          const questionDataForResult = questionData ? questionData.map((data) => ({
+            ...data, attempted: false, selectedOption: null
+          })) : [];
+          dispatch({type: "quiz/getInitialQuestionDataForResult", payload: questionDataForResult})
+      } catch {
+        dispatch({
+          type: "error",
+          payload: "Unable to get Initial Question Data For Result",
+        });
+      }
+    }
+    getInitialQuestionDataForResult()
+  }, [questionData]);
+
   return (
     <QuizContext.Provider
       value={{
@@ -168,6 +203,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         quizReady,
         selectedAnswers,
         questionData,
+        questionDataForResult,
         showResult,
         score,
         percentScore,
