@@ -24,6 +24,8 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     difficultyType,
     questionsToAttempt,
     questionsAttempted,
+    questionData,
+    selectedAnswers,
   } = useQuiz();
   const initialState = {
     registeredUsers: null,
@@ -200,7 +202,16 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           percentScore: percentScore,
           dateStamp: Date.now(),
           remark: (questionsToAttempt * 10) / 2 > score ? "fail" : "passed",
-          questionInfo: [],
+          questionInfo: questionData
+            ? questionData.map((data) => ({
+                questionId: data.id,
+                question: data.question,
+                options: data.options,
+                correctOption: data.answer,
+                answered: !!selectedAnswers[data.id], // simpler boolean check
+                userSelectedOption: selectedAnswers[data.id] ?? null, // safe fallback
+              }))
+            : [],
         };
 
         const updatedUserInfoAfterQuiz: RegisteredUserType = {

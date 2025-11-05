@@ -1,10 +1,15 @@
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import GaugeChart from "./GaugeChart";
+import ListOfQuestionIndexStatus from "./ListOfQuestionIndexStatus";
 import NextPrevFooter from "./NextPrevFooter";
 import ResultTopMetricChildCard from "./ResultTopMetricChildCard";
 
 function Result() {
-  const { dispatch, difficultyType, percentScore, score } = useQuiz();
+  const { dispatch, difficultyType, percentScore, quizTimeAllocated, quizTimeRemaining } = useQuiz();
+  const percentTimeUsed = ((quizTimeAllocated-quizTimeRemaining)/ quizTimeAllocated) *100
+  const approxPercentTimeUsed = Math.floor(percentTimeUsed);
+  const approxPercentScore = Math.floor(percentScore);
+  console.log(approxPercentScore, percentScore)
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto">
@@ -18,28 +23,30 @@ function Result() {
               rightText={difficultyType}
               iconSelector="difficulty"
             />
+              <ResultTopMetricChildCard
+                leftText="Score"
+                rightText={percentScore ? `${percentScore} %` : percentScore}
+                iconSelector="result"
+              />
             <ResultTopMetricChildCard
               leftText="Rank"
               rightText={difficultyType}
               iconSelector="rank"
             />
-            <ResultTopMetricChildCard
-              leftText="Score"
-              rightText={score ? `${score}` : score}
-              iconSelector="result"
-            />
           </div>
           <div className="buttom-metrics w-full gap-2 flex [&>*:first-child]:w-1/3 [&>*:last-child]:w-2/3">
             <div className="buttom-metrics-child bg-white h-full rounded-2xl border-2 border-borderGrey relative">
               <div className="chart w-full h-full">
-                <GaugeChart percentage={percentScore} />
+                <GaugeChart percentageTimeUsed={approxPercentTimeUsed} />
               </div>
               <div className="absolute bottom-1/4 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-                <h1 className="font-medium text-xl">Percent Score</h1>
-                <h1 className="font-bold text-2xl">{percentScore}%</h1>
+                <h1 className="font-medium text-xl">Percent Time Used</h1>
+                <h1 className="font-bold text-2xl">{approxPercentTimeUsed}%</h1>
               </div>
             </div>
-            <div className="buttom-metrics-child bg-white h-full rounded-2xl border-2 border-borderGrey"></div>
+            <div className="buttom-metrics-child bg-white h-full rounded-2xl border-2 border-borderGrey p-10">
+              <ListOfQuestionIndexStatus />
+            </div>
           </div>
         </div>
       </div>

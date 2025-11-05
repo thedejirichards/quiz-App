@@ -4,7 +4,6 @@ import type {
   quizReducerActionTypes,
   quizReducerStateTypes,
 } from "../types/types";
-// import { data } from "react-router-dom";
 
 const QuizContext = createContext<QuizContextTypes | null>(null);
 
@@ -28,6 +27,9 @@ const initialState: quizReducerStateTypes = {
   score: 0,
   percentScore: 0,
   ratingScore: 0,
+  quizTimeAllocated: 0,
+  quizTimeRemaining: 0,
+  timerCanStart: false,
   isLoading: false,
   error: "",
 };
@@ -116,6 +118,14 @@ const reducer = (
       };
     case "updateQuestionsAttempted":
       return { ...state, questionsAttempted: action.payload };
+    case "updateTimeAllocated":
+      return { ...state, quizTimeAllocated: action.payload };
+    case "updateTimeRemaining":
+      return { ...state, quizTimeRemaining: action.payload, timerCanStart: true };
+    case "decreaseTimeRemaining":
+      return { ...state, quizTimeRemaining: state.quizTimeRemaining > 0
+      ? state.quizTimeRemaining - 1
+      : 0, };
     case "quiz/submitQuiz":
       return { ...state, isLoading: false, startQuiz: false, showResult: true };
     case "error":
@@ -148,6 +158,9 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       score,
       percentScore,
       ratingScore,
+      quizTimeAllocated,
+      quizTimeRemaining,
+      timerCanStart,
       isLoading,
       error,
     },
@@ -167,24 +180,6 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
     };
     getQuestionData();
   }, [attestedToInstruction]);
-
-  useEffect(() => {
-    const getInitialQuestionDataForResult = async () => {
-      dispatch({ type: "loading" });
-      try {
-          const questionDataForResult = questionData ? questionData.map((data) => ({
-            ...data, attempted: false, selectedOption: null
-          })) : [];
-          dispatch({type: "quiz/getInitialQuestionDataForResult", payload: questionDataForResult})
-      } catch {
-        dispatch({
-          type: "error",
-          payload: "Unable to get Initial Question Data For Result",
-        });
-      }
-    }
-    getInitialQuestionDataForResult()
-  }, [questionData]);
 
   return (
     <QuizContext.Provider
@@ -208,6 +203,9 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         score,
         percentScore,
         ratingScore,
+        quizTimeAllocated,
+        quizTimeRemaining,
+        timerCanStart,
         error,
         isLoading,
         dispatch,

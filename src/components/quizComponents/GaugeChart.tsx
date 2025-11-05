@@ -6,15 +6,15 @@ import {
 } from "recharts";
 
 interface TimeUsedChartProps {
-  percentage?: number;
+  percentageTimeUsed?: number;
 }
 
-function GaugeChart({ percentage = 40 }: TimeUsedChartProps) {
+function GaugeChart({ percentageTimeUsed = 0 }: TimeUsedChartProps) {
 
   const data = [
     {
       name: "Time Used",
-      value: percentage,
+      value: percentageTimeUsed,
       fill: "#0C7FA7",
     },
   ];

@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import NextPrevFooter from "./NextPrevFooter";
+import { timeAllocation } from "./SpecialObjects";
 
 function Instruction() {
   const {
@@ -7,7 +9,8 @@ function Instruction() {
     questionsToAttempt,
     attestedToInstruction,
     questionData,
-    dispatch,
+    // quizTimeAllocated,
+    dispatch
   } = useQuiz();
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: "quiz/attestInstruction", payload: e.target.checked });
@@ -16,6 +19,13 @@ function Instruction() {
   const handleStartQuiz = () => {
     dispatch({ type: "quiz/startQuiz" });
   };
+
+  const difficultyBasedTimeAllocation = timeAllocation[difficultyType]
+  const quizTime = difficultyBasedTimeAllocation * questionsToAttempt
+
+  useEffect(() => {
+    dispatch({type:"updateTimeAllocated", payload: quizTime})
+  }, [quizTime,  dispatch])
 
   return (
     <div className="customize h-full flex flex-col items-center justify-between">
@@ -34,7 +44,7 @@ function Instruction() {
               <span className="font-semibold text-deepGreen ">
                 {difficultyType}
               </span>{" "}
-              question bank. Each question has a 30-second time limit. Be sure
+              question bank. Each question has a {difficultyBasedTimeAllocation}-seconds time limit. Be sure
               to answer within the given time, otherwise, the system will
               automatically move you to the next question. You also can only
               click on an option only once.

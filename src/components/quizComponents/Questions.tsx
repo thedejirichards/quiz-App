@@ -18,6 +18,9 @@ function Questions() {
     questionsAttempted,
     error,
     selectedAnswers,
+    quizTimeAllocated,
+    quizTimeRemaining,
+    timerCanStart,
   } = useQuiz();
   const { updateUserInfoAfterQuiz, currentLoggedInUser } = useUserMgtAuth();
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -49,6 +52,23 @@ function Questions() {
     ? customizedQuestions?.slice(startIndex, endIndex)
     : [];
 
+  useEffect(() => {
+    dispatch({ type: "updateTimeRemaining", payload: quizTimeAllocated });
+    // setInterval runs every 1000 milliseconds (1 second)
+    const interval = setInterval(() => {
+      dispatch({ type: "decreaseTimeRemaining" });
+    }, 1000);
+
+    // cleanup when the component unmounts
+    return () => clearInterval(interval);
+  }, [quizTimeAllocated, dispatch]);
+
+  const minuteLeft = Math.floor(quizTimeRemaining / 60);
+  const secondsLeft = quizTimeRemaining % 60;
+  const timeLeftForDisplay = `${
+    minuteLeft > 9 ? minuteLeft : `0${minuteLeft}`
+  }: ${secondsLeft > 9 ? secondsLeft : `0${secondsLeft}`}`;
+
   const handleClickPrev = () => {
     if (pageNumber === 1) dispatch({ type: "quiz/displayInstruction" });
     setPageNumber((prev) => prev - 1);
@@ -62,6 +82,26 @@ function Questions() {
   };
 
   useEffect(() => {
+    if (!currentLoggedInUser) return;
+    if (timerCanStart && quizTimeRemaining === 0) {
+      const answeredCorrectly = score / 10;
+      const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+      dispatch({ type: "quiz/submitQuiz" });
+      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted);
+      dispatch({ type: "quiz/setPercentScore", payload: percentScore });
+    }
+  }, [
+    timerCanStart,
+    dispatch,
+    quizTimeRemaining,
+    currentLoggedInUser,
+    score,
+    questionsAttempted,
+    updateUserInfoAfterQuiz,
+    questionsToAttempt,
+  ]);
+
+  useEffect(() => {
     if (
       customizedQuestions &&
       customizedQuestions.length < questionsToAttempt
@@ -72,6 +112,31 @@ function Questions() {
       });
     }
   }, [customizedQuestions, difficultyType, questionsToAttempt, dispatch]);
+
+  useEffect(() => {
+    const getInitialQuestionDataForResult = async () => {
+      dispatch({ type: "loading" });
+      try {
+        const questionDataForResult = customizedQuestions
+          ? customizedQuestions.map((data) => ({
+              ...data,
+              attempted: false,
+              selectedOption: null,
+            }))
+          : [];
+        dispatch({
+          type: "quiz/getInitialQuestionDataForResult",
+          payload: questionDataForResult,
+        });
+      } catch {
+        dispatch({
+          type: "error",
+          payload: "Unable to get Initial Question Data For Result",
+        });
+      }
+    };
+    getInitialQuestionDataForResult();
+  }, [customizedQuestions, dispatch]);
 
   if (!currentLoggedInUser) return;
   const handleNavigateToResult = () => {
@@ -98,7 +163,6 @@ function Questions() {
       type: "updateSelectedAnswers",
       payload: { [questionId]: selectedQuestion?.options[optionId] },
     });
-
 
     dispatch({
       type: "quiz/updateQuestionDataForResult",
@@ -150,6 +214,12 @@ function Questions() {
           />
           <Pill bgColor="white" title="Current Score" value={score} />
           <Pill bgColor="white" title="Question Type" value={difficultyType} />
+          <Pill
+            bgColor="white"
+            title="Time Left"
+            value={timeLeftForDisplay}
+            width="fixed"
+          />
         </div>
       </div>
 

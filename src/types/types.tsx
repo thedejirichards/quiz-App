@@ -3,6 +3,7 @@ export type QuestionInfoType = {
   question: string;
   options: string[];
   correctOption: string;
+  answered: boolean,
   userSelectedOption: string;
 };
 
@@ -134,6 +135,9 @@ export type quizReducerStateTypes = {
   score: number;
   percentScore: number;
   ratingScore: number;
+  quizTimeAllocated: number,
+  quizTimeRemaining: number,
+  timerCanStart: boolean,
   isLoading: boolean;
   error: string;
 };
@@ -158,6 +162,9 @@ export type quizReducerActionTypes =
   | { type: "updateScore"; payload: number }
   | { type: "updateSelectedAnswers"; payload: Record<string, string> }
   | { type: "updateQuestionsAttempted"; payload: number }
+  | { type: "updateTimeAllocated"; payload: number }
+  | { type: "updateTimeRemaining"; payload: number }
+  | { type: "decreaseTimeRemaining" }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
 
@@ -182,6 +189,9 @@ export type QuizContextTypes = {
   score: number;
   percentScore: number;
   ratingScore: number;
+  quizTimeAllocated: number,
+  quizTimeRemaining: number,
+  timerCanStart: boolean,
   error: string;
   dispatch: (action: quizReducerActionTypes) => void;
 };
@@ -218,6 +228,7 @@ export type PillType = {
   title: string;
   value?: number | string;
   bgColor: "green" | "white";
+  width?: "fixed" | "fit"
 };
 
 export type ResultTopMetricChildCardType = {

@@ -33,3 +33,10 @@ export const possibleNumberChoice:possibleNumberType[] = [
     id: "choice4",
   },
 ];
+
+
+export const timeAllocation: Record<string, number> = {
+  "Easy": 5,
+  "Intermediate": 3,
+  "Difficult": 2
+}
