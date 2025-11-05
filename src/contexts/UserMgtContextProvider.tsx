@@ -26,6 +26,9 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     questionsAttempted,
     questionData,
     selectedAnswers,
+    quizTimeAllocated,
+    quizTimeRemaining,
+    ratingScore,
   } = useQuiz();
   const initialState = {
     registeredUsers: null,
@@ -46,6 +49,12 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         return {
           ...state,
           isLoading: true,
+        };
+      case "getAllUsers":
+        return {
+          ...state,
+          isLoading: false,
+          registeredUsers: action.payLoad,
         };
       case "registeredUsers/loaded":
         return {
@@ -183,13 +192,19 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
   }, [dispatch]);
 
   const updateUserInfoAfterQuiz = useCallback(
-    async (currentUserEmail: string, totalAnswered: number) => {
+    async (
+      currentUserEmail: string,
+      totalAnswered: number,
+      rankingScore: number
+    ) => {
       try {
         const matchedUser = registeredUsers?.find(
           (user) => user.Email === currentUserEmail
         );
         const answeredCorrectly = score / 10;
         const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+
+        const timeUsed = quizTimeAllocated - quizTimeRemaining;
         if (!matchedUser) return;
         const newQuizResult: QuizHistoryType = {
           quizId: `${crypto.randomUUID()}`,
@@ -197,8 +212,9 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           numberOfQuestions: questionsToAttempt,
           totalQuestionsAnswered: totalAnswered,
           correctlyAnswered: answeredCorrectly,
-          durationUsed: "",
+          durationUsed: `${timeUsed} sec`,
           score: score,
+          rankScore: rankingScore,
           percentScore: percentScore,
           dateStamp: Date.now(),
           remark: (questionsToAttempt * 10) / 2 > score ? "fail" : "passed",
@@ -233,14 +249,33 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         dispatch({ type: "error", payLoad: "Failed to update quiz history" });
       }
     },
-    [difficultyType, registeredUsers, questionsToAttempt, score]
+    [
+      difficultyType,
+      registeredUsers,
+      questionsToAttempt,
+      score,
+      questionData,
+      selectedAnswers,
+      quizTimeRemaining,
+      quizTimeAllocated,
+    ]
   );
 
   useEffect(() => {
     if (showResult && currentLoggedInUser) {
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted);
+      updateUserInfoAfterQuiz(
+        currentLoggedInUser.Email,
+        questionsAttempted,
+        ratingScore
+      );
     }
-  }, [showResult, currentLoggedInUser, updateUserInfoAfterQuiz]);
+  }, [
+    showResult,
+    currentLoggedInUser,
+    updateUserInfoAfterQuiz,
+    ratingScore,
+    questionsAttempted,
+  ]);
   const logOutUser = () => {
     dispatch({ type: "registeredUsers/loading" });
     try {
@@ -249,6 +284,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
       dispatch({ type: "error", payLoad: "Unable to logOut current user" });
     }
   };
+
   return (
     <UserMgtContext.Provider
       value={{

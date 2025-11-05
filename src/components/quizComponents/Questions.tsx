@@ -6,6 +6,7 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import Modal from "../Modal";
 import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
+import { possibleDifficultyObject } from "./SpecialObjects";
 
 function Questions() {
   const {
@@ -81,13 +82,25 @@ function Questions() {
     }
   };
 
+
+  //handleSame
   useEffect(() => {
     if (!currentLoggedInUser) return;
     if (timerCanStart && quizTimeRemaining === 0) {
       const answeredCorrectly = score / 10;
       const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+      const difficultyRankingScore = possibleDifficultyObject.find(
+        (item) => item.name === difficultyType
+      )?.rankScore;
+      const percentTimeUsed =
+        ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
+      const rankingScore =
+        percentScore *
+        (1 + (100 - percentTimeUsed)) *
+        (difficultyRankingScore || 1);
       dispatch({ type: "quiz/submitQuiz" });
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted);
+      dispatch({ type: "quiz/setRatingScore", payload: rankingScore});
+      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted, rankingScore);
       dispatch({ type: "quiz/setPercentScore", payload: percentScore });
     }
   }, [
@@ -99,7 +112,10 @@ function Questions() {
     questionsAttempted,
     updateUserInfoAfterQuiz,
     questionsToAttempt,
+    difficultyType,
+    quizTimeAllocated
   ]);
+
 
   useEffect(() => {
     if (
@@ -139,13 +155,24 @@ function Questions() {
   }, [customizedQuestions, dispatch]);
 
   if (!currentLoggedInUser) return;
+  // handleSame
   const handleNavigateToResult = () => {
     const answeredCorrectly = score / 10;
-    const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
-    dispatch({ type: "quiz/submitQuiz" });
-    updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted);
-    dispatch({ type: "quiz/setPercentScore", payload: percentScore });
-    // dispatch({type: "quiz/setRatingScore", payload:6})
+      const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+      const difficultyRankingScore = possibleDifficultyObject.find(
+        (item) => item.name === difficultyType
+      )?.rankScore;
+      const percentTimeUsed =
+        ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
+      const rankingScore =
+        percentScore *
+        (1 + ((100 - percentTimeUsed)/100)) *
+        (difficultyRankingScore || 1);
+      dispatch({ type: "quiz/submitQuiz" });
+      console.log(rankingScore, difficultyRankingScore)
+      dispatch({ type: "quiz/setRatingScore", payload: rankingScore});
+      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted, rankingScore);
+      dispatch({ type: "quiz/setPercentScore", payload: percentScore });
   };
 
   const handleOptionClick = (optionId: number, questionId: string) => {

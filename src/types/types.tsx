@@ -15,6 +15,7 @@ export type QuizHistoryType = {
   correctlyAnswered: number;
   durationUsed: string;
   score: number;
+  rankScore: number;
   percentScore: number;
   dateStamp: number;
   remark: string;
@@ -45,7 +46,8 @@ export type UserMgtContextType = {
   dispatch: (action: ReducerActions) => void;
   updateUserInfoAfterQuiz: (
     currentUserEmail: string,
-    questionsAttempted: number
+    questionsAttempted: number,
+    rankingScore: number,
   ) => void;
 };
 
@@ -62,6 +64,7 @@ export type ReducerAvailableStatesType = {
 export type ReducerActions =
   | { type: "registeredUsers/loading" }
   | { type: "registeredUsers/loaded"; payLoad: RegisteredUserType[] }
+  | { type: "getAllUsers"; payLoad: RegisteredUserType[] }
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
   | { type: "validateUser"; payLoad: loginUserType }
   | { type: "getCurrUser" }
@@ -217,6 +220,7 @@ export type NextPreFooterType = {
 export type possibleDifficultyType = {
   name: "Easy" | "Intermediate" | "Difficult";
   id: string;
+  rankScore: number
 };
 
 export type possibleNumberType = {

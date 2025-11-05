@@ -4,14 +4,17 @@ export const possibleDifficultyObject: possibleDifficultyType[] = [
   {
     name: "Easy",
     id: "1",
+    rankScore: 1
   },
   {
     name: "Intermediate",
     id: "2",
+    rankScore: 1.2
   },
   {
     name: "Difficult",
     id: "3",
+    rankScore: 1.4
   },
 ];
 

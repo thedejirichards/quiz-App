@@ -1,4 +1,6 @@
+// import { useEffect } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
+import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 import GaugeChart from "./GaugeChart";
 import ListOfQuestionIndexStatus from "./ListOfQuestionIndexStatus";
 import NextPrevFooter from "./NextPrevFooter";
@@ -6,10 +8,11 @@ import ResultTopMetricChildCard from "./ResultTopMetricChildCard";
 
 function Result() {
   const { dispatch, difficultyType, percentScore, quizTimeAllocated, quizTimeRemaining } = useQuiz();
+  const {registeredUsers} = useUserMgtAuth()
   const percentTimeUsed = ((quizTimeAllocated-quizTimeRemaining)/ quizTimeAllocated) *100
   const approxPercentTimeUsed = Math.floor(percentTimeUsed);
   const approxPercentScore = Math.floor(percentScore);
-  console.log(approxPercentScore, percentScore)
+  console.log(registeredUsers)
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto">
@@ -25,7 +28,7 @@ function Result() {
             />
               <ResultTopMetricChildCard
                 leftText="Score"
-                rightText={percentScore ? `${percentScore} %` : percentScore}
+                rightText={percentScore ? `${approxPercentScore} %` : percentScore}
                 iconSelector="result"
               />
             <ResultTopMetricChildCard
