@@ -42,7 +42,6 @@ export type UserMgtContextType = {
   validateUser: (user: loginUserType) => void;
   getCurrUser: () => void;
   currentLoggedInUser: RegisteredUserType | null;
-  logOutUser: () => void;
   dispatch: (action: ReducerActions) => void;
   updateUserInfoAfterQuiz: (
     currentUserEmail: string,
@@ -68,7 +67,7 @@ export type ReducerActions =
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
   | { type: "validateUser"; payLoad: loginUserType }
   | { type: "getCurrUser" }
-  | { type: "updateUserAfterQuizSubmission"; payload: RegisteredUserType[] }
+  | { type: "updateUserAfterQuizSubmission"; payload: RegisteredUserType }
   | { type: "user/logOut" }
   | { type: "error"; payLoad: string };
 
@@ -169,7 +168,8 @@ export type quizReducerActionTypes =
   | { type: "updateTimeRemaining"; payload: number }
   | { type: "decreaseTimeRemaining" }
   | { type: "quiz/submitQuiz" }
-  | { type: "error"; payload: string };
+  | { type: "error"; payload: string }
+  | { type: "quiz/reset" };
 
 export type QuizContextTypes = {
   isLoading: boolean;
@@ -197,6 +197,7 @@ export type QuizContextTypes = {
   timerCanStart: boolean,
   error: string;
   dispatch: (action: quizReducerActionTypes) => void;
+  resetQuiz: ()=> void
 };
 
 export type QuizButtonType = {

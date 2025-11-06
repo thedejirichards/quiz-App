@@ -1,4 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, 
+  useMemo, 
+  // useRef, 
+  useState } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import NextPrevFooter from "./NextPrevFooter";
 import Pill from "./Pill";
@@ -23,6 +26,7 @@ function Questions() {
     quizTimeRemaining,
     timerCanStart,
   } = useQuiz();
+  // const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { updateUserInfoAfterQuiz, currentLoggedInUser } = useUserMgtAuth();
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [displayQuizCompleteModal, setDisplayQuizCompleteModal] =
@@ -34,6 +38,12 @@ function Questions() {
       .sort(() => Math.random() - 0.5)
       .slice(0, questionsToAttempt);
   }, [questionData, difficultyType, questionsToAttempt]);
+
+  // useEffect(() => {
+  //   if (scrollContainerRef.current) {
+  //     scrollContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+  //   }
+  // }, [pageNumber]);
 
   useEffect(() => {
     const numberOfAnsweredQuestions = Object.keys(selectedAnswers).length;
@@ -82,7 +92,6 @@ function Questions() {
     }
   };
 
-
   //handleSame
   useEffect(() => {
     if (!currentLoggedInUser) return;
@@ -99,8 +108,12 @@ function Questions() {
         (1 + (100 - percentTimeUsed)) *
         (difficultyRankingScore || 1);
       dispatch({ type: "quiz/submitQuiz" });
-      dispatch({ type: "quiz/setRatingScore", payload: rankingScore});
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted, rankingScore);
+      dispatch({ type: "quiz/setRatingScore", payload: rankingScore });
+      updateUserInfoAfterQuiz(
+        currentLoggedInUser.Email,
+        questionsAttempted,
+        rankingScore
+      );
       dispatch({ type: "quiz/setPercentScore", payload: percentScore });
     }
   }, [
@@ -113,9 +126,8 @@ function Questions() {
     updateUserInfoAfterQuiz,
     questionsToAttempt,
     difficultyType,
-    quizTimeAllocated
+    quizTimeAllocated,
   ]);
-
 
   useEffect(() => {
     if (
@@ -158,21 +170,24 @@ function Questions() {
   // handleSame
   const handleNavigateToResult = () => {
     const answeredCorrectly = score / 10;
-      const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
-      const difficultyRankingScore = possibleDifficultyObject.find(
-        (item) => item.name === difficultyType
-      )?.rankScore;
-      const percentTimeUsed =
-        ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
-      const rankingScore =
-        percentScore *
-        (1 + ((100 - percentTimeUsed)/100)) *
-        (difficultyRankingScore || 1);
-      dispatch({ type: "quiz/submitQuiz" });
-      console.log(rankingScore, difficultyRankingScore)
-      dispatch({ type: "quiz/setRatingScore", payload: rankingScore});
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted, rankingScore);
-      dispatch({ type: "quiz/setPercentScore", payload: percentScore });
+    const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+    const difficultyRankingScore = possibleDifficultyObject.find(
+      (item) => item.name === difficultyType
+    )?.rankScore;
+    const percentTimeUsed =
+      ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
+    const rankingScore =
+      percentScore *
+      (1 + (100 - percentTimeUsed) / 100) *
+      (difficultyRankingScore || 1);
+    dispatch({ type: "quiz/submitQuiz" });
+    dispatch({ type: "quiz/setRatingScore", payload: rankingScore });
+    updateUserInfoAfterQuiz(
+      currentLoggedInUser.Email,
+      questionsAttempted,
+      rankingScore
+    );
+    dispatch({ type: "quiz/setPercentScore", payload: percentScore });
   };
 
   const handleOptionClick = (optionId: number, questionId: string) => {
@@ -252,7 +267,11 @@ function Questions() {
 
       {/* Questions and Navigation Section */}
       <div className="h-full flex flex-col">
-        <div className="h-[700px] overflow-y-scroll hide-scrollbar w-full">
+        <div
+          key={pageNumber}
+          // ref={scrollContainerRef}
+          className="h-[700px] overflow-y-scroll hide-scrollbar w-full"
+        >
           <div className="five-question-list flex flex-col w-10/12 mx-auto">
             {questionDataToDisplay.map((item, index) => (
               <div

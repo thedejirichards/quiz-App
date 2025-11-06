@@ -90,7 +90,11 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
       case "updateUserAfterQuizSubmission":
         return {
           ...state,
-          registeredUsers: action.payload,
+          registeredUsers: state.registeredUsers
+            ? state.registeredUsers.map((u) =>
+                u.id === action.payload.id ? action.payload : u
+              )
+            : [action.payload],
         };
       case "user/logOut":
         return {
@@ -98,6 +102,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           logInSuccessResponse: false,
           currentLoggedInUser: null,
           userToLogInCredentials: null,
+          errMsg: "",
         };
       case "error":
         return {
@@ -276,14 +281,6 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     ratingScore,
     questionsAttempted,
   ]);
-  const logOutUser = () => {
-    dispatch({ type: "registeredUsers/loading" });
-    try {
-      dispatch({ type: "user/logOut" });
-    } catch {
-      dispatch({ type: "error", payLoad: "Unable to logOut current user" });
-    }
-  };
 
   return (
     <UserMgtContext.Provider
@@ -297,7 +294,6 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         validateUser,
         getCurrUser,
         currentLoggedInUser,
-        logOutUser,
         dispatch,
         updateUserInfoAfterQuiz,
       }}

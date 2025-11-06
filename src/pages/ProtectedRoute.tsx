@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { logInSuccessResponse } = useUserMgtAuth();
-  // console.log(logInSuccessResponse)
   const navigate = useNavigate();
   useEffect(() => {
     if (!logInSuccessResponse) {
