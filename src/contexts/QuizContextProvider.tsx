@@ -121,23 +121,15 @@ const reducer = (
     case "updateTimeAllocated":
       return { ...state, quizTimeAllocated: action.payload };
     case "updateTimeRemaining":
-      return {
-        ...state,
-        quizTimeRemaining: action.payload,
-        timerCanStart: true,
-      };
+      return { ...state, quizTimeRemaining: action.payload, timerCanStart: true };
     case "decreaseTimeRemaining":
-      return {
-        ...state,
-        quizTimeRemaining:
-          state.quizTimeRemaining > 0 ? state.quizTimeRemaining - 1 : 0,
-      };
+      return { ...state, quizTimeRemaining: state.quizTimeRemaining > 0
+      ? state.quizTimeRemaining - 1
+      : 0, };
     case "quiz/submitQuiz":
       return { ...state, isLoading: false, startQuiz: false, showResult: true };
     case "error":
       return { ...state, isLoading: false, error: action.payload };
-    case "quiz/reset":
-      return initialState;
     default:
       return { ...state };
   }
@@ -175,15 +167,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  const resetQuiz = () => {
-    console.log("it worked")
-    dispatch({ type: "quiz/reset" });
-
-  }
-
   useEffect(() => {
-     if (!attestedToInstruction) return;
-
     const getQuestionData = async () => {
       dispatch({ type: "loading" });
       try {
@@ -225,7 +209,6 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         error,
         isLoading,
         dispatch,
-        resetQuiz,
       }}
     >
       {children}

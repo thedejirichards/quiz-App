@@ -5,6 +5,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 function ListOfQuestionIndexStatus() {
   const { questionDataForResult } = useQuiz();
   if (!questionDataForResult) return <p>Can't get question data for result</p>;
+  console.log(questionDataForResult);
   return (
     <div className="flex flex-wrap gap-y-4 gap-x-2">
       {questionDataForResult.map((data, index) => {
@@ -13,7 +14,6 @@ function ListOfQuestionIndexStatus() {
         const serialNumber = index + 1;
         return (
           <li
-          key={index}
             className={`list-none h-fit w-20 py-1 px-3 flex items-center justify-between border-2 border-quizbtnStroke rounded-full bg-quizbtnFill gap-5 ${
               gotQuestion ? "" : ""
             }`}

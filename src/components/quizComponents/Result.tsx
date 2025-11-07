@@ -3,22 +3,16 @@ import { useQuiz } from "../../contexts/QuizContextProvider";
 import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 import GaugeChart from "./GaugeChart";
 import ListOfQuestionIndexStatus from "./ListOfQuestionIndexStatus";
+import NextPrevFooter from "./NextPrevFooter";
 import ResultTopMetricChildCard from "./ResultTopMetricChildCard";
 
 function Result() {
-  const {
-    dispatch,
-    difficultyType,
-    percentScore,
-    quizTimeAllocated,
-    quizTimeRemaining,
-  } = useQuiz();
-  const { registeredUsers } = useUserMgtAuth();
-  const percentTimeUsed =
-    ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
+  const { dispatch, difficultyType, percentScore, quizTimeAllocated, quizTimeRemaining } = useQuiz();
+  const {registeredUsers} = useUserMgtAuth()
+  const percentTimeUsed = ((quizTimeAllocated-quizTimeRemaining)/ quizTimeAllocated) *100
   const approxPercentTimeUsed = Math.floor(percentTimeUsed);
   const approxPercentScore = Math.floor(percentScore);
-  console.log(registeredUsers);
+  console.log(registeredUsers)
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto">
@@ -32,13 +26,11 @@ function Result() {
               rightText={difficultyType}
               iconSelector="difficulty"
             />
-            <ResultTopMetricChildCard
-              leftText="Score"
-              rightText={
-                percentScore ? `${approxPercentScore} %` : percentScore
-              }
-              iconSelector="result"
-            />
+              <ResultTopMetricChildCard
+                leftText="Score"
+                rightText={percentScore ? `${approxPercentScore} %` : percentScore}
+                iconSelector="result"
+              />
             <ResultTopMetricChildCard
               leftText="Rank"
               rightText={difficultyType}
@@ -61,20 +53,10 @@ function Result() {
           </div>
         </div>
       </div>
-      <div className="flex footer-btns h-2/12 items-center w-10/12 gap-5">
-        <button
-          onClick={() => {}}
-          className="leaderboard flex-1 border-2 border-deepGreen bg-white text-deepGreen rounded-md h-1/3 cursor-pointer"
-        >
-          Leaderboard
-        </button>
-        <button
-          onClick={() => dispatch({ type: "quiz/getStarted" })}
-          className="new-quiz flex-1 border-2 border-deepGreen bg-deepGreen text-white rounded-md h-1/3 cursor-pointer"
-        >
-          New Quiz
-        </button>
-      </div>
+      <NextPrevFooter
+        nextAction={() => dispatch({ type: "quiz/customize" })}
+        prevAction={() => dispatch({ type: "quiz/getStarted" })}
+      />
     </div>
   );
 }
