@@ -82,7 +82,6 @@ function Questions() {
     }
   };
 
-
   //handleSame
   useEffect(() => {
     if (!currentLoggedInUser) return;
@@ -99,8 +98,12 @@ function Questions() {
         (1 + (100 - percentTimeUsed)) *
         (difficultyRankingScore || 1);
       dispatch({ type: "quiz/submitQuiz" });
-      dispatch({ type: "quiz/setRatingScore", payload: rankingScore});
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted, rankingScore);
+      dispatch({ type: "quiz/setRatingScore", payload: rankingScore });
+      updateUserInfoAfterQuiz(
+        currentLoggedInUser.Email,
+        questionsAttempted,
+        rankingScore
+      );
       dispatch({ type: "quiz/setPercentScore", payload: percentScore });
     }
   }, [
@@ -113,9 +116,8 @@ function Questions() {
     updateUserInfoAfterQuiz,
     questionsToAttempt,
     difficultyType,
-    quizTimeAllocated
+    quizTimeAllocated,
   ]);
-
 
   useEffect(() => {
     if (
@@ -158,21 +160,25 @@ function Questions() {
   // handleSame
   const handleNavigateToResult = () => {
     const answeredCorrectly = score / 10;
-      const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
-      const difficultyRankingScore = possibleDifficultyObject.find(
-        (item) => item.name === difficultyType
-      )?.rankScore;
-      const percentTimeUsed =
-        ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
-      const rankingScore =
-        percentScore *
-        (1 + ((100 - percentTimeUsed)/100)) *
-        (difficultyRankingScore || 1);
-      dispatch({ type: "quiz/submitQuiz" });
-      console.log(rankingScore, difficultyRankingScore)
-      dispatch({ type: "quiz/setRatingScore", payload: rankingScore});
-      updateUserInfoAfterQuiz(currentLoggedInUser.Email, questionsAttempted, rankingScore);
-      dispatch({ type: "quiz/setPercentScore", payload: percentScore });
+    const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+    const difficultyRankingScore = possibleDifficultyObject.find(
+      (item) => item.name === difficultyType
+    )?.rankScore;
+    const percentTimeUsed =
+      ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
+    const rankingScore =
+      percentScore *
+      (1 + (100 - percentTimeUsed) / 100) *
+      (difficultyRankingScore || 1);
+    dispatch({ type: "quiz/submitQuiz" });
+    console.log(rankingScore, difficultyRankingScore);
+    dispatch({ type: "quiz/setRatingScore", payload: rankingScore });
+    updateUserInfoAfterQuiz(
+      currentLoggedInUser.Email,
+      questionsAttempted,
+      rankingScore
+    );
+    dispatch({ type: "quiz/setPercentScore", payload: percentScore });
   };
 
   const handleOptionClick = (optionId: number, questionId: string) => {
@@ -252,7 +258,10 @@ function Questions() {
 
       {/* Questions and Navigation Section */}
       <div className="h-full flex flex-col">
-        <div className="h-[700px] overflow-y-scroll hide-scrollbar w-full">
+        <div
+          key={pageNumber}
+          className="h-[700px] overflow-y-scroll hide-scrollbar w-full"
+        >
           <div className="five-question-list flex flex-col w-10/12 mx-auto">
             {questionDataToDisplay.map((item, index) => (
               <div

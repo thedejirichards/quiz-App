@@ -1,0 +1,15 @@
+[33m7e684ad[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mmain[m[33m)[m Fixes made: Scroll down on click of next page, log In error after logging out
+[33m6a0fb1e[m I continued working on the result page, to do next is to get the rank of users
+[33md794951[m After completing the result page functionality
+[33m3e2216a[m Next work would be implimenting count down
+[33mefb5b4e[m Having issues with the total questions answered statesolved the issues that came with updating the questions answered
+[33m7de603a[m After completing the quiz page functionality outside the final submit button functionality
+[33m4130dca[m After working on the disable functionality after clicking an option
+[33m5d4455d[m After working on the question page though I'm still having issues with the question display layout outside that all is well
+[33m1dbaa2f[m After completing the attestation page
+[33m53f00f4[m Started working on the customize page
+[33m35ed9db[m  After implementing all the corrections that was needed for the authentication
+[33m9ac1b26[m After successfully working on the authentication pages
+[33mc7bdf69[m after working on the signin feature
+[33m87a48db[m After committing all the stuffs I did yesterday
+[33m0ae624f[m first commit
