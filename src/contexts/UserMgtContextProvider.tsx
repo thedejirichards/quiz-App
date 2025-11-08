@@ -90,7 +90,11 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
       case "updateUserAfterQuizSubmission":
         return {
           ...state,
-          registeredUsers: action.payload,
+          registeredUsers: state.registeredUsers
+            ? state.registeredUsers.map((user) =>
+                user.id === action.payload.id ? action.payload : user
+              )
+            : [action.payload],
         };
       case "user/logOut":
         return {

@@ -68,7 +68,7 @@ export type ReducerActions =
   | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
   | { type: "validateUser"; payLoad: loginUserType }
   | { type: "getCurrUser" }
-  | { type: "updateUserAfterQuizSubmission"; payload: RegisteredUserType[] }
+  | { type: "updateUserAfterQuizSubmission"; payload: RegisteredUserType }
   | { type: "user/logOut" }
   | { type: "error"; payLoad: string };
 

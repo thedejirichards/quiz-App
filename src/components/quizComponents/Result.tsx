@@ -32,6 +32,7 @@ function Result() {
     console.log(usersAndQuizScores);
   }, [registeredUsers]);
   console.log(registeredUsers);
+  
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto">
