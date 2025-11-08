@@ -1,4 +1,5 @@
 // import { useEffect } from "react";
+import { useEffect } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 import GaugeChart from "./GaugeChart";
@@ -7,12 +8,30 @@ import NextPrevFooter from "./NextPrevFooter";
 import ResultTopMetricChildCard from "./ResultTopMetricChildCard";
 
 function Result() {
-  const { dispatch, difficultyType, percentScore, quizTimeAllocated, quizTimeRemaining } = useQuiz();
-  const {registeredUsers} = useUserMgtAuth()
-  const percentTimeUsed = ((quizTimeAllocated-quizTimeRemaining)/ quizTimeAllocated) *100
+  const {
+    dispatch,
+    difficultyType,
+    percentScore,
+    quizTimeAllocated,
+    quizTimeRemaining,
+  } = useQuiz();
+  const { registeredUsers } = useUserMgtAuth();
+  const percentTimeUsed =
+    ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
   const approxPercentTimeUsed = Math.floor(percentTimeUsed);
   const approxPercentScore = Math.floor(percentScore);
-  console.log(registeredUsers)
+
+  useEffect(() => {
+    if (!Array.isArray(registeredUsers)) return;
+    const usersAndQuizScores = registeredUsers.map((user) => {
+      const userQuizResult = user.quizHistory.map((quiz) => {
+        return { [quiz.quizId]: quiz.percentScore };
+      });
+      return { [user.id]: userQuizResult };
+    });
+    console.log(usersAndQuizScores);
+  }, [registeredUsers]);
+  console.log(registeredUsers);
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto">
@@ -26,11 +45,13 @@ function Result() {
               rightText={difficultyType}
               iconSelector="difficulty"
             />
-              <ResultTopMetricChildCard
-                leftText="Score"
-                rightText={percentScore ? `${approxPercentScore} %` : percentScore}
-                iconSelector="result"
-              />
+            <ResultTopMetricChildCard
+              leftText="Score"
+              rightText={
+                percentScore ? `${approxPercentScore} %` : percentScore
+              }
+              iconSelector="result"
+            />
             <ResultTopMetricChildCard
               leftText="Rank"
               rightText={difficultyType}
