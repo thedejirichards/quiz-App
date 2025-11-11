@@ -17,6 +17,7 @@ import { useQuiz } from "./QuizContextProvider";
 
 const BASE_URL = "http://localhost:8000";
 const UserMgtContext = createContext<UserMgtContextType | null>(null);
+
 function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
   const {
     showResult,
@@ -30,6 +31,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     quizTimeRemaining,
     ratingScore,
   } = useQuiz();
+
   const initialState = {
     registeredUsers: null,
     errMsg: "",
@@ -46,22 +48,10 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
   ) => {
     switch (action.type) {
       case "registeredUsers/loading":
-        return {
-          ...state,
-          isLoading: true,
-        };
+        return { ...state, isLoading: true };
       case "getAllUsers":
-        return {
-          ...state,
-          isLoading: false,
-          registeredUsers: action.payLoad,
-        };
       case "registeredUsers/loaded":
-        return {
-          ...state,
-          isLoading: false,
-          registeredUsers: action.payLoad,
-        };
+        return { ...state, isLoading: false, registeredUsers: action.payLoad };
       case "registeredUsers/add":
         return {
           ...state,
@@ -104,10 +94,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           userToLogInCredentials: null,
         };
       case "error":
-        return {
-          ...state,
-          errMsg: action.payLoad,
-        };
+        return { ...state, errMsg: action.payLoad };
     }
   };
 
@@ -123,6 +110,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  // ✅ Load all users on mount
   useEffect(() => {
     const getRegisteredUsers = async () => {
       dispatch({ type: "registeredUsers/loading" });
@@ -137,29 +125,31 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     getRegisteredUsers();
   }, []);
 
+  // ✅ Add new user
   const addNewUser = async (newUser: RegisteredUserType) => {
     dispatch({ type: "registeredUsers/loading" });
     try {
       const res = await fetch(`${BASE_URL}/userData`, {
         method: "POST",
         body: JSON.stringify(newUser),
-        headers: {
-          "content-type": "application/json",
-        },
+        headers: { "content-type": "application/json" },
       });
       const data = await res.json();
       if (
         registeredUsers?.some(
           (item) => item.Email === data.Email || item.name === data.name
         )
-      )
+      ) {
         dispatch({ type: "error", payLoad: "User already exist" });
+        return;
+      }
       dispatch({ type: "registeredUsers/add", payLoad: data });
     } catch {
       dispatch({ type: "error", payLoad: "Error creating data" });
     }
   };
 
+  // ✅ Validate login
   const validateUser = (user: loginUserType) => {
     if (!registeredUsers) {
       dispatch({ type: "error", payLoad: "User data not loaded yet" });
@@ -182,7 +172,6 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // ✅ Use the matched user (with proper casing)
     dispatch({ type: "validateUser", payLoad: matchedUser });
   };
 
@@ -195,76 +184,68 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     }
   }, [dispatch]);
 
-  const updateUserInfoAfterQuiz = useCallback(
-    async (
-      currentUserEmail: string,
-      totalAnswered: number,
-      rankingScore: number
-    ) => {
-      try {
-        const matchedUser = registeredUsers?.find(
-          (user) => user.Email === currentUserEmail
-        );
-        const answeredCorrectly = score / 10;
-        const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+  const updateUserInfoAfterQuiz = async (
+    currentUserEmail: string,
+    totalAnswered: number,
+    rankingScore: number
+  ) => {
+    try {
+      const matchedUser = registeredUsers?.find(
+        (user) => user.Email === currentUserEmail
+      );
+      const answeredCorrectly = score / 10;
+      const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
+      const timeUsed = quizTimeAllocated - quizTimeRemaining;
 
-        const timeUsed = quizTimeAllocated - quizTimeRemaining;
-        if (!matchedUser) return;
-        const newQuizResult: QuizHistoryType = {
-          quizId: `${crypto.randomUUID()}`,
-          difficultyType: difficultyType,
-          numberOfQuestions: questionsToAttempt,
-          totalQuestionsAnswered: totalAnswered,
-          correctlyAnswered: answeredCorrectly,
-          durationUsed: `${timeUsed} sec`,
-          score: score,
-          rankScore: rankingScore,
-          percentScore: percentScore,
-          dateStamp: Date.now(),
-          remark: (questionsToAttempt * 10) / 2 > score ? "fail" : "passed",
-          questionInfo: questionData
-            ? questionData.map((data) => ({
+      if (!matchedUser) return;
+
+      const newQuizResult: QuizHistoryType = {
+        quizId: `${crypto.randomUUID()}`,
+        difficultyType,
+        numberOfQuestions: questionsToAttempt,
+        totalQuestionsAnswered: totalAnswered,
+        correctlyAnswered: answeredCorrectly,
+        durationUsed: `${timeUsed} sec`,
+        score,
+        rankScore: rankingScore,
+        percentScore,
+        dateStamp: Date.now(),
+        remark: (questionsToAttempt * 10) / 2 > score ? "fail" : "passed",
+        questionInfo: questionData
+          ? questionData
+              .filter((data) => selectedAnswers[data.id] !== undefined)
+              .map((data) => ({
                 questionId: data.id,
                 question: data.question,
                 options: data.options,
                 correctOption: data.answer,
-                answered: !!selectedAnswers[data.id], // simpler boolean check
-                userSelectedOption: selectedAnswers[data.id] ?? null, // safe fallback
+                answered: !!selectedAnswers[data.id],
+                userSelectedOption: selectedAnswers[data.id] ?? null,
               }))
-            : [],
-        };
+          : [],
+      };
 
-        const updatedUserInfoAfterQuiz: RegisteredUserType = {
-          ...matchedUser,
-          quizHistory: [...(matchedUser.quizHistory ?? []), newQuizResult],
-        };
-        const res = await fetch(`${BASE_URL}/userData/${matchedUser.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedUserInfoAfterQuiz),
-        });
+      const updatedUserInfoAfterQuiz: RegisteredUserType = {
+        ...matchedUser,
+        quizHistory: [...(matchedUser.quizHistory ?? []), newQuizResult],
+      };
 
-        if (!res.ok) throw new Error("Failed to update quiz history");
-        const data = await res.json();
-        dispatch({ type: "updateUserAfterQuizSubmission", payload: data });
-      } catch {
-        dispatch({ type: "error", payLoad: "Failed to update quiz history" });
-      }
-    },
-    [
-      difficultyType,
-      registeredUsers,
-      questionsToAttempt,
-      score,
-      questionData,
-      selectedAnswers,
-      quizTimeRemaining,
-      quizTimeAllocated,
-    ]
-  );
+      const res = await fetch(`${BASE_URL}/userData/${matchedUser.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedUserInfoAfterQuiz),
+      });
 
+      if (!res.ok) throw new Error("Failed to update quiz history");
+
+      const data = await res.json();
+      dispatch({ type: "updateUserAfterQuizSubmission", payload: data });
+    } catch {
+      dispatch({ type: "error", payLoad: "Failed to update quiz history" });
+    }
+  };
+
+  // ✅ This will now only run once when showResult becomes true
   useEffect(() => {
     if (showResult && currentLoggedInUser) {
       updateUserInfoAfterQuiz(
@@ -273,13 +254,9 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         ratingScore
       );
     }
-  }, [
-    showResult,
-    currentLoggedInUser,
-    updateUserInfoAfterQuiz,
-    ratingScore,
-    questionsAttempted,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showResult]);
+
   const logOutUser = () => {
     dispatch({ type: "registeredUsers/loading" });
     try {

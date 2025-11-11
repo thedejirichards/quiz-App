@@ -1450,7 +1450,346 @@
       "signUpDate": "Feb 2 2022",
       "lastLogInDate": "Oct 07 2025",
       "quizHistory": [
-        
+        {
+          "quizId": "e91523a9-5dea-438a-8d33-915e7d36fd58",
+          "difficultyType": "Easy",
+          "numberOfQuestions": 25,
+          "totalQuestionsAnswered": 25,
+          "correctlyAnswered": 19,
+          "durationUsed": "54 sec",
+          "score": 190,
+          "rankScore": 119.168,
+          "percentScore": 76,
+          "dateStamp": 1762835895967,
+          "remark": "passed",
+          "questionInfo": [
+            {
+              "questionId": "1",
+              "question": "What is React primarily used for?",
+              "options": [
+                "Building mobile apps",
+                "Building user interfaces",
+                "Creating databases",
+                "Handling HTTP requests"
+              ],
+              "correctOption": "Building user interfaces",
+              "answered": true,
+              "userSelectedOption": "Building user interfaces"
+            },
+            {
+              "questionId": "2",
+              "question": "Which hook is used to manage state in functional components?",
+              "options": [
+                "useEffect",
+                "useState",
+                "useContext",
+                "useReducer"
+              ],
+              "correctOption": "useState",
+              "answered": true,
+              "userSelectedOption": "useState"
+            },
+            {
+              "questionId": "3",
+              "question": "What is JSX?",
+              "options": [
+                "A templating engine",
+                "A syntax extension for JavaScript",
+                "A CSS preprocessor",
+                "A React component"
+              ],
+              "correctOption": "A syntax extension for JavaScript",
+              "answered": true,
+              "userSelectedOption": "A syntax extension for JavaScript"
+            },
+            {
+              "questionId": "9",
+              "question": "What is the default port for React development server?",
+              "options": [
+                "8080",
+                "5000",
+                "3000",
+                "8000"
+              ],
+              "correctOption": "3000",
+              "answered": true,
+              "userSelectedOption": "3000"
+            },
+            {
+              "questionId": "10",
+              "question": "Which method is used to render React elements to the DOM?",
+              "options": [
+                "React.render()",
+                "ReactDOM.render()",
+                "render()",
+                "DOM.render()"
+              ],
+              "correctOption": "ReactDOM.render()",
+              "answered": true,
+              "userSelectedOption": "ReactDOM.render()"
+            },
+            {
+              "questionId": "31",
+              "question": "Which method is used to create components in React?",
+              "options": [
+                "React.createComponent()",
+                "React.makeComponent()",
+                "React.createElement()",
+                "React.Component.create()"
+              ],
+              "correctOption": "React.createElement()",
+              "answered": true,
+              "userSelectedOption": "React.makeComponent()"
+            },
+            {
+              "questionId": "32",
+              "question": "What is the purpose of JSX in React?",
+              "options": [
+                "To style components",
+                "To write HTML in JavaScript",
+                "To handle routing",
+                "To manage APIs"
+              ],
+              "correctOption": "To write HTML in JavaScript",
+              "answered": true,
+              "userSelectedOption": "To write HTML in JavaScript"
+            },
+            {
+              "questionId": "33",
+              "question": "Which hook replaces componentDidMount in functional components?",
+              "options": [
+                "useState",
+                "useEffect",
+                "useMemo",
+                "useRef"
+              ],
+              "correctOption": "useEffect",
+              "answered": true,
+              "userSelectedOption": "useEffect"
+            },
+            {
+              "questionId": "34",
+              "question": "What command runs a React app created with Vite?",
+              "options": [
+                "npm start",
+                "npm run dev",
+                "npm serve",
+                "vite start"
+              ],
+              "correctOption": "npm run dev",
+              "answered": true,
+              "userSelectedOption": "npm run dev"
+            },
+            {
+              "questionId": "36",
+              "question": "Which syntax is used to export a component in React?",
+              "options": [
+                "export component MyComponent",
+                "export default MyComponent",
+                "module.exports = MyComponent",
+                "export ReactComponent MyComponent"
+              ],
+              "correctOption": "export default MyComponent",
+              "answered": true,
+              "userSelectedOption": "export default MyComponent"
+            },
+            {
+              "questionId": "37",
+              "question": "What does the useState hook return?",
+              "options": [
+                "A state variable and a function to update it",
+                "Only a state variable",
+                "A reducer function",
+                "A component"
+              ],
+              "correctOption": "A state variable and a function to update it",
+              "answered": true,
+              "userSelectedOption": "Only a state variable"
+            },
+            {
+              "questionId": "39",
+              "question": "What is the correct command to install React?",
+              "options": [
+                "npm install react react-dom",
+                "npm add react",
+                "npm init react",
+                "npm new react"
+              ],
+              "correctOption": "npm install react react-dom",
+              "answered": true,
+              "userSelectedOption": "npm init react"
+            },
+            {
+              "questionId": "40",
+              "question": "What is the extension for React TypeScript files?",
+              "options": [
+                ".js",
+                ".jsx",
+                ".ts",
+                ".tsx"
+              ],
+              "correctOption": ".tsx",
+              "answered": true,
+              "userSelectedOption": ".jsx"
+            },
+            {
+              "questionId": "61",
+              "question": "What is a component in React?",
+              "options": [
+                "A server endpoint",
+                "A reusable piece of UI",
+                "A CSS framework",
+                "A database record"
+              ],
+              "correctOption": "A reusable piece of UI",
+              "answered": true,
+              "userSelectedOption": "A reusable piece of UI"
+            },
+            {
+              "questionId": "62",
+              "question": "What does the virtual DOM do in React?",
+              "options": [
+                "A CSS rendering engine",
+                "Represents a lightweight in-memory copy of the DOM used for efficient updates",
+                "A server-side rendering tool",
+                "A browser API for drawing graphics"
+              ],
+              "correctOption": "Represents a lightweight in-memory copy of the DOM used for efficient updates",
+              "answered": true,
+              "userSelectedOption": "A CSS rendering engine"
+            },
+            {
+              "questionId": "64",
+              "question": "What is the purpose of a key prop in React lists?",
+              "options": [
+                "To identify elements uniquely in a list",
+                "To provide accessibility labels",
+                "To style list items",
+                "To sort elements"
+              ],
+              "correctOption": "To identify elements uniquely in a list",
+              "answered": true,
+              "userSelectedOption": "To identify elements uniquely in a list"
+            },
+            {
+              "questionId": "66",
+              "question": "What does the term 'state' mean in React?",
+              "options": [
+                "A DOM attribute",
+                "A way to style components",
+                "An object representing data that determines a component's rendering",
+                "A type of event handler"
+              ],
+              "correctOption": "An object representing data that determines a component's rendering",
+              "answered": true,
+              "userSelectedOption": "An object representing data that determines a component's rendering"
+            },
+            {
+              "questionId": "67",
+              "question": "Which company maintains React?",
+              "options": [
+                "Amazon",
+                "Google",
+                "Meta (Facebook)",
+                "Microsoft"
+              ],
+              "correctOption": "Meta (Facebook)",
+              "answered": true,
+              "userSelectedOption": "Meta (Facebook)"
+            },
+            {
+              "questionId": "68",
+              "question": "What is the purpose of the render method in React?",
+              "options": [
+                "To return the UI elements to be rendered to the DOM",
+                "To fetch data",
+                "To manage state",
+                "To handle routing"
+              ],
+              "correctOption": "To return the UI elements to be rendered to the DOM",
+              "answered": true,
+              "userSelectedOption": "To return the UI elements to be rendered to the DOM"
+            },
+            {
+              "questionId": "71",
+              "question": "What is the purpose of the index.js file in a React app?",
+              "options": [
+                "A styling file",
+                "Entry point that renders the root component into the DOM",
+                "A component library",
+                "A test configuration"
+              ],
+              "correctOption": "Entry point that renders the root component into the DOM",
+              "answered": true,
+              "userSelectedOption": "Entry point that renders the root component into the DOM"
+            },
+            {
+              "questionId": "72",
+              "question": "What is the difference between class and functional components?",
+              "options": [
+                "Functional components use functions and hooks; class components use ES6 classes and lifecycle methods",
+                "They are identical",
+                "Functional components cannot have state",
+                "Class components are faster"
+              ],
+              "correctOption": "Functional components use functions and hooks; class components use ES6 classes and lifecycle methods",
+              "answered": true,
+              "userSelectedOption": "Functional components use functions and hooks; class components use ES6 classes and lifecycle methods"
+            },
+            {
+              "questionId": "73",
+              "question": "What tag must wrap all JSX elements in React?",
+              "options": [
+                "A single parent element (or React.Fragment) must wrap JSX",
+                "<div> only",
+                "No wrapper needed",
+                "<span> only"
+              ],
+              "correctOption": "A single parent element (or React.Fragment) must wrap JSX",
+              "answered": true,
+              "userSelectedOption": "A single parent element (or React.Fragment) must wrap JSX"
+            },
+            {
+              "questionId": "75",
+              "question": "Which React method is used to update the UI when state changes?",
+              "options": [
+                "It updates CSS only",
+                "React re-renders the component when state changes",
+                "You must manually call render",
+                "State changes are ignored"
+              ],
+              "correctOption": "React re-renders the component when state changes",
+              "answered": true,
+              "userSelectedOption": "React re-renders the component when state changes"
+            },
+            {
+              "questionId": "76",
+              "question": "What is the default file extension for React files?",
+              "options": [
+                ".jsx or .js",
+                ".html",
+                ".css",
+                ".json"
+              ],
+              "correctOption": ".jsx or .js",
+              "answered": true,
+              "userSelectedOption": ".jsx or .js"
+            },
+            {
+              "questionId": "77",
+              "question": "Which tool is used to bundle React code?",
+              "options": [
+                "Webpack (or other bundlers like Vite/Rollup)",
+                "Babel only",
+                "ReactDOM",
+                "NPM"
+              ],
+              "correctOption": "Webpack (or other bundlers like Vite/Rollup)",
+              "answered": true,
+              "userSelectedOption": "Babel only"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1460,9 +1799,7 @@
       "password": "folakemifadayo",
       "signUpDate": "November 5 2025",
       "lastLogInDate": "",
-      "quizHistory": [
-        
-      ]
+      "quizHistory": []
     }
   ]
 }

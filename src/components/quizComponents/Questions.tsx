@@ -171,7 +171,6 @@ function Questions() {
       (1 + (100 - percentTimeUsed) / 100) *
       (difficultyRankingScore || 1);
     dispatch({ type: "quiz/submitQuiz" });
-    console.log(rankingScore, difficultyRankingScore);
     dispatch({ type: "quiz/setRatingScore", payload: rankingScore });
     updateUserInfoAfterQuiz(
       currentLoggedInUser.Email,
@@ -340,5 +339,4 @@ function Questions() {
     </div>
   );
 }
-
 export default Questions;
