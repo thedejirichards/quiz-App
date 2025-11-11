@@ -5,7 +5,6 @@ import { FaRegCheckCircle } from "react-icons/fa";
 function ListOfQuestionIndexStatus() {
   const { questionDataForResult } = useQuiz();
   if (!questionDataForResult) return <p>Can't get question data for result</p>;
-  console.log(questionDataForResult);
   return (
     <div className="flex flex-wrap gap-y-4 gap-x-2">
       {questionDataForResult.map((data, index) => {

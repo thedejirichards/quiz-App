@@ -138,6 +138,7 @@ export type quizReducerStateTypes = {
   score: number;
   percentScore: number;
   ratingScore: number;
+  quizInfo: QuizHistoryType | null,
   quizTimeAllocated: number,
   quizTimeRemaining: number,
   timerCanStart: boolean,
@@ -168,6 +169,7 @@ export type quizReducerActionTypes =
   | { type: "updateTimeAllocated"; payload: number }
   | { type: "updateTimeRemaining"; payload: number }
   | { type: "decreaseTimeRemaining" }
+  | { type: "updateQuizInfo", payload: QuizHistoryType }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
 
@@ -192,11 +194,13 @@ export type QuizContextTypes = {
   score: number;
   percentScore: number;
   ratingScore: number;
+  quizInfo: QuizHistoryType | null;
   quizTimeAllocated: number,
   quizTimeRemaining: number,
   timerCanStart: boolean,
   error: string;
   dispatch: (action: quizReducerActionTypes) => void;
+  getQuizInfo: (quizInfo: QuizHistoryType)=> void
 };
 
 export type QuizButtonType = {

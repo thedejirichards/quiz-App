@@ -30,6 +30,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     quizTimeAllocated,
     quizTimeRemaining,
     ratingScore,
+    getQuizInfo
   } = useQuiz();
 
   const initialState = {
@@ -224,6 +225,8 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
               }))
           : [],
       };
+      
+      getQuizInfo(newQuizResult)
 
       const updatedUserInfoAfterQuiz: RegisteredUserType = {
         ...matchedUser,

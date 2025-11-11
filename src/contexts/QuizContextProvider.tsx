@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import type {
   QuizContextTypes,
+  QuizHistoryType,
   quizReducerActionTypes,
   quizReducerStateTypes,
 } from "../types/types";
@@ -27,6 +28,7 @@ const initialState: quizReducerStateTypes = {
   score: 0,
   percentScore: 0,
   ratingScore: 0,
+  quizInfo: null,
   quizTimeAllocated: 0,
   quizTimeRemaining: 0,
   timerCanStart: false,
@@ -126,6 +128,8 @@ const reducer = (
       return { ...state, quizTimeRemaining: state.quizTimeRemaining > 0
       ? state.quizTimeRemaining - 1
       : 0, };
+    case "updateQuizInfo":
+      return { ...state, quizInfo: action.payload};
     case "quiz/submitQuiz":
       return { ...state, isLoading: false, startQuiz: false, showResult: true };
     case "error":
@@ -158,6 +162,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       score,
       percentScore,
       ratingScore,
+      quizInfo,
       quizTimeAllocated,
       quizTimeRemaining,
       timerCanStart,
@@ -181,6 +186,10 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
     getQuestionData();
   }, [attestedToInstruction]);
 
+
+  const getQuizInfo = (quizInfo: QuizHistoryType)=> {
+    dispatch({type: "updateQuizInfo", payload: quizInfo})
+  }
   return (
     <QuizContext.Provider
       value={{
@@ -203,12 +212,14 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         score,
         percentScore,
         ratingScore,
+        quizInfo,
         quizTimeAllocated,
         quizTimeRemaining,
         timerCanStart,
         error,
         isLoading,
         dispatch,
+        getQuizInfo,
       }}
     >
       {children}

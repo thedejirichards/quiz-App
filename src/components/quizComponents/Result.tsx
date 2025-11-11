@@ -1,5 +1,5 @@
 // import { useEffect } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 import GaugeChart from "./GaugeChart";
@@ -14,25 +14,30 @@ function Result() {
     percentScore,
     quizTimeAllocated,
     quizTimeRemaining,
+    quizInfo
   } = useQuiz();
   const { registeredUsers } = useUserMgtAuth();
+  const [rank, setRank] = useState<number | null>(null)
   const percentTimeUsed =
     ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
   const approxPercentTimeUsed = Math.floor(percentTimeUsed);
   const approxPercentScore = Math.floor(percentScore);
-
   useEffect(() => {
     if (!Array.isArray(registeredUsers)) return;
-    const usersAndQuizScores = registeredUsers.map((user) => {
+    const usersAndQuizScores = registeredUsers.flatMap((user) => {
       const userQuizResult = user.quizHistory.map((quiz) => {
-        return { [quiz.quizId]: quiz.percentScore };
+        return { rankScore: quiz.rankScore, quizId: quiz.quizId, userId: user.id, difficultyType: quiz.difficultyType };
       });
-      return { [user.id]: userQuizResult };
-    });
+      const finalDisplay = [...userQuizResult]
+      return finalDisplay;
+    }).sort((a, b) => b.rankScore - a.rankScore);
     console.log(usersAndQuizScores);
-  }, [registeredUsers]);
-  console.log(registeredUsers);
+
+    const rankToDisplay = usersAndQuizScores.findIndex(item => item.quizId === quizInfo?.quizId)
+    setRank(rankToDisplay)
+  }, [registeredUsers, quizInfo]);
   
+
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto">
@@ -55,7 +60,7 @@ function Result() {
             />
             <ResultTopMetricChildCard
               leftText="Rank"
-              rightText={difficultyType}
+              rightText={String(rank)}
               iconSelector="rank"
             />
           </div>
