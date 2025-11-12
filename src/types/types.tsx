@@ -200,7 +200,8 @@ export type QuizContextTypes = {
   timerCanStart: boolean,
   error: string;
   dispatch: (action: quizReducerActionTypes) => void;
-  getQuizInfo: (quizInfo: QuizHistoryType)=> void
+  getQuizInfo: (quizInfo: QuizHistoryType)=> void;
+  setQuizToDefault: ()=> void;
 };
 
 export type QuizButtonType = {

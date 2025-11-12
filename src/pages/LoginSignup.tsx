@@ -23,7 +23,12 @@ function LoginSignup() {
   const navigate = useNavigate();
   const displayForSignup = location.pathname.includes("/signup");
   const displayForLogin = location.pathname.includes("/login");
+  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  
+
+
+
   useEffect(() => {
     if (signedUpSuccessResponse) {
       setIsModalOpen(true);
@@ -44,10 +49,11 @@ function LoginSignup() {
   const initialState = {
     passwordVisible: false,
     fullName: "",
-    email: "thedejirichards@gmail.com",
-    password: "richjohn10",
+    email: displayForLogin? "thedejirichards@gmail.com": "",
+    password: displayForLogin? "richjohn10": "",
   };
 
+  console.log(displayForLogin)
   const reducer = (
     state: loginSignUpReducerStates,
     action: loginSignUpReducerActions

@@ -190,6 +190,10 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
   const getQuizInfo = (quizInfo: QuizHistoryType)=> {
     dispatch({type: "updateQuizInfo", payload: quizInfo})
   }
+
+  const setQuizToDefault = () => {
+    dispatch({type: "quiz/getStarted"})
+  }
   return (
     <QuizContext.Provider
       value={{
@@ -220,6 +224,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         dispatch,
         getQuizInfo,
+        setQuizToDefault
       }}
     >
       {children}
