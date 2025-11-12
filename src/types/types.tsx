@@ -23,7 +23,7 @@ export type QuizHistoryType = {
 };
 
 export type RegisteredUserType = {
-  id: number;
+  id: number | string;
   name: string;
   Email: string;
   password: string;
@@ -63,14 +63,14 @@ export type ReducerAvailableStatesType = {
 
 export type ReducerActions =
   | { type: "registeredUsers/loading" }
-  | { type: "registeredUsers/loaded"; payLoad: RegisteredUserType[] }
-  | { type: "getAllUsers"; payLoad: RegisteredUserType[] }
-  | { type: "registeredUsers/add"; payLoad: RegisteredUserType }
-  | { type: "validateUser"; payLoad: loginUserType }
+  | { type: "registeredUsers/loaded"; payload: RegisteredUserType[] }
+  | { type: "getAllUsers"; payload: RegisteredUserType[] }
+  | { type: "registeredUsers/add"; payload: RegisteredUserType }
+  | { type: "validateUser"; payload: loginUserType }
   | { type: "getCurrUser" }
   | { type: "updateUserAfterQuizSubmission"; payload: RegisteredUserType }
   | { type: "user/logOut" }
-  | { type: "error"; payLoad: string };
+  | { type: "error"; payload: string };
 
 export type loginSignUpReducerStates = {
   passwordVisible: boolean;
@@ -138,6 +138,7 @@ export type quizReducerStateTypes = {
   score: number;
   percentScore: number;
   ratingScore: number;
+  rank: number | null,
   quizInfo: QuizHistoryType | null,
   quizTimeAllocated: number,
   quizTimeRemaining: number,
@@ -170,6 +171,7 @@ export type quizReducerActionTypes =
   | { type: "updateTimeRemaining"; payload: number }
   | { type: "decreaseTimeRemaining" }
   | { type: "updateQuizInfo", payload: QuizHistoryType }
+  | { type: "updateRank", payload: number }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
 
@@ -194,6 +196,7 @@ export type QuizContextTypes = {
   score: number;
   percentScore: number;
   ratingScore: number;
+  rank: number | null,
   quizInfo: QuizHistoryType | null;
   quizTimeAllocated: number,
   quizTimeRemaining: number,

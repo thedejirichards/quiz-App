@@ -23,10 +23,8 @@ function LoginSignup() {
   const navigate = useNavigate();
   const displayForSignup = location.pathname.includes("/signup");
   const displayForLogin = location.pathname.includes("/login");
-  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   
-
 
 
   useEffect(() => {
@@ -34,6 +32,7 @@ function LoginSignup() {
       setIsModalOpen(true);
     }
   }, [signedUpSuccessResponse]);
+
   const getTodaysDate = () => {
     const today = new Date();
     const formattedDate = today
@@ -49,11 +48,10 @@ function LoginSignup() {
   const initialState = {
     passwordVisible: false,
     fullName: "",
-    email: displayForLogin? "thedejirichards@gmail.com": "",
-    password: displayForLogin? "richjohn10": "",
+    email: "thedejirichards@gmail.com",
+    password: "richjohn10",
   };
 
-  console.log(displayForLogin)
   const reducer = (
     state: loginSignUpReducerStates,
     action: loginSignUpReducerActions
@@ -80,7 +78,7 @@ function LoginSignup() {
   );
 
   const createdUser = {
-    id: Date.now() + Math.floor(Math.random() * 1000),
+    id: String(Date.now() + Math.floor(Math.random() * 1000)),
     name: fullName,
     Email: email,
     password: password,
@@ -123,7 +121,7 @@ function LoginSignup() {
         <Modal
           headerText="Signed Up Successfully"
           subtext="Proceed to log in"
-          displayIcon="party"
+          displayIcon="party" 
           actionMainContent="Okay"
           mainAction={handleCloseModal}
         />

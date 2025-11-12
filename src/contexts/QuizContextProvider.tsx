@@ -28,6 +28,7 @@ const initialState: quizReducerStateTypes = {
   score: 0,
   percentScore: 0,
   ratingScore: 0,
+  rank: null,
   quizInfo: null,
   quizTimeAllocated: 0,
   quizTimeRemaining: 0,
@@ -130,6 +131,8 @@ const reducer = (
       : 0, };
     case "updateQuizInfo":
       return { ...state, quizInfo: action.payload};
+    case "updateRank":
+      return { ...state, rank: action.payload};
     case "quiz/submitQuiz":
       return { ...state, isLoading: false, startQuiz: false, showResult: true };
     case "error":
@@ -162,6 +165,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
       score,
       percentScore,
       ratingScore,
+      rank,
       quizInfo,
       quizTimeAllocated,
       quizTimeRemaining,
@@ -216,6 +220,7 @@ function QuizContextProvider({ children }: { children: React.ReactNode }) {
         score,
         percentScore,
         ratingScore,
+        rank,
         quizInfo,
         quizTimeAllocated,
         quizTimeRemaining,

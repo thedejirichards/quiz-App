@@ -30,7 +30,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     quizTimeAllocated,
     quizTimeRemaining,
     ratingScore,
-    getQuizInfo
+    getQuizInfo,
   } = useQuiz();
 
   const initialState = {
@@ -52,14 +52,14 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
         return { ...state, isLoading: true };
       case "getAllUsers":
       case "registeredUsers/loaded":
-        return { ...state, isLoading: false, registeredUsers: action.payLoad };
+        return { ...state, isLoading: false, registeredUsers: action.payload };
       case "registeredUsers/add":
         return {
           ...state,
           isLoading: false,
           registeredUsers: state.registeredUsers
-            ? [...state.registeredUsers, action.payLoad]
-            : [action.payLoad],
+            ? [...state.registeredUsers, action.payload]
+            : [action.payload],
           signedUpSuccessResponse: true,
         };
       case "validateUser":
@@ -67,7 +67,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           ...state,
           isLoading: false,
           logInSuccessResponse: true,
-          userToLogInCredentials: action.payLoad,
+          userToLogInCredentials: action.payload,
         };
       case "getCurrUser":
         return {
@@ -93,9 +93,10 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           logInSuccessResponse: false,
           currentLoggedInUser: null,
           userToLogInCredentials: null,
+          signedUpSuccessResponse: false,
         };
       case "error":
-        return { ...state, errMsg: action.payLoad };
+        return { ...state, errMsg: action.payload };
     }
   };
 
@@ -118,9 +119,9 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
       try {
         const res = await fetch(`${BASE_URL}/userData`);
         const data = await res.json();
-        dispatch({ type: "registeredUsers/loaded", payLoad: data });
+        dispatch({ type: "registeredUsers/loaded", payload: data });
       } catch {
-        dispatch({ type: "error", payLoad: "error loading user data" });
+        dispatch({ type: "error", payload: "error loading user data" });
       }
     };
     getRegisteredUsers();
@@ -141,19 +142,19 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
           (item) => item.Email === data.Email || item.name === data.name
         )
       ) {
-        dispatch({ type: "error", payLoad: "User already exist" });
+        dispatch({ type: "error", payload: "User already exist" });
         return;
       }
-      dispatch({ type: "registeredUsers/add", payLoad: data });
+      dispatch({ type: "registeredUsers/add", payload: data });
     } catch {
-      dispatch({ type: "error", payLoad: "Error creating data" });
+      dispatch({ type: "error", payload: "Error creating data" });
     }
   };
 
   // ✅ Validate login
   const validateUser = (user: loginUserType) => {
     if (!registeredUsers) {
-      dispatch({ type: "error", payLoad: "User data not loaded yet" });
+      dispatch({ type: "error", payload: "User data not loaded yet" });
       return;
     }
 
@@ -168,12 +169,12 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     if (!matchedUser) {
       dispatch({
         type: "error",
-        payLoad: "Invalid credentials, recheck email or password.",
+        payload: "Invalid credentials, recheck email or password.",
       });
       return;
     }
 
-    dispatch({ type: "validateUser", payLoad: matchedUser });
+    dispatch({ type: "validateUser", payload: matchedUser });
   };
 
   const getCurrUser = useCallback(() => {
@@ -181,7 +182,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     try {
       dispatch({ type: "getCurrUser" });
     } catch {
-      dispatch({ type: "error", payLoad: "Unable to get current user" });
+      dispatch({ type: "error", payload: "Unable to get current user" });
     }
   }, [dispatch]);
 
@@ -190,15 +191,17 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     totalAnswered: number,
     rankingScore: number
   ) => {
+    console.log(currentUserEmail, totalAnswered, rankingScore);
     try {
       const matchedUser = registeredUsers?.find(
         (user) => user.Email === currentUserEmail
       );
+      console.log(`Matcher user is:`, matchedUser);
       const answeredCorrectly = score / 10;
       const percentScore = (answeredCorrectly / questionsToAttempt) * 100;
       const timeUsed = quizTimeAllocated - quizTimeRemaining;
 
-      if (!matchedUser) return;
+      if (!matchedUser || !matchedUser.id) return;
 
       const newQuizResult: QuizHistoryType = {
         quizId: `${crypto.randomUUID()}`,
@@ -225,26 +228,28 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
               }))
           : [],
       };
-      
-      getQuizInfo(newQuizResult)
+
+      getQuizInfo(newQuizResult);
 
       const updatedUserInfoAfterQuiz: RegisteredUserType = {
         ...matchedUser,
         quizHistory: [...(matchedUser.quizHistory ?? []), newQuizResult],
       };
-
+      console.log(matchedUser.id);
+      console.log(newQuizResult);
       const res = await fetch(`${BASE_URL}/userData/${matchedUser.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUserInfoAfterQuiz),
       });
 
-      if (!res.ok) throw new Error("Failed to update quiz history");
+      if (!res.ok)
+        throw new Error("Failed to update quiz history res not okay");
 
       const data = await res.json();
       dispatch({ type: "updateUserAfterQuizSubmission", payload: data });
     } catch {
-      dispatch({ type: "error", payLoad: "Failed to update quiz history" });
+      dispatch({ type: "error", payload: "Failed to update quiz history" });
     }
   };
 
@@ -265,7 +270,7 @@ function UserMgtContextProvider({ children }: { children: React.ReactNode }) {
     try {
       dispatch({ type: "user/logOut" });
     } catch {
-      dispatch({ type: "error", payLoad: "Unable to logOut current user" });
+      dispatch({ type: "error", payload: "Unable to logOut current user" });
     }
   };
 

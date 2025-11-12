@@ -1,11 +1,11 @@
 // import { useEffect } from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuiz } from "../../contexts/QuizContextProvider";
 import { useUserMgtAuth } from "../../contexts/UserMgtContextProvider";
 import GaugeChart from "./GaugeChart";
 import ListOfQuestionIndexStatus from "./ListOfQuestionIndexStatus";
-import NextPrevFooter from "./NextPrevFooter";
 import ResultTopMetricChildCard from "./ResultTopMetricChildCard";
+import { useNavigate } from "react-router-dom";
 
 function Result() {
   const {
@@ -14,29 +14,41 @@ function Result() {
     percentScore,
     quizTimeAllocated,
     quizTimeRemaining,
-    quizInfo
+    quizInfo,
+    rank,
   } = useQuiz();
+  const navigate = useNavigate()
+
   const { registeredUsers } = useUserMgtAuth();
-  const [rank, setRank] = useState<number | null>(null)
   const percentTimeUsed =
     ((quizTimeAllocated - quizTimeRemaining) / quizTimeAllocated) * 100;
   const approxPercentTimeUsed = Math.floor(percentTimeUsed);
   const approxPercentScore = Math.floor(percentScore);
   useEffect(() => {
     if (!Array.isArray(registeredUsers)) return;
-    const usersAndQuizScores = registeredUsers.flatMap((user) => {
-      const userQuizResult = user.quizHistory.map((quiz) => {
-        return { rankScore: quiz.rankScore, quizId: quiz.quizId, userId: user.id, difficultyType: quiz.difficultyType };
-      });
-      const finalDisplay = [...userQuizResult]
-      return finalDisplay;
-    }).sort((a, b) => b.rankScore - a.rankScore);
+    const usersAndQuizScores = registeredUsers
+      .flatMap((user) => {
+        const userQuizResult = user.quizHistory.map((quiz) => {
+          return {
+            rankScore: quiz.rankScore,
+            quizId: quiz.quizId,
+            userId: user.id,
+            userName: user.name,
+            difficultyType: quiz.difficultyType,
+          };
+        });
+        const finalDisplay = [...userQuizResult];
+        return finalDisplay;
+      })
+      .sort((a, b) => b.rankScore - a.rankScore);
     console.log(usersAndQuizScores);
 
-    const rankToDisplay = usersAndQuizScores.findIndex(item => item.quizId === quizInfo?.quizId)
-    setRank(rankToDisplay)
-  }, [registeredUsers, quizInfo]);
-  
+    const rankToDisplay =
+      1 +
+      usersAndQuizScores.findIndex((item) => item.quizId === quizInfo?.quizId);
+    // setRank(rankToDisplay);
+    dispatch({ type: "updateRank", payload: rankToDisplay });
+  }, [registeredUsers, quizInfo, dispatch]);
 
   return (
     <div className="welcome h-full flex flex-col items-center justify-between">
@@ -80,10 +92,18 @@ function Result() {
           </div>
         </div>
       </div>
-      <NextPrevFooter
-        nextAction={() => dispatch({ type: "quiz/customize" })}
-        prevAction={() => dispatch({ type: "quiz/getStarted" })}
-      />
+      <div className="next-prev-footer btn-div h-2/12 flex gap-6 items-center w-10/12 mx-auto justify-between">
+        <div 
+        onClick={()=> navigate("/app/leaderboard")}
+        className="btn-leaderboard flex-1 bg-white border-2 border-deepGreen text-deepGreen rounded-md h-1/3 flex items-center justify-center font-bold">
+          Leaderboard
+        </div>
+        <div 
+        onClick={()=> dispatch({type: "quiz/getStarted"})}
+        className="btn-nq flex-1 bg-deepGreen border-2 border-deepGreen text-white rounded-md h-1/3 flex items-center justify-center font-bold">
+          New Quiz
+        </div>
+      </div>
     </div>
   );
 }
