@@ -6,6 +6,8 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Quiz from "./components/Quiz";
 import { QuizContextProvider } from "./contexts/QuizContextProvider";
 import { UserMgtContextProvider } from "./contexts/UserMgtContextProvider";
+import Profile from "./components/Profile";
+import Leaderboard from "./components/Leaderboard";
 
 function App() {
   return (
@@ -26,8 +28,8 @@ function App() {
             >
               <Route index element={<Navigate to="quiz" replace />} />
               <Route path="quiz" element={<Quiz />} />
-              <Route path="profile" element={<p>Profile Page</p>} />
-              <Route path="leaderboard" element={<p>leaderboard Page</p>} />
+              <Route path="profile" element={<Profile/>} />
+              <Route path="leaderboard" element={<Leaderboard/>} />
             </Route>
           </Routes>
         </UserMgtContextProvider>

@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type QuestionInfoType = {
   questionId: string;
   question: string;
@@ -248,3 +250,43 @@ export type ResultTopMetricChildCardType = {
   rightText: string | number;
   iconSelector: "difficulty" | "result" | "rank";
 };
+
+
+
+
+// -------------------- Profile
+
+export type OtherInfoChildType = {
+  icon: keyof PossibleIconsOtherInfoChild
+  iconTitle: string
+  info: string
+  infoValue?: string
+};
+
+export type PossibleIconsOtherInfoChild = {
+  star: ReactNode;
+  mail: ReactNode;
+}
+
+export type ProfileStateTypes= {
+  activeDifficultyType: string;
+  isLoading: boolean
+}
+
+export type ProfileContextTypes = {
+  activeDifficultyType: string;
+  isLoading: boolean;
+  getDateFromTimestamp: (timestamp: number)=> string;
+  dispatch: (action: ProfileReducerType)=> void
+}
+
+
+
+
+export type ProfileReducerType = 
+  | { type: "loading" }
+  | { type: "updateActiveDifficultyType"; payload: string }
+  // | { type: "quiz/getStarted" }
+  // | { type: "quiz/welcome" }
+  // | { type: "quiz/customize" }
+  // | { type: "quiz/setRatingScore"; payload: number }
