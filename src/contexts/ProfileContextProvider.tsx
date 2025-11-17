@@ -8,8 +8,9 @@ import type {
 const ProfileContext = createContext<ProfileContextTypes | null>(null);
 
 const initialState: ProfileStateTypes = {
-  activeDifficultyType: "",
+  activeDifficultyType: "All",
   isLoading: false,
+  userRank: null,
 };
 
 const reducer = (state: ProfileStateTypes, action: ProfileReducerType) => {
@@ -18,6 +19,8 @@ const reducer = (state: ProfileStateTypes, action: ProfileReducerType) => {
       return { ...state, isLoading: true };
     case "updateActiveDifficultyType":
       return { ...state, activeDifficultyType: action.payload };
+    case "updateUserRank":
+      return { ...state, userRank: action.payload };
   }
 };
 
@@ -26,7 +29,7 @@ const getDateFromTimestamp = (timestamp: number) => {
   return date.toLocaleDateString(); // e.g., "11/13/2025"
 }
 function ProfileContextProvider({ children }: { children: React.ReactNode }) {
-  const [{ isLoading, activeDifficultyType }, dispatch] = useReducer(
+  const [{ isLoading, activeDifficultyType, userRank }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -38,6 +41,7 @@ function ProfileContextProvider({ children }: { children: React.ReactNode }) {
         activeDifficultyType,
         getDateFromTimestamp,
         dispatch,
+        userRank,
       }}
     >
       {children}

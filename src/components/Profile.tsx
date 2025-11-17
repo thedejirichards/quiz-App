@@ -1,11 +1,18 @@
 import { BiSolidUserCircle } from "react-icons/bi";
 import OtherInfoChild from "./profileComponent/OtherInfoChild";
 import TabAndTable from "./profileComponent/TabAndTable";
-import { ProfileContextProvider } from "../contexts/ProfileContextProvider";
+import { useUserMgtAuth } from "../contexts/UserMgtContextProvider";
+import { useUserGlobalRank } from "../hooks/useUserGlobalRank";
 
 function Profile() {
+  const { currentLoggedInUser } = useUserMgtAuth();
+  const {ur, userRank} = useUserGlobalRank();
+  console.log(ur)
+  if (!currentLoggedInUser) return;
+  const userFullName = currentLoggedInUser.name;
+  const userID = currentLoggedInUser.id;
+  const userEmail = currentLoggedInUser.Email;
   return (
-    <ProfileContextProvider>
       <div className="customize h-full flex flex-col items-center justify-between">
         <div className="welcome-content flex flex-col justify-center h-full w-10/12 mx-auto py-5">
           <div className="customization-boxes-parent flex flex-col h-full">
@@ -17,12 +24,10 @@ function Profile() {
                 <div className="main-info flex items-center gap-2">
                   <BiSolidUserCircle className="text-7xl text-[#4A5568]" />
                   <div className="name-and-id flex flex-col">
-                    <div className="h1 font-bold text-xl ">
-                      Richard Oladeji
-                    </div>
+                    <div className="h1 font-bold text-xl ">{userFullName}</div>
                     <div className="font-light">
                       <span>User ID: </span>
-                      <span>12345678</span>
+                      <span>{userID}</span>
                     </div>
                   </div>
                 </div>
@@ -31,12 +36,12 @@ function Profile() {
                     icon="star"
                     iconTitle="GR"
                     info="Global Rank"
-                    infoValue="3"
+                    infoValue={String(userRank)}
                   />
                   <OtherInfoChild
                     icon="mail"
                     iconTitle="Mail"
-                    info="thedejirichards@gmail.com"
+                    info={userEmail}
                   />
                   <div className="child"></div>
                 </div>
@@ -46,7 +51,6 @@ function Profile() {
           </div>
         </div>
       </div>
-    </ProfileContextProvider>
   );
 }
 

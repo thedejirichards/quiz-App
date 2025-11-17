@@ -14,7 +14,7 @@ function OtherInfoChild({ icon, iconTitle, info, infoValue }: OtherInfoChildType
   return (
     <div className="other-info-child">
       <div className="top flex items-center gap-1">
-        <div className="icon text-xl">
+        <div className="icon text-xl text-deepGreen">
           {possibleIcons[icon]}
         </div>
         <div className="div font-bold"> {iconTitle}</div>

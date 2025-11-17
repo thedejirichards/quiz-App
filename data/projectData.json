@@ -4211,6 +4211,151 @@
               "userSelectedOption": "Using ReactDOM"
             }
           ]
+        },
+        {
+          "quizId": "76012912-bf12-4629-92c9-ab60b8fadd08",
+          "difficultyType": "Intermediate",
+          "numberOfQuestions": 25,
+          "totalQuestionsAnswered": 10,
+          "correctlyAnswered": 8,
+          "durationUsed": "27 sec",
+          "score": 80,
+          "rankScore": 62.976,
+          "percentScore": 32,
+          "dateStamp": 1763100076602,
+          "remark": "fail",
+          "questionInfo": [
+            {
+              "questionId": "15",
+              "question": "What is the purpose of React.StrictMode?",
+              "options": [
+                "To detect potential problems in an application",
+                "To make code run faster",
+                "To manage dependencies",
+                "To enforce prop types"
+              ],
+              "correctOption": "To detect potential problems in an application",
+              "answered": true,
+              "userSelectedOption": "To detect potential problems in an application"
+            },
+            {
+              "questionId": "16",
+              "question": "What is Context API used for?",
+              "options": [
+                "To avoid prop drilling",
+                "To update state",
+                "To create animations",
+                "To test components"
+              ],
+              "correctOption": "To avoid prop drilling",
+              "answered": true,
+              "userSelectedOption": "To avoid prop drilling"
+            },
+            {
+              "questionId": "18",
+              "question": "What is the use of the useRef hook?",
+              "options": [
+                "To persist values across renders",
+                "To handle routing",
+                "To trigger re-renders",
+                "To manage API calls"
+              ],
+              "correctOption": "To persist values across renders",
+              "answered": true,
+              "userSelectedOption": "To persist values across renders"
+            },
+            {
+              "questionId": "20",
+              "question": "Which hook helps optimize performance by memoizing values?",
+              "options": [
+                "useMemo",
+                "useRef",
+                "useCallback",
+                "useEffect"
+              ],
+              "correctOption": "useMemo",
+              "answered": true,
+              "userSelectedOption": "useMemo"
+            },
+            {
+              "questionId": "50",
+              "question": "How can you share logic between multiple React components?",
+              "options": [
+                "Using Higher Order Components",
+                "Using JSX",
+                "Using CSS modules",
+                "Using ReactDOM"
+              ],
+              "correctOption": "Using Higher Order Components",
+              "answered": true,
+              "userSelectedOption": "Using Higher Order Components"
+            },
+            {
+              "questionId": "87",
+              "question": "How do you optimize rendering performance in React?",
+              "options": [
+                "Remove all state",
+                "Disable React",
+                "Use memoization, key props, code splitting, and avoid unnecessary renders",
+                "Use only class components"
+              ],
+              "correctOption": "Use memoization, key props, code splitting, and avoid unnecessary renders",
+              "answered": true,
+              "userSelectedOption": "Use memoization, key props, code splitting, and avoid unnecessary renders"
+            },
+            {
+              "questionId": "89",
+              "question": "What are custom hooks in React?",
+              "options": [
+                "A new React API",
+                "A CSS pattern",
+                "A type of component",
+                "Reusable functions that encapsulate component logic using hooks"
+              ],
+              "correctOption": "Reusable functions that encapsulate component logic using hooks",
+              "answered": true,
+              "userSelectedOption": "Reusable functions that encapsulate component logic using hooks"
+            },
+            {
+              "questionId": "91",
+              "question": "What is the difference between useEffect and useLayoutEffect?",
+              "options": [
+                "useLayoutEffect is deprecated",
+                "They are identical",
+                "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint",
+                "useEffect blocks rendering"
+              ],
+              "correctOption": "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint",
+              "answered": true,
+              "userSelectedOption": "useLayoutEffect is deprecated"
+            },
+            {
+              "questionId": "92",
+              "question": "How can you handle errors in React components?",
+              "options": [
+                "React automatically handles all errors",
+                "Use CSS to fix errors",
+                "Use error boundaries or try/catch in event handlers",
+                "Ignore them"
+              ],
+              "correctOption": "Use error boundaries or try/catch in event handlers",
+              "answered": true,
+              "userSelectedOption": "React automatically handles all errors"
+            },
+            {
+              "questionId": "99",
+              "question": "What is a PureComponent in React?",
+              "options": [
+                "A CSS class",
+                "A function component",
+                "A testing tool",
+                "A class component that implements shallow prop and state comparison to avoid re-renders"
+              ],
+              "correctOption": "A class component that implements shallow prop and state comparison to avoid re-renders",
+              "answered": true,
+              "userSelectedOption": "A class component that implements shallow prop and state comparison to avoid re-renders"
+            }
+          ]
         }
       ]
     },

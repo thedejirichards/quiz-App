@@ -34,6 +34,8 @@ export type RegisteredUserType = {
   quizHistory: QuizHistoryType[] | [];
 };
 
+
+
 export type UserMgtContextType = {
   registeredUsers: RegisteredUserType[] | null;
   errMsg: string;
@@ -209,6 +211,10 @@ export type QuizContextTypes = {
   setQuizToDefault: ()=> void;
 };
 
+export type ButtonType = {
+  name: "prev" | "next" | "submit";
+  action: () => void;
+};
 export type QuizButtonType = {
   name: "prev" | "next" | "submit";
   action: () => void;
@@ -270,7 +276,8 @@ export type PossibleIconsOtherInfoChild = {
 
 export type ProfileStateTypes= {
   activeDifficultyType: string;
-  isLoading: boolean
+  isLoading: boolean;
+  userRank: number | null;
 }
 
 export type ProfileContextTypes = {
@@ -278,6 +285,7 @@ export type ProfileContextTypes = {
   isLoading: boolean;
   getDateFromTimestamp: (timestamp: number)=> string;
   dispatch: (action: ProfileReducerType)=> void
+  userRank: number | null;
 }
 
 
@@ -286,7 +294,15 @@ export type ProfileContextTypes = {
 export type ProfileReducerType = 
   | { type: "loading" }
   | { type: "updateActiveDifficultyType"; payload: string }
-  // | { type: "quiz/getStarted" }
-  // | { type: "quiz/welcome" }
-  // | { type: "quiz/customize" }
-  // | { type: "quiz/setRatingScore"; payload: number }
+  | { type: "updateUserRank"; payload: number | string }
+
+
+
+export type NumberListTypes = {
+  totalNumbersToDisplay: number;
+  currActive: number
+}
+
+export type ProfileTableTabTypes ={
+  setCurrPage: React.Dispatch<React.SetStateAction<number>>
+}
