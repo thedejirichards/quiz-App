@@ -4368,6 +4368,346 @@
       "lastLogInDate": "",
       "quizHistory": [
         {
+          "quizId": "1ca4d7c9-5a3f-40b9-a6b7-87cd147bda2a",
+          "difficultyType": "Intermediate",
+          "numberOfQuestions": 25,
+          "totalQuestionsAnswered": 25,
+          "correctlyAnswered": 20,
+          "durationUsed": "50 sec",
+          "score": 200,
+          "rankScore": 128.00000000000003,
+          "percentScore": 80,
+          "dateStamp": 1762927347997,
+          "remark": "passed",
+          "questionInfo": [
+            {
+              "questionId": "11",
+              "question": "What does the useEffect hook do in React?",
+              "options": [
+                "Manages component state",
+                "Handles side effects",
+                "Creates new components",
+                "Improves performance"
+              ],
+              "correctOption": "Handles side effects",
+              "answered": true,
+              "userSelectedOption": "Manages component state"
+            },
+            {
+              "questionId": "12",
+              "question": "Why should keys be used in lists?",
+              "options": [
+                "To style items",
+                "To identify elements uniquely",
+                "To make lists faster",
+                "To store state"
+              ],
+              "correctOption": "To identify elements uniquely",
+              "answered": true,
+              "userSelectedOption": "To identify elements uniquely"
+            },
+            {
+              "questionId": "17",
+              "question": "When does useEffect run?",
+              "options": [
+                "After every render by default",
+                "Before rendering",
+                "Only once",
+                "Never"
+              ],
+              "correctOption": "After every render by default",
+              "answered": true,
+              "userSelectedOption": "After every render by default"
+            },
+            {
+              "questionId": "19",
+              "question": "What happens when you call setState in React?",
+              "options": [
+                "It re-renders the component",
+                "It stops rendering",
+                "It deletes the state",
+                "It closes the app"
+              ],
+              "correctOption": "It re-renders the component",
+              "answered": true,
+              "userSelectedOption": "It re-renders the component"
+            },
+            {
+              "questionId": "42",
+              "question": "Which React feature prevents unnecessary re-renders of child components?",
+              "options": [
+                "React.memo",
+                "React.stopRender",
+                "useCallback",
+                "React.PureRender"
+              ],
+              "correctOption": "React.memo",
+              "answered": true,
+              "userSelectedOption": "React.stopRender"
+            },
+            {
+              "questionId": "43",
+              "question": "What is the main benefit of using Context API?",
+              "options": [
+                "Avoids prop drilling",
+                "Improves CSS performance",
+                "Increases re-render speed",
+                "Handles errors"
+              ],
+              "correctOption": "Avoids prop drilling",
+              "answered": true,
+              "userSelectedOption": "Avoids prop drilling"
+            },
+            {
+              "questionId": "45",
+              "question": "How can you prevent a component from re-rendering?",
+              "options": [
+                "Using shouldComponentUpdate",
+                "Using React.memo",
+                "Using PureComponent",
+                "All of the above"
+              ],
+              "correctOption": "All of the above",
+              "answered": true,
+              "userSelectedOption": "Using shouldComponentUpdate"
+            },
+            {
+              "questionId": "46",
+              "question": "What is React.Fragment used for?",
+              "options": [
+                "To group elements without adding extra DOM nodes",
+                "To style components",
+                "To manage state",
+                "To create modals"
+              ],
+              "correctOption": "To group elements without adding extra DOM nodes",
+              "answered": true,
+              "userSelectedOption": "To group elements without adding extra DOM nodes"
+            },
+            {
+              "questionId": "47",
+              "question": "Which hook is used to reference DOM elements directly?",
+              "options": [
+                "useRef",
+                "useMemo",
+                "useState",
+                "useCallback"
+              ],
+              "correctOption": "useRef",
+              "answered": true,
+              "userSelectedOption": "useRef"
+            },
+            {
+              "questionId": "49",
+              "question": "Which function helps in optimizing function re-creation in React?",
+              "options": [
+                "useCallback",
+                "useMemo",
+                "useEffect",
+                "useReducer"
+              ],
+              "correctOption": "useCallback",
+              "answered": true,
+              "userSelectedOption": "useMemo"
+            },
+            {
+              "questionId": "50",
+              "question": "How can you share logic between multiple React components?",
+              "options": [
+                "Using Higher Order Components",
+                "Using JSX",
+                "Using CSS modules",
+                "Using ReactDOM"
+              ],
+              "correctOption": "Using Higher Order Components",
+              "answered": true,
+              "userSelectedOption": "Using Higher Order Components"
+            },
+            {
+              "questionId": "81",
+              "question": "What is the difference between state and props?",
+              "options": [
+                "State is immutable always",
+                "Props are for styles",
+                "State is internal and changeable; props are passed from parents and read-only",
+                "They are the same"
+              ],
+              "correctOption": "State is internal and changeable; props are passed from parents and read-only",
+              "answered": true,
+              "userSelectedOption": "State is internal and changeable; props are passed from parents and read-only"
+            },
+            {
+              "questionId": "83",
+              "question": "What is the purpose of the useContext hook?",
+              "options": [
+                "Handle effects",
+                "Access context value provided by Context.Provider",
+                "Replace useState",
+                "Style components"
+              ],
+              "correctOption": "Access context value provided by Context.Provider",
+              "answered": true,
+              "userSelectedOption": "Access context value provided by Context.Provider"
+            },
+            {
+              "questionId": "84",
+              "question": "When would you use useMemo over useCallback?",
+              "options": [
+                "useMemo memoizes values; useCallback memoizes functions",
+                "useCallback is for values",
+                "They are identical",
+                "useMemo is for class components"
+              ],
+              "correctOption": "useMemo memoizes values; useCallback memoizes functions",
+              "answered": true,
+              "userSelectedOption": "useMemo memoizes values; useCallback memoizes functions"
+            },
+            {
+              "questionId": "85",
+              "question": "What does React.StrictMode help developers with?",
+              "options": [
+                "Makes app faster in production",
+                "Adds styles",
+                "Handles routing",
+                "Helps detect potential problems and unsafe lifecycles in development"
+              ],
+              "correctOption": "Helps detect potential problems and unsafe lifecycles in development",
+              "answered": true,
+              "userSelectedOption": "Helps detect potential problems and unsafe lifecycles in development"
+            },
+            {
+              "questionId": "86",
+              "question": "What are controlled and uncontrolled components?",
+              "options": [
+                "Controlled are faster",
+                "Controlled components have state-managed inputs; uncontrolled use refs for DOM values",
+                "They are the same",
+                "Uncontrolled can't submit"
+              ],
+              "correctOption": "Controlled components have state-managed inputs; uncontrolled use refs for DOM values",
+              "answered": true,
+              "userSelectedOption": "Controlled components have state-managed inputs; uncontrolled use refs for DOM values"
+            },
+            {
+              "questionId": "89",
+              "question": "What are custom hooks in React?",
+              "options": [
+                "A new React API",
+                "A CSS pattern",
+                "A type of component",
+                "Reusable functions that encapsulate component logic using hooks"
+              ],
+              "correctOption": "Reusable functions that encapsulate component logic using hooks",
+              "answered": true,
+              "userSelectedOption": "Reusable functions that encapsulate component logic using hooks"
+            },
+            {
+              "questionId": "90",
+              "question": "What is the role of PropTypes in React?",
+              "options": [
+                "A state manager",
+                "A router",
+                "Runtime type-checking for component props",
+                "Styles for props"
+              ],
+              "correctOption": "Runtime type-checking for component props",
+              "answered": true,
+              "userSelectedOption": "Runtime type-checking for component props"
+            },
+            {
+              "questionId": "91",
+              "question": "What is the difference between useEffect and useLayoutEffect?",
+              "options": [
+                "useLayoutEffect is deprecated",
+                "They are identical",
+                "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint",
+                "useEffect blocks rendering"
+              ],
+              "correctOption": "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint",
+              "answered": true,
+              "userSelectedOption": "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint"
+            },
+            {
+              "questionId": "92",
+              "question": "How can you handle errors in React components?",
+              "options": [
+                "React automatically handles all errors",
+                "Use CSS to fix errors",
+                "Use error boundaries or try/catch in event handlers",
+                "Ignore them"
+              ],
+              "correctOption": "Use error boundaries or try/catch in event handlers",
+              "answered": true,
+              "userSelectedOption": "React automatically handles all errors"
+            },
+            {
+              "questionId": "93",
+              "question": "What is a higher-order component (HOC)?",
+              "options": [
+                "A CSS wrapper",
+                "A function that takes a component and returns an enhanced component",
+                "A component with more props",
+                "A DOM API"
+              ],
+              "correctOption": "A function that takes a component and returns an enhanced component",
+              "answered": true,
+              "userSelectedOption": "A function that takes a component and returns an enhanced component"
+            },
+            {
+              "questionId": "94",
+              "question": "What is React Portal used for?",
+              "options": [
+                "Render children into a DOM node outside the parent hierarchy",
+                "Server-side rendering",
+                "Styling",
+                "Routing"
+              ],
+              "correctOption": "Render children into a DOM node outside the parent hierarchy",
+              "answered": true,
+              "userSelectedOption": "Render children into a DOM node outside the parent hierarchy"
+            },
+            {
+              "questionId": "95",
+              "question": "How can you persist state between sessions in React?",
+              "options": [
+                "Use refs",
+                "Use CSS",
+                "Store state in localStorage or other persistent storage",
+                "Keep in component state"
+              ],
+              "correctOption": "Store state in localStorage or other persistent storage",
+              "answered": true,
+              "userSelectedOption": "Store state in localStorage or other persistent storage"
+            },
+            {
+              "questionId": "97",
+              "question": "What is the difference between context and Redux?",
+              "options": [
+                "Context is only for routing",
+                "Context is for lightweight state sharing; Redux is a full state management solution with patterns",
+                "They are identical",
+                "Redux is deprecated"
+              ],
+              "correctOption": "Context is for lightweight state sharing; Redux is a full state management solution with patterns",
+              "answered": true,
+              "userSelectedOption": "Context is for lightweight state sharing; Redux is a full state management solution with patterns"
+            },
+            {
+              "questionId": "99",
+              "question": "What is a PureComponent in React?",
+              "options": [
+                "A CSS class",
+                "A function component",
+                "A testing tool",
+                "A class component that implements shallow prop and state comparison to avoid re-renders"
+              ],
+              "correctOption": "A class component that implements shallow prop and state comparison to avoid re-renders",
+              "answered": true,
+              "userSelectedOption": "A class component that implements shallow prop and state comparison to avoid re-renders"
+            }
+          ]
+        },
+        {
           "quizId": "70b938b8-0fe3-4f02-a9e3-d076e6d485eb",
           "difficultyType": "Intermediate",
           "numberOfQuestions": 30,
@@ -5022,16 +5362,16 @@
           ]
         },
         {
-          "quizId": "1ca4d7c9-5a3f-40b9-a6b7-87cd147bda2a",
+          "quizId": "6ad2b6df-8e77-420f-bae6-9406226b1ad8",
           "difficultyType": "Intermediate",
           "numberOfQuestions": 25,
-          "totalQuestionsAnswered": 25,
-          "correctlyAnswered": 20,
-          "durationUsed": "50 sec",
-          "score": 200,
-          "rankScore": 128.00000000000003,
-          "percentScore": 80,
-          "dateStamp": 1762927347997,
+          "totalQuestionsAnswered": 23,
+          "correctlyAnswered": 18,
+          "durationUsed": "75 sec",
+          "score": 180,
+          "rankScore": 86.39999999999999,
+          "percentScore": 72,
+          "dateStamp": 1763520245644,
           "remark": "passed",
           "questionInfo": [
             {
@@ -5045,7 +5385,7 @@
               ],
               "correctOption": "Handles side effects",
               "answered": true,
-              "userSelectedOption": "Manages component state"
+              "userSelectedOption": "Creates new components"
             },
             {
               "questionId": "12",
@@ -5061,17 +5401,30 @@
               "userSelectedOption": "To identify elements uniquely"
             },
             {
-              "questionId": "17",
-              "question": "When does useEffect run?",
+              "questionId": "13",
+              "question": "What does lifting state up mean in React?",
               "options": [
-                "After every render by default",
-                "Before rendering",
-                "Only once",
-                "Never"
+                "Sharing state between sibling components",
+                "Passing props downward",
+                "Creating new components",
+                "Using Redux"
               ],
-              "correctOption": "After every render by default",
+              "correctOption": "Sharing state between sibling components",
               "answered": true,
-              "userSelectedOption": "After every render by default"
+              "userSelectedOption": "Sharing state between sibling components"
+            },
+            {
+              "questionId": "18",
+              "question": "What is the use of the useRef hook?",
+              "options": [
+                "To persist values across renders",
+                "To handle routing",
+                "To trigger re-renders",
+                "To manage API calls"
+              ],
+              "correctOption": "To persist values across renders",
+              "answered": true,
+              "userSelectedOption": "To trigger re-renders"
             },
             {
               "questionId": "19",
@@ -5087,30 +5440,30 @@
               "userSelectedOption": "It re-renders the component"
             },
             {
-              "questionId": "42",
-              "question": "Which React feature prevents unnecessary re-renders of child components?",
+              "questionId": "20",
+              "question": "Which hook helps optimize performance by memoizing values?",
               "options": [
-                "React.memo",
-                "React.stopRender",
+                "useMemo",
+                "useRef",
                 "useCallback",
-                "React.PureRender"
+                "useEffect"
               ],
-              "correctOption": "React.memo",
+              "correctOption": "useMemo",
               "answered": true,
-              "userSelectedOption": "React.stopRender"
+              "userSelectedOption": "useCallback"
             },
             {
-              "questionId": "43",
-              "question": "What is the main benefit of using Context API?",
+              "questionId": "44",
+              "question": "What is the purpose of keys in lists?",
               "options": [
-                "Avoids prop drilling",
-                "Improves CSS performance",
-                "Increases re-render speed",
-                "Handles errors"
+                "To identify elements uniquely",
+                "To optimize CSS",
+                "To sort data",
+                "To control animations"
               ],
-              "correctOption": "Avoids prop drilling",
+              "correctOption": "To identify elements uniquely",
               "answered": true,
-              "userSelectedOption": "Avoids prop drilling"
+              "userSelectedOption": "To optimize CSS"
             },
             {
               "questionId": "45",
@@ -5152,6 +5505,543 @@
               "userSelectedOption": "useRef"
             },
             {
+              "questionId": "81",
+              "question": "What is the difference between state and props?",
+              "options": [
+                "State is immutable always",
+                "Props are for styles",
+                "State is internal and changeable; props are passed from parents and read-only",
+                "They are the same"
+              ],
+              "correctOption": "State is internal and changeable; props are passed from parents and read-only",
+              "answered": true,
+              "userSelectedOption": "State is internal and changeable; props are passed from parents and read-only"
+            },
+            {
+              "questionId": "82",
+              "question": "How does React handle form submission?",
+              "options": [
+                "Use CSS to fix errors",
+                "Use event handlers and preventDefault to handle submission",
+                "Let the browser submit to server",
+                "No handling needed"
+              ],
+              "correctOption": "Use event handlers and preventDefault to handle submission",
+              "answered": true,
+              "userSelectedOption": "Use event handlers and preventDefault to handle submission"
+            },
+            {
+              "questionId": "83",
+              "question": "What is the purpose of the useContext hook?",
+              "options": [
+                "Handle effects",
+                "Access context value provided by Context.Provider",
+                "Replace useState",
+                "Style components"
+              ],
+              "correctOption": "Access context value provided by Context.Provider",
+              "answered": true,
+              "userSelectedOption": "Access context value provided by Context.Provider"
+            },
+            {
+              "questionId": "84",
+              "question": "When would you use useMemo over useCallback?",
+              "options": [
+                "useMemo memoizes values; useCallback memoizes functions",
+                "useCallback is for values",
+                "They are identical",
+                "useMemo is for class components"
+              ],
+              "correctOption": "useMemo memoizes values; useCallback memoizes functions",
+              "answered": true,
+              "userSelectedOption": "useMemo memoizes values; useCallback memoizes functions"
+            },
+            {
+              "questionId": "87",
+              "question": "How do you optimize rendering performance in React?",
+              "options": [
+                "Remove all state",
+                "Disable React",
+                "Use memoization, key props, code splitting, and avoid unnecessary renders",
+                "Use only class components"
+              ],
+              "correctOption": "Use memoization, key props, code splitting, and avoid unnecessary renders",
+              "answered": true,
+              "userSelectedOption": "Use memoization, key props, code splitting, and avoid unnecessary renders"
+            },
+            {
+              "questionId": "90",
+              "question": "What is the role of PropTypes in React?",
+              "options": [
+                "A state manager",
+                "A router",
+                "Runtime type-checking for component props",
+                "Styles for props"
+              ],
+              "correctOption": "Runtime type-checking for component props",
+              "answered": true,
+              "userSelectedOption": "Runtime type-checking for component props"
+            },
+            {
+              "questionId": "92",
+              "question": "How can you handle errors in React components?",
+              "options": [
+                "React automatically handles all errors",
+                "Use CSS to fix errors",
+                "Use error boundaries or try/catch in event handlers",
+                "Ignore them"
+              ],
+              "correctOption": "Use error boundaries or try/catch in event handlers",
+              "answered": true,
+              "userSelectedOption": "Use error boundaries or try/catch in event handlers"
+            },
+            {
+              "questionId": "93",
+              "question": "What is a higher-order component (HOC)?",
+              "options": [
+                "A CSS wrapper",
+                "A function that takes a component and returns an enhanced component",
+                "A component with more props",
+                "A DOM API"
+              ],
+              "correctOption": "A function that takes a component and returns an enhanced component",
+              "answered": true,
+              "userSelectedOption": "A function that takes a component and returns an enhanced component"
+            },
+            {
+              "questionId": "94",
+              "question": "What is React Portal used for?",
+              "options": [
+                "Render children into a DOM node outside the parent hierarchy",
+                "Server-side rendering",
+                "Styling",
+                "Routing"
+              ],
+              "correctOption": "Render children into a DOM node outside the parent hierarchy",
+              "answered": true,
+              "userSelectedOption": "Render children into a DOM node outside the parent hierarchy"
+            },
+            {
+              "questionId": "95",
+              "question": "How can you persist state between sessions in React?",
+              "options": [
+                "Use refs",
+                "Use CSS",
+                "Store state in localStorage or other persistent storage",
+                "Keep in component state"
+              ],
+              "correctOption": "Store state in localStorage or other persistent storage",
+              "answered": true,
+              "userSelectedOption": "Store state in localStorage or other persistent storage"
+            },
+            {
+              "questionId": "96",
+              "question": "What is React Router used for?",
+              "options": [
+                "Styling",
+                "State management",
+                "Client-side routing and navigation",
+                "Testing"
+              ],
+              "correctOption": "Client-side routing and navigation",
+              "answered": true,
+              "userSelectedOption": "Client-side routing and navigation"
+            },
+            {
+              "questionId": "97",
+              "question": "What is the difference between context and Redux?",
+              "options": [
+                "Context is only for routing",
+                "Context is for lightweight state sharing; Redux is a full state management solution with patterns",
+                "They are identical",
+                "Redux is deprecated"
+              ],
+              "correctOption": "Context is for lightweight state sharing; Redux is a full state management solution with patterns",
+              "answered": true,
+              "userSelectedOption": "Context is for lightweight state sharing; Redux is a full state management solution with patterns"
+            },
+            {
+              "questionId": "98",
+              "question": "How can you use lazy loading in React?",
+              "options": [
+                "Reduce API calls",
+                "Preload everything",
+                "Load components only when needed using React.lazy and Suspense",
+                "Cache data globally"
+              ],
+              "correctOption": "Load components only when needed using React.lazy and Suspense",
+              "answered": true,
+              "userSelectedOption": "Load components only when needed using React.lazy and Suspense"
+            }
+          ]
+        },
+        {
+          "quizId": "562c8299-0b0c-42ac-b870-4840ffa8222e",
+          "difficultyType": "Intermediate",
+          "numberOfQuestions": 25,
+          "totalQuestionsAnswered": 15,
+          "correctlyAnswered": 12,
+          "durationUsed": "75 sec",
+          "score": 120,
+          "rankScore": 57.599999999999994,
+          "percentScore": 48,
+          "dateStamp": 1763520431121,
+          "remark": "fail",
+          "questionInfo": [
+            {
+              "questionId": "11",
+              "question": "What does the useEffect hook do in React?",
+              "options": [
+                "Manages component state",
+                "Handles side effects",
+                "Creates new components",
+                "Improves performance"
+              ],
+              "correctOption": "Handles side effects",
+              "answered": true,
+              "userSelectedOption": "Handles side effects"
+            },
+            {
+              "questionId": "13",
+              "question": "What does lifting state up mean in React?",
+              "options": [
+                "Sharing state between sibling components",
+                "Passing props downward",
+                "Creating new components",
+                "Using Redux"
+              ],
+              "correctOption": "Sharing state between sibling components",
+              "answered": true,
+              "userSelectedOption": "Passing props downward"
+            },
+            {
+              "questionId": "19",
+              "question": "What happens when you call setState in React?",
+              "options": [
+                "It re-renders the component",
+                "It stops rendering",
+                "It deletes the state",
+                "It closes the app"
+              ],
+              "correctOption": "It re-renders the component",
+              "answered": true,
+              "userSelectedOption": "It re-renders the component"
+            },
+            {
+              "questionId": "41",
+              "question": "What does the useReducer hook manage?",
+              "options": [
+                "Side effects",
+                "Complex state logic",
+                "Refs",
+                "Animations"
+              ],
+              "correctOption": "Complex state logic",
+              "answered": true,
+              "userSelectedOption": "Complex state logic"
+            },
+            {
+              "questionId": "44",
+              "question": "What is the purpose of keys in lists?",
+              "options": [
+                "To identify elements uniquely",
+                "To optimize CSS",
+                "To sort data",
+                "To control animations"
+              ],
+              "correctOption": "To identify elements uniquely",
+              "answered": true,
+              "userSelectedOption": "To identify elements uniquely"
+            },
+            {
+              "questionId": "45",
+              "question": "How can you prevent a component from re-rendering?",
+              "options": [
+                "Using shouldComponentUpdate",
+                "Using React.memo",
+                "Using PureComponent",
+                "All of the above"
+              ],
+              "correctOption": "All of the above",
+              "answered": true,
+              "userSelectedOption": "Using shouldComponentUpdate"
+            },
+            {
+              "questionId": "47",
+              "question": "Which hook is used to reference DOM elements directly?",
+              "options": [
+                "useRef",
+                "useMemo",
+                "useState",
+                "useCallback"
+              ],
+              "correctOption": "useRef",
+              "answered": true,
+              "userSelectedOption": "useRef"
+            },
+            {
+              "questionId": "81",
+              "question": "What is the difference between state and props?",
+              "options": [
+                "State is immutable always",
+                "Props are for styles",
+                "State is internal and changeable; props are passed from parents and read-only",
+                "They are the same"
+              ],
+              "correctOption": "State is internal and changeable; props are passed from parents and read-only",
+              "answered": true,
+              "userSelectedOption": "State is internal and changeable; props are passed from parents and read-only"
+            },
+            {
+              "questionId": "83",
+              "question": "What is the purpose of the useContext hook?",
+              "options": [
+                "Handle effects",
+                "Access context value provided by Context.Provider",
+                "Replace useState",
+                "Style components"
+              ],
+              "correctOption": "Access context value provided by Context.Provider",
+              "answered": true,
+              "userSelectedOption": "Access context value provided by Context.Provider"
+            },
+            {
+              "questionId": "84",
+              "question": "When would you use useMemo over useCallback?",
+              "options": [
+                "useMemo memoizes values; useCallback memoizes functions",
+                "useCallback is for values",
+                "They are identical",
+                "useMemo is for class components"
+              ],
+              "correctOption": "useMemo memoizes values; useCallback memoizes functions",
+              "answered": true,
+              "userSelectedOption": "useMemo memoizes values; useCallback memoizes functions"
+            },
+            {
+              "questionId": "86",
+              "question": "What are controlled and uncontrolled components?",
+              "options": [
+                "Controlled are faster",
+                "Controlled components have state-managed inputs; uncontrolled use refs for DOM values",
+                "They are the same",
+                "Uncontrolled can't submit"
+              ],
+              "correctOption": "Controlled components have state-managed inputs; uncontrolled use refs for DOM values",
+              "answered": true,
+              "userSelectedOption": "Controlled components have state-managed inputs; uncontrolled use refs for DOM values"
+            },
+            {
+              "questionId": "88",
+              "question": "What is code splitting in React?",
+              "options": [
+                "A CSS technique",
+                "Testing strategy",
+                "Combining files into one",
+                "Splitting code into smaller bundles loaded on demand"
+              ],
+              "correctOption": "Splitting code into smaller bundles loaded on demand",
+              "answered": true,
+              "userSelectedOption": "Splitting code into smaller bundles loaded on demand"
+            },
+            {
+              "questionId": "91",
+              "question": "What is the difference between useEffect and useLayoutEffect?",
+              "options": [
+                "useLayoutEffect is deprecated",
+                "They are identical",
+                "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint",
+                "useEffect blocks rendering"
+              ],
+              "correctOption": "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint",
+              "answered": true,
+              "userSelectedOption": "useLayoutEffect fires synchronously after DOM mutations; useEffect runs after paint"
+            },
+            {
+              "questionId": "94",
+              "question": "What is React Portal used for?",
+              "options": [
+                "Render children into a DOM node outside the parent hierarchy",
+                "Server-side rendering",
+                "Styling",
+                "Routing"
+              ],
+              "correctOption": "Render children into a DOM node outside the parent hierarchy",
+              "answered": true,
+              "userSelectedOption": "Render children into a DOM node outside the parent hierarchy"
+            },
+            {
+              "questionId": "100",
+              "question": "How do you prevent memory leaks in React components?",
+              "options": [
+                "Let garbage collector handle it",
+                "Avoid refs",
+                "Use more state",
+                "Clean up subscriptions and timers in useEffect cleanup"
+              ],
+              "correctOption": "Clean up subscriptions and timers in useEffect cleanup",
+              "answered": true,
+              "userSelectedOption": "Let garbage collector handle it"
+            }
+          ]
+        },
+        {
+          "quizId": "101a5ccb-60d7-4fcc-9c58-41322400528f",
+          "difficultyType": "Intermediate",
+          "numberOfQuestions": 25,
+          "totalQuestionsAnswered": 25,
+          "correctlyAnswered": 21,
+          "durationUsed": "75 sec",
+          "score": 210,
+          "rankScore": 100.8,
+          "percentScore": 84,
+          "dateStamp": 1763521152380,
+          "remark": "passed",
+          "questionInfo": [
+            {
+              "questionId": "11",
+              "question": "What does the useEffect hook do in React?",
+              "options": [
+                "Manages component state",
+                "Handles side effects",
+                "Creates new components",
+                "Improves performance"
+              ],
+              "correctOption": "Handles side effects",
+              "answered": true,
+              "userSelectedOption": "Handles side effects"
+            },
+            {
+              "questionId": "12",
+              "question": "Why should keys be used in lists?",
+              "options": [
+                "To style items",
+                "To identify elements uniquely",
+                "To make lists faster",
+                "To store state"
+              ],
+              "correctOption": "To identify elements uniquely",
+              "answered": true,
+              "userSelectedOption": "To identify elements uniquely"
+            },
+            {
+              "questionId": "17",
+              "question": "When does useEffect run?",
+              "options": [
+                "After every render by default",
+                "Before rendering",
+                "Only once",
+                "Never"
+              ],
+              "correctOption": "After every render by default",
+              "answered": true,
+              "userSelectedOption": "After every render by default"
+            },
+            {
+              "questionId": "18",
+              "question": "What is the use of the useRef hook?",
+              "options": [
+                "To persist values across renders",
+                "To handle routing",
+                "To trigger re-renders",
+                "To manage API calls"
+              ],
+              "correctOption": "To persist values across renders",
+              "answered": true,
+              "userSelectedOption": "To trigger re-renders"
+            },
+            {
+              "questionId": "19",
+              "question": "What happens when you call setState in React?",
+              "options": [
+                "It re-renders the component",
+                "It stops rendering",
+                "It deletes the state",
+                "It closes the app"
+              ],
+              "correctOption": "It re-renders the component",
+              "answered": true,
+              "userSelectedOption": "It re-renders the component"
+            },
+            {
+              "questionId": "42",
+              "question": "Which React feature prevents unnecessary re-renders of child components?",
+              "options": [
+                "React.memo",
+                "React.stopRender",
+                "useCallback",
+                "React.PureRender"
+              ],
+              "correctOption": "React.memo",
+              "answered": true,
+              "userSelectedOption": "React.stopRender"
+            },
+            {
+              "questionId": "44",
+              "question": "What is the purpose of keys in lists?",
+              "options": [
+                "To identify elements uniquely",
+                "To optimize CSS",
+                "To sort data",
+                "To control animations"
+              ],
+              "correctOption": "To identify elements uniquely",
+              "answered": true,
+              "userSelectedOption": "To identify elements uniquely"
+            },
+            {
+              "questionId": "45",
+              "question": "How can you prevent a component from re-rendering?",
+              "options": [
+                "Using shouldComponentUpdate",
+                "Using React.memo",
+                "Using PureComponent",
+                "All of the above"
+              ],
+              "correctOption": "All of the above",
+              "answered": true,
+              "userSelectedOption": "Using shouldComponentUpdate"
+            },
+            {
+              "questionId": "46",
+              "question": "What is React.Fragment used for?",
+              "options": [
+                "To group elements without adding extra DOM nodes",
+                "To style components",
+                "To manage state",
+                "To create modals"
+              ],
+              "correctOption": "To group elements without adding extra DOM nodes",
+              "answered": true,
+              "userSelectedOption": "To group elements without adding extra DOM nodes"
+            },
+            {
+              "questionId": "47",
+              "question": "Which hook is used to reference DOM elements directly?",
+              "options": [
+                "useRef",
+                "useMemo",
+                "useState",
+                "useCallback"
+              ],
+              "correctOption": "useRef",
+              "answered": true,
+              "userSelectedOption": "useMemo"
+            },
+            {
+              "questionId": "48",
+              "question": "What is lazy loading in React?",
+              "options": [
+                "Loading components only when needed",
+                "Preloading all components",
+                "Caching data globally",
+                "Reducing API calls"
+              ],
+              "correctOption": "Loading components only when needed",
+              "answered": true,
+              "userSelectedOption": "Loading components only when needed"
+            },
+            {
               "questionId": "49",
               "question": "Which function helps in optimizing function re-creation in React?",
               "options": [
@@ -5162,7 +6052,7 @@
               ],
               "correctOption": "useCallback",
               "answered": true,
-              "userSelectedOption": "useMemo"
+              "userSelectedOption": "useCallback"
             },
             {
               "questionId": "50",
@@ -5191,17 +6081,17 @@
               "userSelectedOption": "State is internal and changeable; props are passed from parents and read-only"
             },
             {
-              "questionId": "83",
-              "question": "What is the purpose of the useContext hook?",
+              "questionId": "82",
+              "question": "How does React handle form submission?",
               "options": [
-                "Handle effects",
-                "Access context value provided by Context.Provider",
-                "Replace useState",
-                "Style components"
+                "Use CSS to fix errors",
+                "Use event handlers and preventDefault to handle submission",
+                "Let the browser submit to server",
+                "No handling needed"
               ],
-              "correctOption": "Access context value provided by Context.Provider",
+              "correctOption": "Use event handlers and preventDefault to handle submission",
               "answered": true,
-              "userSelectedOption": "Access context value provided by Context.Provider"
+              "userSelectedOption": "Use event handlers and preventDefault to handle submission"
             },
             {
               "questionId": "84",
@@ -5292,7 +6182,7 @@
               ],
               "correctOption": "Use error boundaries or try/catch in event handlers",
               "answered": true,
-              "userSelectedOption": "React automatically handles all errors"
+              "userSelectedOption": "Use error boundaries or try/catch in event handlers"
             },
             {
               "questionId": "93",
@@ -5308,56 +6198,30 @@
               "userSelectedOption": "A function that takes a component and returns an enhanced component"
             },
             {
-              "questionId": "94",
-              "question": "What is React Portal used for?",
+              "questionId": "96",
+              "question": "What is React Router used for?",
               "options": [
-                "Render children into a DOM node outside the parent hierarchy",
-                "Server-side rendering",
                 "Styling",
-                "Routing"
+                "State management",
+                "Client-side routing and navigation",
+                "Testing"
               ],
-              "correctOption": "Render children into a DOM node outside the parent hierarchy",
+              "correctOption": "Client-side routing and navigation",
               "answered": true,
-              "userSelectedOption": "Render children into a DOM node outside the parent hierarchy"
+              "userSelectedOption": "Client-side routing and navigation"
             },
             {
-              "questionId": "95",
-              "question": "How can you persist state between sessions in React?",
+              "questionId": "100",
+              "question": "How do you prevent memory leaks in React components?",
               "options": [
-                "Use refs",
-                "Use CSS",
-                "Store state in localStorage or other persistent storage",
-                "Keep in component state"
+                "Let garbage collector handle it",
+                "Avoid refs",
+                "Use more state",
+                "Clean up subscriptions and timers in useEffect cleanup"
               ],
-              "correctOption": "Store state in localStorage or other persistent storage",
+              "correctOption": "Clean up subscriptions and timers in useEffect cleanup",
               "answered": true,
-              "userSelectedOption": "Store state in localStorage or other persistent storage"
-            },
-            {
-              "questionId": "97",
-              "question": "What is the difference between context and Redux?",
-              "options": [
-                "Context is only for routing",
-                "Context is for lightweight state sharing; Redux is a full state management solution with patterns",
-                "They are identical",
-                "Redux is deprecated"
-              ],
-              "correctOption": "Context is for lightweight state sharing; Redux is a full state management solution with patterns",
-              "answered": true,
-              "userSelectedOption": "Context is for lightweight state sharing; Redux is a full state management solution with patterns"
-            },
-            {
-              "questionId": "99",
-              "question": "What is a PureComponent in React?",
-              "options": [
-                "A CSS class",
-                "A function component",
-                "A testing tool",
-                "A class component that implements shallow prop and state comparison to avoid re-renders"
-              ],
-              "correctOption": "A class component that implements shallow prop and state comparison to avoid re-renders",
-              "answered": true,
-              "userSelectedOption": "A class component that implements shallow prop and state comparison to avoid re-renders"
+              "userSelectedOption": "Clean up subscriptions and timers in useEffect cleanup"
             }
           ]
         }

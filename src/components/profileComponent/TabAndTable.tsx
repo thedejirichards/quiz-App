@@ -8,7 +8,13 @@ import NumberList from "./NumberList";
 function TabAndTable() {
   const [currPage, setCurrPage] = useState<number>(1);
   const { currentLoggedInUser, registeredUsers } = useUserMgtAuth();
-  const { getDateFromTimestamp, activeDifficultyType } = useProfile();
+  const {
+    getDateFromTimestamp,
+    activeDifficultyType,
+    searchBy,
+    sortby,
+    sortOrder,
+  } = useProfile();
   const userQuizHistory = currentLoggedInUser?.quizHistory;
   const filteredUserQuizHistory =
     activeDifficultyType === "All"
@@ -16,18 +22,56 @@ function TabAndTable() {
       : userQuizHistory?.filter(
           (history) => history.difficultyType === activeDifficultyType
         );
+
+  const deeperFilterUserQuizHistory =
+    !searchBy && sortby === "sort by" && sortOrder === "select"
+      ? filteredUserQuizHistory
+      : searchBy && sortby === "sort by" && sortOrder === "select"
+      ? filteredUserQuizHistory?.filter((quiz) =>
+          quiz.quizId.includes(searchBy)
+        )
+      : !searchBy &&
+        sortby === "rank" &&
+        (sortOrder === "select" || sortOrder === "descending")
+      ? [...(filteredUserQuizHistory ?? [])].sort((a, b) => {
+          if (b.rankScore !== a.rankScore) return b.rankScore - a.rankScore;
+          return b.percentScore - a.percentScore;
+        })
+      : !searchBy && sortby === "rank" && sortOrder === "ascending"
+      ? [...(filteredUserQuizHistory ?? [])].sort((a, b) => {
+          if (a.rankScore !== b.rankScore) return a.rankScore - b.rankScore;
+          return a.percentScore - b.percentScore;
+        })
+      : !searchBy &&
+        sortby === "date" &&
+        (sortOrder === "select" || sortOrder === "descending")
+      ? [...(filteredUserQuizHistory ?? [])].sort(
+          (a, b) => b.dateStamp - a.dateStamp
+        )
+      : !searchBy && sortby === "date" && sortOrder === "ascending"
+      ? [...(filteredUserQuizHistory ?? [])].sort(
+          (a, b) => a.dateStamp - b.dateStamp
+        )
+      : !searchBy && sortby === "sort by" && sortOrder !== "select"
+      ? filteredUserQuizHistory
+      : filteredUserQuizHistory;
+
   const dataPerTable = 5;
   const startIndex = (currPage - 1) * dataPerTable;
-  const userQuizHistoryLength = filteredUserQuizHistory
-    ? filteredUserQuizHistory.length
+  const userQuizHistoryLength = deeperFilterUserQuizHistory
+    ? deeperFilterUserQuizHistory.length
     : 0;
   const totalPages = Math.ceil(userQuizHistoryLength / dataPerTable);
   const endIndex = startIndex + dataPerTable;
   const finalPage = currPage === totalPages;
 
-  const userQuizHistoryToDisplay = filteredUserQuizHistory
-    ? filteredUserQuizHistory.slice(startIndex, endIndex)
+  const userQuizHistoryToDisplay = deeperFilterUserQuizHistory
+    ? deeperFilterUserQuizHistory.slice(startIndex, endIndex)
     : [];
+
+  //   if(!searchBy && sortby &&!sortOrder){
+
+  // }
   if (!userQuizHistory) return <div>Empty table</div>;
 
   const getRank = (currquizId: string) => {
@@ -36,13 +80,18 @@ function TabAndTable() {
       .flatMap((user) =>
         user.quizHistory.map((quiz) => ({
           rankScore: quiz.rankScore,
+          percentScore: quiz.percentScore,
           quizId: quiz.quizId,
           userId: user.id,
           userName: user.name,
           difficultyType: quiz.difficultyType,
         }))
       )
-      .sort((a, b) => b.rankScore - a.rankScore);
+      .sort((a, b) => {
+        const rankDiff = (b.rankScore ?? 0) - (a.rankScore ?? 0);
+        if (rankDiff !== 0) return rankDiff;
+        return (b.percentScore ?? 0) - (a.percentScore ?? 0);
+      });
 
     const quizScoresForLoggedInUser = usersAndQuizScores.filter(
       (user) => user.userId === currentLoggedInUser.id
@@ -66,7 +115,7 @@ function TabAndTable() {
 
   return (
     <div className="tab-n-table w-full flex-7 mt-4">
-      <ProfileTableTab setCurrPage={setCurrPage}/>
+      <ProfileTableTab setCurrPage={setCurrPage} />
       <div className="table w-full my-4 rounded-xl">
         <table className="table-auto w-full bg-white rounded-xl">
           <thead className="w-full bg-[#F9FAFB] ">
@@ -74,19 +123,22 @@ function TabAndTable() {
               <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[5%] rounded-xl">
                 S/N
               </th>
-              <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[30%]">
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[36%]">
                 Quiz ID
               </th>
-              <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[10%]">
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[7%]">
                 Score
               </th>
-              <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[10%]">
-                Date
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[10%]">
+                Rank Score
               </th>
-              <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[10%]">
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[7%]">
                 Rank
               </th>
-              <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[10%]">
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[7%]">
+                Date
+              </th>
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[7%]">
                 Status
               </th>
               <th className="text-left px-8 py-5 border-b-2 border-borderGrey w-[15%] rounded-xl">
@@ -99,6 +151,7 @@ function TabAndTable() {
               const quizId = quizHistory.quizId;
               const serialNumber = startIndex + index + 1;
               const quizScore = Math.floor(quizHistory.percentScore);
+              const rankScore = quizHistory.rankScore.toFixed(1);
               const quizDate = getDateFromTimestamp(quizHistory.dateStamp);
               const status = quizHistory.remark;
               const difficultyType = quizHistory.difficultyType;
@@ -108,19 +161,22 @@ function TabAndTable() {
                   <td className="px-8 py-5 border-b-2 border-borderGrey">
                     {serialNumber}
                   </td>
-                  <td className="px-8 py-5 border-b-2 border-borderGrey">
+                  <td className="px-4 py-5 border-b-2 border-borderGrey">
                     {quizId}
                   </td>
-                  <td className="px-8 py-5 border-b-2 border-borderGrey">
+                  <td className="px-4 py-5 border-b-2 border-borderGrey">
                     {quizScore}
                   </td>
-                  <td className="px-8 py-5 border-b-2 border-borderGrey">
-                    {quizDate}
+                  <td className="px-4 py-5 border-b-2 border-borderGrey">
+                    {rankScore}
                   </td>
-                  <td className="px-8 py-5 border-b-2 border-borderGrey">
+                  <td className="px-4 py-5 border-b-2 border-borderGrey">
                     {rank}
                   </td>
-                  <td className="px-8 py-5 border-b-2 border-borderGrey">
+                  <td className="px-4 py-5 border-b-2 border-borderGrey">
+                    {quizDate}
+                  </td>
+                  <td className="px-4 py-5 border-b-2 border-borderGrey">
                     {status}
                   </td>
                   <td className="px-8 py-5 border-b-2 border-borderGrey">
@@ -132,7 +188,7 @@ function TabAndTable() {
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={7} className="py-5 w-full">
+              <td colSpan={8} className="py-5 w-full">
                 <div className="flex justify-between items-center w-full px-8">
                   <Button name="prev" action={handlePrev} />
                   <NumberList

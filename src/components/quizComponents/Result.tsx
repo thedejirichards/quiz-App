@@ -17,7 +17,7 @@ function Result() {
     quizInfo,
     rank,
   } = useQuiz();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { registeredUsers } = useUserMgtAuth();
   const percentTimeUsed =
@@ -43,9 +43,11 @@ function Result() {
       .sort((a, b) => b.rankScore - a.rankScore);
     console.log(usersAndQuizScores);
 
-    const rankToDisplay =
-      1 +
-      usersAndQuizScores.findIndex((item) => item.quizId === quizInfo?.quizId);
+    const index = usersAndQuizScores.findIndex(
+      (item) => item.quizId === quizInfo?.quizId
+    );
+    const rankToDisplay = index === -1 ? null : index + 1;
+
     // setRank(rankToDisplay);
     dispatch({ type: "updateRank", payload: rankToDisplay });
   }, [registeredUsers, quizInfo, dispatch]);
@@ -72,7 +74,7 @@ function Result() {
             />
             <ResultTopMetricChildCard
               leftText="Rank"
-              rightText={String(rank)}
+              rightText={rank ? String(rank) : "-"}
               iconSelector="rank"
             />
           </div>
@@ -93,14 +95,16 @@ function Result() {
         </div>
       </div>
       <div className="next-prev-footer btn-div h-2/12 flex gap-6 items-center w-10/12 mx-auto justify-between">
-        <div 
-        onClick={()=> navigate("/app/leaderboard")}
-        className="btn-leaderboard flex-1 bg-white border-2 border-deepGreen text-deepGreen rounded-md h-1/3 flex items-center justify-center font-bold">
+        <div
+          onClick={() => navigate("/app/leaderboard")}
+          className="btn-leaderboard flex-1 bg-white border-2 border-deepGreen text-deepGreen rounded-md h-1/3 flex items-center justify-center font-bold cursor-pointer"
+        >
           Leaderboard
         </div>
-        <div 
-        onClick={()=> dispatch({type: "quiz/getStarted"})}
-        className="btn-nq flex-1 bg-deepGreen border-2 border-deepGreen text-white rounded-md h-1/3 flex items-center justify-center font-bold">
+        <div
+          onClick={() => dispatch({ type: "quiz/getStarted" })}
+          className="btn-nq flex-1 bg-deepGreen border-2 border-deepGreen text-white rounded-md h-1/3 flex items-center justify-center font-bold cursor-pointer"
+        >
           New Quiz
         </div>
       </div>

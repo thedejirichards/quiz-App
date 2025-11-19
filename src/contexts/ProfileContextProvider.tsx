@@ -11,6 +11,9 @@ const initialState: ProfileStateTypes = {
   activeDifficultyType: "All",
   isLoading: false,
   userRank: null,
+  searchBy: "",
+  sortby: "sort by",
+  sortOrder: "select",
 };
 
 const reducer = (state: ProfileStateTypes, action: ProfileReducerType) => {
@@ -21,15 +24,21 @@ const reducer = (state: ProfileStateTypes, action: ProfileReducerType) => {
       return { ...state, activeDifficultyType: action.payload };
     case "updateUserRank":
       return { ...state, userRank: action.payload };
+    case "updateSearchBy":
+      return { ...state, searchBy: action.payload };
+    case "updateSortby":
+      return { ...state, sortby: action.payload };
+    case "updateSortOrder":
+      return { ...state, sortOrder: action.payload };
   }
 };
 
 const getDateFromTimestamp = (timestamp: number) => {
   const date = new Date(timestamp);
   return date.toLocaleDateString(); // e.g., "11/13/2025"
-}
+};
 function ProfileContextProvider({ children }: { children: React.ReactNode }) {
-  const [{ isLoading, activeDifficultyType, userRank }, dispatch] = useReducer(
+  const [{ isLoading, activeDifficultyType, userRank, searchBy, sortby, sortOrder }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -42,6 +51,9 @@ function ProfileContextProvider({ children }: { children: React.ReactNode }) {
         getDateFromTimestamp,
         dispatch,
         userRank,
+        searchBy,
+        sortby,
+        sortOrder,
       }}
     >
       {children}

@@ -175,7 +175,7 @@ export type quizReducerActionTypes =
   | { type: "updateTimeRemaining"; payload: number }
   | { type: "decreaseTimeRemaining" }
   | { type: "updateQuizInfo", payload: QuizHistoryType }
-  | { type: "updateRank", payload: number }
+  | { type: "updateRank", payload: number | null }
   | { type: "quiz/submitQuiz" }
   | { type: "error"; payload: string };
 
@@ -277,7 +277,10 @@ export type PossibleIconsOtherInfoChild = {
 export type ProfileStateTypes= {
   activeDifficultyType: string;
   isLoading: boolean;
-  userRank: number | null;
+  userRank: number | null | string;
+  searchBy: string,
+  sortby: string,
+  sortOrder: string,
 }
 
 export type ProfileContextTypes = {
@@ -285,7 +288,10 @@ export type ProfileContextTypes = {
   isLoading: boolean;
   getDateFromTimestamp: (timestamp: number)=> string;
   dispatch: (action: ProfileReducerType)=> void
-  userRank: number | null;
+  userRank: number | null | string;
+  searchBy: string,
+  sortby: string,
+  sortOrder: string,
 }
 
 
@@ -294,7 +300,10 @@ export type ProfileContextTypes = {
 export type ProfileReducerType = 
   | { type: "loading" }
   | { type: "updateActiveDifficultyType"; payload: string }
-  | { type: "updateUserRank"; payload: number | string }
+  | { type: "updateUserRank"; payload: number | string  }
+  | { type: "updateSearchBy"; payload: string  }
+  | { type: "updateSortby"; payload: string  }
+  | { type: "updateSortOrder"; payload: string  }
 
 
 
@@ -306,3 +315,16 @@ export type NumberListTypes = {
 export type ProfileTableTabTypes ={
   setCurrPage: React.Dispatch<React.SetStateAction<number>>
 }
+export type LeaderboardTableTabTypes ={
+  setCurrPage: React.Dispatch<React.SetStateAction<number>>;
+  activeDifficultyType: string;
+  setActiveDifficultyType: React.Dispatch<React.SetStateAction<string>>;
+  
+}
+
+export type SelectBoxTypes ={
+  optionList: (number | string)[]
+   onChangeFunc: (value: string ) => void;
+   value: string
+}
+

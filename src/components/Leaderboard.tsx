@@ -1,4 +1,7 @@
+import TabAndTableLeaderboard from "./profileComponent/TabAndTableLeaderboard";
+
 function Leaderboard() {
+  
   return (
     <div className="customize h-full flex flex-col items-center justify-between">
       <div className="welcome-content flex flex-col justify-center h-10/12 w-10/12 mx-auto py-10">
@@ -6,6 +9,10 @@ function Leaderboard() {
           <div className="title h1 text-3xl font-bold mb-5 w-full text-center">
             Leaderboard
           </div>
+          <div className="content h-full flex flex-col gap-5">
+              
+              <TabAndTableLeaderboard />
+            </div>
         </div>
       </div>
     </div>

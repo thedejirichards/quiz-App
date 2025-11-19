@@ -1,11 +1,8 @@
-import { useProfile } from "../../contexts/ProfileContextProvider";
-import type { ProfileTableTabTypes } from "../../types/types";
-import SortFunctionality from "./SortFunctionality";
+import type { LeaderboardTableTabTypes } from "../../types/types";
 
 const PossibleDifficultyTypes = ["All", "Easy", "Intermediate", "Difficult"];
 
-function ProfileTableTab({ setCurrPage }: ProfileTableTabTypes) {
-  const { activeDifficultyType, dispatch } = useProfile();
+function LeaderboardTableTab({ setCurrPage, activeDifficultyType, setActiveDifficultyType }: LeaderboardTableTabTypes) {
 
   return (
     <div className="tab w-full border-b-2 border-borderGrey flex justify-between">
@@ -14,7 +11,7 @@ function ProfileTableTab({ setCurrPage }: ProfileTableTabTypes) {
           const isActive = activeDifficultyType === item;
           const handleTabBtnClick = () => {
             setCurrPage(1);
-            dispatch({ type: "updateActiveDifficultyType", payload: item });
+            setActiveDifficultyType(item)
           };
           return (
             <button
@@ -31,9 +28,8 @@ function ProfileTableTab({ setCurrPage }: ProfileTableTabTypes) {
           );
         })}
       </div>
-      <SortFunctionality/>
     </div>
   );
 }
 
-export default ProfileTableTab;
+export default LeaderboardTableTab;
