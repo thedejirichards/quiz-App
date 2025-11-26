@@ -152,7 +152,7 @@ function TabAndTableLeaderboard() {
               <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[15%] rounded-xl">
                 Name
               </th>
-              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[25%]">
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[20%]">
                 Quiz ID
               </th>
               <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[10%]">
@@ -170,7 +170,7 @@ function TabAndTableLeaderboard() {
               <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[10%]">
                 Status
               </th>
-              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[15%] rounded-xl">
+              <th className="text-left px-4 py-5 border-b-2 border-borderGrey w-[20%] rounded-xl">
                 Dificulty Type
               </th>
             </tr>
@@ -285,8 +285,8 @@ function TabAndTableLeaderboard() {
                     : activeDifficultyType === "Difficult"
                     ? userData.userName
                     : "N/A";
-                const rank = "-";
-                // const rank = getRank(quizId);
+                // const rank = "-";
+                const rank = 1 + filteredUsersAndScore.sort((a,b) => b.userHighestRankScore -a.userHighestRankScore).findIndex(user=> user.userId === userData.userId);
                 return (
                   <tr key={quizId}>
                     <td className="px-8 py-5 border-b-2 border-borderGrey">
